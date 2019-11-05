@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- Connection Pool : hikariCP -->
+		
+<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+<property name="username" value="javaDB"/>
+<property name="password" value="12345"/>
+<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+</bean>
+
+	<!-- DataSource  -->
+<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+<constructor-arg ref="hikariConfig"/>
+</bean>
+<!--  mybatis:mybatis ,mybatis-spring,spring-jdbc -->
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<property name="dataSource" ref="ds"></property>
+</bean>
+
+<!-- @Service 
+, @Controller //servlet-context.xml에서 활성화시켜줌// 활성화 시켜줘야함 -->
+
+<context:component-scan base-package="com.spring.service"/>
+
+<mybatis-spring:scan base-package="com.spring.mapper"/>
+
+<!-- 컨트룰러없이 띄우는법 -->
+<mvc:view-controller path="/" view-name="index"/>
+</beans>

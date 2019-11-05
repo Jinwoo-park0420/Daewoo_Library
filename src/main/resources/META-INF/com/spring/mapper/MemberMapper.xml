@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="META-INF.com.spring.mapper.MemberMapper">
+<insert id="memberJoin" >
+insert into Library_member(name,jumin,userid,password,email,address,phone_number) values(#{name},#{jumin},#{userid},#{password},#{email},#{address},#{phone_number})
+
+</insert>
+
+<select id="login" resultType="com.spring.domain.LoginVO">
+select userid,password from Library_member where userid=#{userid} and password=#{password}
+</select>
+
+</mapper>
