@@ -13,5 +13,5 @@ public class MemberVO {
 	private String phone_number; // 핸드폰번호
 	private int grade; // 회원등급 초기값 0 관리자 1 DB에서 직접입력
 	private int lease_status; // 대여상태 초기값 0 (0 미대여 1대여 2초과)
-	private String jumin; // 주민번호
+	private String birthYear ; // 생년월일
 }
