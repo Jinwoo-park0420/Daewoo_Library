@@ -146,6 +146,7 @@ ul li {
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/boardmain">게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
