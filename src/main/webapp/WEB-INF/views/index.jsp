@@ -140,6 +140,7 @@ ul li {
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					<li class="nav-item"><a class="nav-link" href="/search/booksearch">도서 검색</a></li>
 				</ul>
 				</c:if>
 				
@@ -149,6 +150,7 @@ ul li {
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					<li class="nav-item"><a class="nav-link" href="/search/booksearch">도서 검색</a></li>
 				</ul>
 				</c:if>
 			</div>
