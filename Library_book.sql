@@ -7,8 +7,3 @@ create table Library_book(
 	Library_newbookdate date default sysdate,
 	Library_lenbookdate date default sysdate
 );
-<<<<<<< HEAD
-
-select * from Library_book;
-=======
->>>>>>> refs/remotes/origin/master

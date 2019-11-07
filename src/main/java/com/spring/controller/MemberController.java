@@ -46,6 +46,7 @@ public class MemberController {
 		System.out.println(vo);
 		
 		vo.setAddress(addr1+" "+addr2);
+
 		
 		int result=service.memberJoin(vo);
 		if(result>0)
