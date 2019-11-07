@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,12 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	@Autowired
-	public BoardService service;
+	private BoardService service;
 	
 	@GetMapping("/boardmain")
-	public void getlist() {
+	public void getlist(Model model) {
 		log.info("게시판글 목록 불러오기");
-		//List<BoardVO> list=service.getList();
+		model.addAttribute("list",service.getList());
 	}
 	
 	@GetMapping("/boardinsert")

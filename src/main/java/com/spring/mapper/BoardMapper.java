@@ -6,8 +6,7 @@ import com.spring.domain.BoardVO;
 
 public interface BoardMapper {
 
-	public List<BoardVO> selectAll();
-	
+	public List<BoardVO> getList();
 	public boolean insertboard();
 	
 }

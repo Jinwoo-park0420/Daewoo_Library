@@ -56,10 +56,10 @@
 				<div class="post-preview">
 					<table>
 					<tr>
-					<th>번 호   </th>
-					<th>제 목   </th>
-					<th>작 성 자   </th>
-					<th>작 성 일   </th>
+					<th>번 호   |</th>
+					<th>제 목   |</th>
+					<th>작 성 자   |</th>
+					<th>작 성 일   |</th>
 					<th>조 회 수   </th>
 					</tr>
 					<c:forEach var="vo" items="${list}">
