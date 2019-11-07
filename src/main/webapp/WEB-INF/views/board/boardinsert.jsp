@@ -27,10 +27,16 @@
 </head>
 <body>
 <div>
-작성자 <input type="text" value="아이디넣을거" /></br>
-제목 <input type="text" /></br>
-내용 <textarea name="" id="" cols="30" rows="10"></textarea></br>
-<a class="btn btn-primary">등록하기</a></br>
+<form action="/board/insert" method="post"></div>
+<div>
+<label>작성자</label> <input type="text" value="아이디넣을거" name="writer"/></div>
+<div>
+<label>제목</label> <input type="text" name="title"/></div>
+<div>
+<label>내용</label> <textarea name="content" id="" cols="30" rows="10"></textarea></div>
+<button type="submit" class="btn btn-primary">등록하기</button>
+<button type="reset" class="btn btn-primary">다시쓰기</button>
 </div>
+</form>
 </body>
 </html>

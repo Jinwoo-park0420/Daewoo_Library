@@ -11,6 +11,6 @@
 </select>
 
 <insert id="insertboard">
-insert into library_board values(#{title})
+insert into library_board(bno,title,writer,content,regdate) values(seq_libbno.nextVal,#{title},#{writer},#{content},sysdate)
 </insert>
 </mapper>

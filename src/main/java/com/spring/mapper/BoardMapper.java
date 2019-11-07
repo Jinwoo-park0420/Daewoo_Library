@@ -7,6 +7,6 @@ import com.spring.domain.BoardVO;
 public interface BoardMapper {
 
 	public List<BoardVO> getList();
-	public boolean insertboard();
+	public boolean insertboard(BoardVO vo);
 	
 }

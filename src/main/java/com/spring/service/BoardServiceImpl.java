@@ -25,7 +25,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean insert(BoardVO vo) {
-		return bmapper.insertboard();
+	public void insert(BoardVO vo) {
+		log.info("글 등록하기");
+		bmapper.insertboard(vo);
 	}
 }

@@ -7,5 +7,5 @@ import com.spring.domain.BoardVO;
 public interface BoardService {
 
 	public List<BoardVO> getList();
-	public boolean insert(BoardVO vo);
+	public void insert(BoardVO vo);
 }
