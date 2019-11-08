@@ -15,6 +15,19 @@
 	</properties>
 	<dependencies>
 		<!-- Mail -->
+		<!-- google맵 사용 -->
+
+
+
+<dependency>
+
+<groupId>com.google.code.geocoder-java</groupId>
+
+<artifactId>geocoder-java</artifactId>
+
+<version>0.16</version>
+
+</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>

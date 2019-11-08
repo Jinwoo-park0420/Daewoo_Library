@@ -7,7 +7,7 @@ insert into Library_member(name,jumin,userid,password,email,address,phone_number
 </insert>
 
 <select id="login" resultType="com.spring.domain.LoginVO">
-select userid,password from Library_member where userid=#{userid} and password=#{password}
+select userid,password,grade from Library_member where userid=#{userid} and password=#{password}
 </select>
 
 </mapper>

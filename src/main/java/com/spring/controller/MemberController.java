@@ -58,10 +58,21 @@ public class MemberController {
 		return "join";
 	}
 	
-	@RequestMapping
+	@PostMapping("login")
 	public String login(LoginVO vo,RedirectAttributes rttr, Model model) {
 		log.info("로그인 요청");
 		LoginVO vo1=service.login(vo);
+		
+		int managergrade=vo1.getGrade();
+		
+		System.out.println("회원등급"+ managergrade);
+		if(managergrade==1) {
+			log.info("관리자페이지요청");
+			model.addAttribute("vo1",vo1);
+			return "redirect:/manager/managermain" ;
+		}else {
+			
+		
 		if(vo1!=null) {
 			model.addAttribute("vo1",vo1);
 			return "redirect:/";
@@ -69,9 +80,10 @@ public class MemberController {
 		
 		}else {
 			rttr.addFlashAttribute("error","아이디혹은 비밀번호가 잘못되었습니다.");
-			return "redirect:/login";
+			return "member/login";
 		}
 			
+		}
 	}
 	
 	@GetMapping("/logout")
