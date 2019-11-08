@@ -6,7 +6,7 @@
 
 <select id="getList" resultType="com.spring.domain.BoardVO">
 <![CDATA[
-	select * from library_board where bno>0 order by bno
+	select * from library_board where bno > 0 order by bno
 ]]>
 </select>
 

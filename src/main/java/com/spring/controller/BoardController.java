@@ -50,4 +50,9 @@ public class BoardController {
 		model.addAttribute("vo", service.selectboard(bno));
 		
 	}
+	
+	@GetMapping("/modify")
+	public void modifyform() {
+		log.info("글 수정 페이지 이동");
+	}
 }
