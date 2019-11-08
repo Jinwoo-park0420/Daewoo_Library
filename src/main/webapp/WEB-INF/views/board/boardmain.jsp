@@ -28,68 +28,97 @@
 <title>게시판</title>
 </head>
 <body>
-	<header class="masthead"
-		style="background-image: url('/resources/img/home-bg.jpg')">
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<c:if test="${empty vo1 }">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					</ul>
+				</c:if>
+
+				<c:if test="${!empty vo1 }">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/member/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					</ul>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
 					<div class="site-heading">
-				
-						<div class="box">
-							<div class="container-1">
-							글 검색<input type="search" id="search" placeholder="Search..." /> <i class="fa fa-search"><span class="icon"></span></i>
 
-							</div>
+						<div class="navbar">
 						</div>
-
-					</div>
-				</div>
 			</div>
 		</div>
-	</header>
-	
+		</div>
+		</div>
+</header>
+			
+						
+					
 		<!-- Main Content -->
+	<div>
+	<h3 align="center">건의사항</h3>
+	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-10 mx-auto">
-				<div class="post-preview">
-					<table>
-					<tr>
-					<th>번 호   |</th>
-					<th>제 목   |</th>
-					<th>작 성 자   |</th>
-					<th>작 성 일   |</th>
-					<th>조 회 수   </th>
-					</tr>
-					<c:forEach var="vo" items="${list}">
-					<tr>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>번 호</th>
+					<th>제 목</th>
+					<th>작 성 자</th>
+					<th>작 성 일</th>
+					<th>조 회 수</th>
+				</tr>
+			</thead>
+			<c:forEach var="vo" items="${list}">
+			<tbody>
+				<tr>
 					<td>${vo.bno}</td>
 					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.regdate}</td>
 					<td>${vo.readcnt}</td>
-					</tr>
-					</c:forEach>
-					</table>
-				</div>
-				<hr>
-				<div class="post-preview">
-					
-				</div>
-				
-				</div>
-
-				</div>
-				<!-- Pager -->
-				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="/board/boardinsert">글쓰기
-						&rarr;</a>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
+				<div class="text-center">
+					<ul class="pagination">
+						<li><a class="btn btn-default" href="#">이전</a></li>
+						<li><a class="btn btn-default" href="#">1</a></li>
+						<li><a class="btn btn-default" href="#">2</a></li>
+						<li><a class="btn btn-default" href="#">3</a></li>
+						<li><a class="btn btn-default" href="#">4</a></li>
+						<li><a class="btn btn-default" href="#">5</a></li>
+						<li><a class="btn btn-default" href="#">다음</a></li>
+					</ul>
 				</div>
 			</div>
-		</div>
-	</div>
-
 
 <!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
