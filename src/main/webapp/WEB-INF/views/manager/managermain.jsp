@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>대우 도서관</title>
+<title>대우 도서관asdasd</title>
 <!-- 검색박스용 -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
@@ -84,12 +84,8 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
 					<div class="site-heading">
-
 						<div class="navbar">
 
-
-
-<br>
 							<li class="menu"><a> <label>도서관 안내</label></a>
 								<ul class="hide">
 									<li><a href="#">소개 및 연혁</a></li>
@@ -117,7 +113,6 @@
 						</div>
 				<div class="container">
     <br/>
-</div>
 	<div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form class="navbar">
