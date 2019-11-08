@@ -48,17 +48,19 @@
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="/search/booksearch">도서 검색</a></li>
+					
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
-						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/member/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/member/mypage">My page</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="/search/booksearch">도서 검색</a></li>
+			
 					</ul>
 				</c:if>
 			</div>
@@ -75,16 +77,16 @@
 					<div class="page-heading">
 						<h1>도서검색</h1>
 						<form action="" id="searchForm" method="get">
-						<select name="type" id="">
-							<option value="">---</option>
-							<option value="T" <c:out value=""/>>도서이름</option>
-							<option value="G" <c:out value=""/>>장 르</option>
-							<option value="W" <c:out value=""/>>저 자</option>
-						</select>
-						<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요."/>
-						<button class="btn btn-warning">Search</button>
+							<select name="type" id="">
+								<option value="">---</option>
+								<option value="T" <c:out value=""/>>도서이름</option>
+								<option value="G" <c:out value=""/>>장 르</option>
+								<option value="W" <c:out value=""/>>저 자</option>
+							</select> <input type="text" name="keyword" value=""
+								placeholder="검색어를 입력하세요." />
+							<button class="btn btn-warning">Search</button>
 						</form>
-							<!-- <div class="box">
+						<!-- <div class="box">
 								<div class="container-1">
 									<input type="search" id="search" placeholder="검색어를 입력하세요." />
 									<i class="fa fa-search"><span class="icon"></span></i>
@@ -95,54 +97,75 @@
 			</div>
 		</div>
 	</header>
+	<div class="container">
 
-	<!-- /.panel-heading -->
-	<div class="panel-body">
-		<table class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>도서번호</th>
-					<th>도서이름</th>
-					<th>장 르</th>
-					<th>저 자</th>
-					<th>발행일</th>
-					<th>도서상태</th>
-					<th>대여기간</th>
-				</tr>
-			</thead>
+		<div class="row">
+			<div id="list-example" class="list-group">
+				<a class="list-group-item list-group-item-action"
+					href="#list-item-1">전체 목록</a> <a
+					class="list-group-item list-group-item-action" href="#list-item-2">신간
+					도서</a> <a class="list-group-item list-group-item-action"
+					href="#list-item-3">베스트 셀러</a> <a
+					class="list-group-item list-group-item-action" href="#list-item-4">인기
+					도서</a>
+			</div>
 
-		</table>
-		
-		<!-- Footer -->
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-md-10 mx-auto">
-						<ul class="list-inline text-center">
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-github fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-						</ul>
-						<p class="copyright text-muted">Copyright &copy; Your Website
-							2019</p>
-					</div>
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>도서번호</th>
+							<th>도서이름</th>
+							<th>장 르</th>
+							<th>저 자</th>
+							<th>발행일</th>
+							<th>도서상태</th>
+							<th>대여기간</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<ul class="list-inline text-center">
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-github fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+					</ul>
+					<p class="copyright text-muted">Copyright &copy; Your Website
+						2019</p>
 				</div>
 			</div>
-		</footer>
+		</div>
+	</footer>
 </body>
 </html>

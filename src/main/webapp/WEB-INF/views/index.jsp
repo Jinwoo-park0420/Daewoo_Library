@@ -90,30 +90,26 @@
 
 
 <br>
-							<li class="menu"><a> <label>도서관 안내</label></a>
+							<li class="menu"> <a href="/search/info">도서관 안내</a>
 								<ul class="hide">
-									<li><a href="#">소개 및 연혁</a></li>
 									<li><a href="#">이용 안내</a></li>
 									<li><a href="#">찾아오시는 길</a></li>
 								</ul></li>
-							<li class="menu"><a> <label>자료 검색</label></a>
+							<li class="menu"> <a href="/search/booksearch">자료 검색</a>
 								<ul class="hide">
 									<li><a href="#">신간 자료</a></li>
 									<li><a href="#">베스트셀러</a></li>
 									<li><a href="#">청소년 권장도서</a></li>
 								</ul></li>
-							<li class="menu"><a> <label>행사</label></a>
-								<ul class="hide">
-									<li><a href="#">독후감 대회</a></li>
-									<li><a href="#">행사 일정</a></li>
-									<li><a href="#">문화 프로그램</a></li>
-								</ul></li>
-							<li class="menu"><a> <label>소통·참여</label></a>
+							
+							<li class="menu"> <a href="#">소통 참여</a>
 								<ul class="hide">
 									<li><a href="#">건의사항</a></li>
 									<li><a href="#">도서 신청</a></li>
-									<li><a href="#">도서관 소식</a></li>
+									<li><a href="#">독후감 대회</a></li>
 								</ul></li>
+							<li class="menu"> <a href="/search/bookapply">도서 신청</a>
+									
 						</div>
 				<div class="container">
     <br/>
@@ -151,8 +147,14 @@
 	</header>
 
 	<!-- Main Content -->
+
+	
+		
 	<div class="container">
-		<div class="row">
+
+		<div class="row">	
+	
+
 			<div class="col-lg-8 col-md-10 mx-auto">
 					<hr>
 				<div class="post-preview">
@@ -239,23 +241,7 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
-	<script>
-		$(document).ready(function() {
-
-			$(".menu>a").click(function() {
-				var submenu = $(this).next("ul");
-
-				// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-				if (submenu.is(":visible")) {
-					submenu.slideUp();
-				} else {
-					submenu.slideDown();
-				}
-			}).mouseover(function() {
-				$(this).next("ul").slideDown();
-			});
-		})
-	</script>
+	
 <script>
 //GoogleMap//
 function initMap(){

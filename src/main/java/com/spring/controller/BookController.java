@@ -15,4 +15,9 @@ public class BookController {
 	public void search() {
 		log.info("도서 검색페이지 요청");
 	}
+	
+	@GetMapping("bookapply")
+	public void bookapplyGet() {
+		log.info("도서 신청페이지 요청");
+	}
 }
