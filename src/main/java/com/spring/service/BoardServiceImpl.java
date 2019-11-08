@@ -17,9 +17,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper bmapper;
-	
+
 	@Override
-	public List<BoardVO> getList() { //목록불러오기
+	public List<BoardVO> getList() { // 목록불러오기
 		log.info("리스트 불러오기");
 		return bmapper.getList();
 	}
@@ -28,5 +28,11 @@ public class BoardServiceImpl implements BoardService {
 	public void insert(BoardVO vo) {
 		log.info("글 등록하기");
 		bmapper.insertboard(vo);
+	}
+
+	@Override
+	public BoardVO selectboard(int bno) {
+		log.info("글 읽기");
+		return bmapper.read(bno);
 	}
 }

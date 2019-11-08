@@ -173,7 +173,7 @@ ul li {
   <li class="menu">
    <a> <label>도서관 안내</label></a>
     <ul class="hide">
-    <li><a href="#">asd</a></li>
+    <li><a href="/board/boardmain">게시판</a></li>
     <li><a href="#">asd</a></li>
     <li><a href="#">asd</a></li>
     </ul>
