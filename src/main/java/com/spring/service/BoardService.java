@@ -8,4 +8,5 @@ public interface BoardService {
 
 	public List<BoardVO> getList();
 	public void insert(BoardVO vo);
+	public BoardVO selectboard(int bno);
 }

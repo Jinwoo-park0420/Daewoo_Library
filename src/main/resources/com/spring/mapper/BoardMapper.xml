@@ -11,6 +11,16 @@
 </select>
 
 <insert id="insertboard">
-insert into library_board(bno,title,writer,content,regdate) values(seq_libbno.nextVal,#{title},#{writer},#{content},sysdate)
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			select seq_libbno.nextVal from dual
+		</selectKey>
+insert into library_board(bno,title,content,writer,regdate)
+		values(#{bno},#{title},#{content},#{writer},sysdate)
 </insert>
+
+<select id="read" resultType="com.spring.domain.BoardVO">
+select bno,title,writer,content,regdate,updatedate from library_board where bno = #{bno}
+</select>
+
+
 </mapper>

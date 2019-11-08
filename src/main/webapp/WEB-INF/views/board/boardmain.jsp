@@ -65,7 +65,7 @@
 					<c:forEach var="vo" items="${list}">
 					<tr>
 					<td>${vo.bno}</td>
-					<td>${vo.title}</td>
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.regdate}</td>
 					<td>${vo.readcnt}</td>

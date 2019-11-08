@@ -13,6 +13,9 @@ readcnt number(10)--조회수
 
 create sequence seq_libbno; --bno 시퀀스
 
+drop table library_board;
+drop sequence seq_libbno;
+
 insert into library_board(bno,title,content,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','이찬해',sysdate,0);
 
 select * from library_board;

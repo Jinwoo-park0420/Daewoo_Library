@@ -84,7 +84,55 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
 					<div class="site-heading">
+<<<<<<< HEAD
 						<div class="navbar">
+=======
+				<div class="navbar">
+				
+  <li class="menu">
+   <a> <label>도서관 안내</label></a>
+    <ul class="hide">
+    <li><a href="/board/boardmain">게시판</a></li>
+    <li><a href="#">asd</a></li>
+    <li><a href="#">asd</a></li>
+    </ul>
+    
+  </li>
+  
+  <li class="menu">
+   <a> <label>도서관 안내</label></a>
+    <ul class="hide">
+    <li>asd</li>
+    <li> asd</li>
+    <li> asd</li>
+    </ul>
+    
+  </li>
+  
+  <li class="menu">
+   <a> <label>도서관 안내</label></a>
+    <ul class="hide">
+    <li>asd</li>
+    <li> asd</li>
+    <li> asd</li>
+    </ul>
+    
+  </li>
+  
+  <li class="menu">
+   <a> <label>도서관 안내</label></a>
+    <ul class="hide">
+    <li>asd</li>
+    <li> asd</li>
+    <li> asd</li>
+    </ul>
+    
+  </li>
+  
+  </div>
+</div>
+<br>
+>>>>>>> refs/remotes/origin/master
 
 							<li class="menu"><a> <label>도서관 안내</label></a>
 								<ul class="hide">
