@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Criteria;
 import com.spring.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -17,11 +19,10 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper bmapper;
-
+	
 	@Override
-	public List<BoardVO> getList() { // 목록불러오기
-		log.info("리스트 불러오기");
-		return bmapper.getList();
+	public List<BoardVO> getList(Criteria cri) {
+		return bmapper.getListWithPaging(cri);
 	}
 
 	@Override

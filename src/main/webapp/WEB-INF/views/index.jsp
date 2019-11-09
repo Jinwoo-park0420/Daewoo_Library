@@ -102,7 +102,7 @@
 									<li><a href="#">청소년 권장도서</a></li>
 								</ul></li>
 							
-							<li class="menu"> <a href="#">소통 참여</a>
+							<li class="menu"> <a href="/board/boardmain">소통 참여</a>
 								<ul class="hide">
 									<li><a href="/board/boardmain">건의사항</a></li>
 									<li><a href="#">도서 신청</a></li>

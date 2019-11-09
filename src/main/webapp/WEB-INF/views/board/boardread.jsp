@@ -78,7 +78,7 @@ textarea{resize:none;}
 </header>
 <div class="container">
 <table class="table table-striped">
-	<thead>${vo.title}</thead>
+	<thead>${vo.bno}번 글</thead>
 	<tbody>
 <form action="/board/insert" method="post">
 			<tr>
