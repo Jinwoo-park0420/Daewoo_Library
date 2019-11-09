@@ -378,7 +378,8 @@ header.masthead .post-heading .meta a {
 }
 
 .floating-label-form-group .help-block {
-  margin: 15px 0;
+   top: 0;
+   opacity: 1;
 }
 
 .floating-label-form-group-with-value label {
