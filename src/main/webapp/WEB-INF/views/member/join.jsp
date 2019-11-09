@@ -154,6 +154,7 @@
           <div id="success"></div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <button type="reset" class="btn btn-primary" id="sendMessageButton">Send</button>
           </div>
         </form>
       </div>

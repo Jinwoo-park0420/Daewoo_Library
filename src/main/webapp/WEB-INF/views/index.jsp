@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -14,13 +15,20 @@
 
 <title>대우 도서관</title>
 <!-- 검색박스용 -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 <!-- Custom fonts for this template -->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css"
@@ -35,8 +43,12 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <link href="/resources/css/button-select.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/button-select.css" type="text/css"/>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/button-select.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+	integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+	crossorigin="anonymous">
 </head>
 
 <body>
@@ -86,102 +98,99 @@
 					<div class="site-heading">
 
 						<div class="navbar">
-
-
-
-<br>
-							<li class="menu"> <a href="/search/info">도서관 안내</a>
+							<br>
+							<li class="menu"><a href="/library/libraryinfo">도서관 안내</a>
 								<ul class="hide">
 									<li><a href="#">이용 안내</a></li>
 									<li><a href="#">찾아오시는 길</a></li>
 								</ul></li>
-							<li class="menu"> <a href="/search/booksearch">자료 검색</a>
+							<li class="menu"><a href="/book/booksearch">자료 검색</a>
 								<ul class="hide">
 									<li><a href="#">신간 자료</a></li>
 									<li><a href="#">베스트셀러</a></li>
 									<li><a href="#">청소년 권장도서</a></li>
 								</ul></li>
-							
-							<li class="menu"> <a href="#">소통 참여</a>
+
+							<li class="menu"><a href="board/boardinfo">소통 참여</a>
 								<ul class="hide">
 									<li><a href="/board/boardmain">건의사항</a></li>
 									<li><a href="#">도서 신청</a></li>
-									<li><a href="#">독후감 대회</a></li>
+									<li><a href="/boardcompetition/boardcompetition">독후감 대회</a></li>
 								</ul></li>
-							<li class="menu"> <a href="/search/bookapply">도서 신청</a>
-									
+							<li class="menu"><a href="/book/bookapply" class="applyBook">도서
+									신청</a>
 						</div>
-				<div class="container">
-    <br/>
-</div>
-	<div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="navbar">
-                                <div class="navbar row no-gutters align-items-center">
-                                    
-                                    <!--end of col-->
-                                    <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="찾을 도서를 입력하세요">
-                                    </div>
-                                    <!--end of col-->
-                                
-                                    <div class="col-auto">
-                                        <button class="btn  btn-outline-light" type="submit">Search</button>
-                                    </div>
-                                    <!--end of col-->
-                                </div>
-                            </form>
-                        </div>
-                        <!--end of col-->
-                    </div>
-</div>
-				
-					</div>
-					<br>
+						<div class="container">
+							<br />
+						</div>
+						<div class="row justify-content-center">
+							<div class="col-12 col-md-10 col-lg-8">
+								<form class="navbar">
+									<div class="navbar row no-gutters align-items-center">
 
+										<!--end of col-->
+										<div class="col">
+											<input
+												class="form-control form-control-lg form-control-borderless"
+												type="search" placeholder="찾을 도서를 입력하세요">
+										</div>
+										<!--end of col-->
+
+										<div class="col-auto">
+											<button class="btn  btn-outline-light" type="submit">Search</button>
+										</div>
+										<!--end of col-->
+									</div>
+								</form>
+							</div>
+							<!--end of col-->
+						</div>
+					</div>
 
 				</div>
+				<br>
+
+
 			</div>
+		</div>
 		</div>
 		</div>
 	</header>
 
 	<!-- Main Content -->
 
-	
-		
+
+
 	<div class="container">
 
-		<div class="row">	
-	
+		<div class="row">
+
 
 			<div class="col-lg-8 col-md-10 mx-auto">
-					<hr>
+				<hr>
 				<div class="post-preview">
 					<a href="post.html">
 						<h2 class="post-title">신간도서</h2>
-						
 				</div>
 				<hr>
 				<div class="post-preview">
 					<a href="post.html">
-						<h2 class="post-title">베스트 셀러</h2></a>
-				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">인기도서
-						</h2>
+						<h2 class="post-title">베스트 셀러</h2>
 					</a>
-					
 				</div>
 				<hr>
-				
-		
+				<div class="post-preview">
+					<a href="post.html">
+						<h2 class="post-title">인기도서</h2>
+					</a>
+
+				</div>
+				<hr>
+
+
 				<!-- Pager -->
 				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#">도서목록 보기
-						&rarr;</a>
+					<a class="btn btn-primary float-right" href="#">도서목록 보기 &rarr;</a>
 				</div>
 			</div>
 		</div>
@@ -189,20 +198,18 @@
 
 	<hr>
 
-<h1>대우 도서관 찾아오시는 길</h1>
-<div id="mapdiv">
+	<h1>대우 도서관 찾아오시는 길</h1>
+ 	<div id="mapdiv">
 
-<div id="map"></div>
+		<div id="map"></div>
 
-</div>
-<label> 
-주소: 서울특별시 노원구 공릉1동 동일로 1082
-</label>
-<br>
+	</div> 
+	<label> 주소: 서울특별시 노원구 공릉1동 동일로 1082 </label>
+	<br>
 
-<label>전화: 02-987-0012</label>
-<br>
-<br>
+	<label>전화: 02-987-0012</label>
+	<br>
+	<br>
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -235,40 +242,57 @@
 		</div>
 	</footer>
 
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
-	
-<script>
-//GoogleMap//
-function initMap(){
-	var latitude=37.626636;
-	var longitude = 127.072824;
-	
-	var seoul = {lat:latitude,lng:longitude};
-	var map=new google.maps.Map(document.getElementById('map'),{
-		zoom:15,
-		center:seoul
-	})
-	
-	var marker = new google.maps.Marker({
-		position:seoul,
-		map:map,
-		title: "대우 도서관"
-	});
-	marker.setMap(map);
 
-}
+<!-- 세션이 없을 경우 도서신청 하면 alter뜨게 나옴 후 login페이지로 이동시킬예정  -->
+<!-- 	<script>
+		$(function() {
+			
+			var applybook = $(".applybook");
+			$(".applyBook").click(function(e) {
+				e.preventDefault();
+				alert("로그인 후에 이용하세요 ");
+				applybook.action="/member/login";
+				applybook.submit();
+			})
+		})
+	</script>
+ --> 	
+ 
+ <script>
+		//GoogleMap//
+		function initMap() {
+			var latitude = 37.626636;
+			var longitude = 127.072824;
 
+			var seoul = {
+				lat : latitude,
+				lng : longitude
+			};
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 15,
+				center : seoul
+			})
 
+			var marker = new google.maps.Marker({
+				position : seoul,
+				map : map,
+				title : "대우 도서관"
+			});
+			marker.setMap(map);
 
-</script>	
-	
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzDGpcVk6NFENgr5AwQdXCxu2o9vauvY4&callback=initMap"></script>
-
+		}
+	</script>
+ 
+ 	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzDGpcVk6NFENgr5AwQdXCxu2o9vauvY4&callback=initMap"></script>
+ 
 </body>
 
 </html>
