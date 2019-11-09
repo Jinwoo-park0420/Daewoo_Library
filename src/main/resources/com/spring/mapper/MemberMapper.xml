@@ -16,5 +16,10 @@ select userid,password,grade from Library_member where userid=#{userid} and pass
 
 </select>
 
+<select id="idCheck" resultType="String">
+	select userid from Library_member
+	where userid=#{userid}	
+</select>
+
 </mapper>
 
