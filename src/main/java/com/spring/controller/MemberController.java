@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -98,6 +100,19 @@ public class MemberController {
 
 		return "redirect:/index";
 
+	}
+	
+	@RequestMapping(value = "/ck_userid",method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(String userid) {
+		//userid = request.getParameter("userid");
+		log.info("아이디 중복 "+userid);
+		if(service.idCheck(userid)) {
+			return "true";
+		}else {
+			return "false";
+		}
+		
 	}
 	
 	

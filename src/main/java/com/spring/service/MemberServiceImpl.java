@@ -7,7 +7,10 @@ import com.spring.domain.LoginVO;
 import com.spring.domain.MemberVO;
 import com.spring.mapper.MemberMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service("member")
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
@@ -27,5 +30,10 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.login(vo);
 	}
-
+	
+	@Override
+	public boolean idCheck(String userid) {
+		log.info("service id:"+userid);
+		return mapper.idCheck(userid)==null?true:false;
+	}
 }
