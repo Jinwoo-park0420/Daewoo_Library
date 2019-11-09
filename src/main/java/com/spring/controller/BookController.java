@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BookController {
 
 	@Autowired
-	public BookService service;
+	private BookService service;
 
 	@GetMapping("booksearch")
 	public void search() {

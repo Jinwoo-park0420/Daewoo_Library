@@ -1,26 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>대우 도서관</title>
-<!-- 검색박스용 -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom fonts for this template -->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css"
@@ -34,15 +24,12 @@
 
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
-<link href="/resources/css/button-select.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/button-select.css" type="text/css"/>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>게시판</title>
 </head>
-
 <body>
 
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
 			<a class="navbar-brand" href="/index">대우 도서관</a>
@@ -75,67 +62,64 @@
 			</div>
 		</div>
 	</nav>
-
-	<!-- Page Header -->
-	<header class="masthead"
-		style="background-image: url('/resources/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>소통 참여</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-		
-	</header>
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
 
-	<!-- Main Content -->
-
-	
-		
-	<div class="container">
-
-		<div class="row">	
-	
-
-			<div class="col-lg-8 col-md-10 mx-auto">
-					<hr>
-				<div class="post-preview">
-					<a href="/board/boardmain">
-						<h2 class="post-title">건의사항</h2>
-						
-				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="/board/">
-						<h2 class="post-title"> <a	href="/book_report/book_reportmain">독후감 대회</a></h2></a>
-				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="/board/calendar">
-						<h2 class="post-title">도서관 일정
-						</h2>
-					</a>
-					
-				</div>
-				<hr>
-				
-		
-				<!-- Pager -->
-				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#">도서목록 보기
-						&rarr;</a>
-				</div>
+						<div class="navbar">
+						</div>
 			</div>
 		</div>
+		</div>
+		</div>
+</header>				
+					
+		<!-- Main Content -->
+	<div>
+	<h3 align="center">독후감 대회</h3>
 	</div>
-
-	<hr>
-	<!-- Footer -->
-	<footer>
+	<div class="container">
+<div align="center">
+	<label> 독후감 양식 </label>
+</div>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>번 호</th>
+					<th>제 목</th>
+					<th>작 성 자</th>
+					<th>작 성 일</th>
+				</tr>
+			</thead>
+			<c:forEach var="vo" items="${list}">
+			<tbody>
+				<tr>
+					<td>${vo.bno}</td>
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
+					<td>${vo.writer}</td>
+					<td>${vo.regdate}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+			<a class="btn btn-dark pull-right" href="/book_report/book_reportinsert">글쓰기</a>
+				<div class="text-center">
+					<ul class="pagination">
+					
+						<li><a class="btn btn-default" href="#">이전</a></li>
+						<li><a class="btn btn-default" href="#">1</a></li>
+						<li><a class="btn btn-default" href="#">2</a></li>
+						<li><a class="btn btn-default" href="#">3</a></li>
+						<li><a class="btn btn-default" href="#">4</a></li>
+						<li><a class="btn btn-default" href="#">5</a></li>
+						<li><a class="btn btn-default" href="#">다음</a></li>
+					</ul>
+				</div>
+			</div>
+<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
@@ -166,19 +150,12 @@
 		</div>
 	</footer>
 
-	<!-- Bootstrap core JavaScript -->
+
+<!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
-	
-
 </body>
-
-</html>
-
-
-
-
 </html>

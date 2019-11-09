@@ -25,7 +25,7 @@ public class MemberController {
 
 	
 	@Autowired
-	public MemberService service;
+	private MemberService service;
 	
 
 	@GetMapping("join")

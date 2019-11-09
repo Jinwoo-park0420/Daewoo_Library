@@ -83,12 +83,12 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>책 이름</label>
-              <input type="text" class="form-control" placeholder="책 이름" id="bookname" name="bookname" required data-validation-required-message="책이름을 입력 바랍니다.">
+              <input type="text" class="form-control" placeholder="책 이름" id="bookname" name="bookname" required data-validation-required-message="책이름을 입력 바랍니다." >
               <p class="help-block text-danger"></p>
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>글쓴이</label>
-              <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" required data-validation-required-message="글쓴이를 입력 바랍니다.">
+              <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" required data-validation-required-message="글쓴이를 입력 바랍니다." >
               <p class="help-block text-danger"></p>
             </div>
             <div class="form-group floating-label-form-group controls">

@@ -1,26 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>대우 도서관</title>
-<!-- 검색박스용 -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom fonts for this template -->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css"
@@ -34,15 +22,14 @@
 
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
-<link href="/resources/css/button-select.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/button-select.css" type="text/css"/>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>독후감 제출</title>
+<style>
+textarea{resize:none;}
+</style>
 </head>
-
 <body>
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
 			<a class="navbar-brand" href="/index">대우 도서관</a>
@@ -65,77 +52,62 @@
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
 		</div>
 	</nav>
-
-	<!-- Page Header -->
-	<header class="masthead"
-		style="background-image: url('/resources/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>소통 참여</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-		
-	</header>
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
 
-	<!-- Main Content -->
-
-	
-		
-	<div class="container">
-
-		<div class="row">	
-	
-
-			<div class="col-lg-8 col-md-10 mx-auto">
-					<hr>
-				<div class="post-preview">
-					<a href="/board/boardmain">
-						<h2 class="post-title">건의사항</h2>
-						
-				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="/board/">
-						<h2 class="post-title"> <a	href="/book_report/book_reportmain">독후감 대회</a></h2></a>
-				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="/board/calendar">
-						<h2 class="post-title">도서관 일정
-						</h2>
-					</a>
-					
-				</div>
-				<hr>
-				
-		
-				<!-- Pager -->
-				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#">도서목록 보기
-						&rarr;</a>
-				</div>
+						<div class="navbar">
+						</div>
 			</div>
 		</div>
-	</div>
-
-	<hr>
-	<!-- Footer -->
-	<footer>
+		</div>
+		</div>
+</header>
+<div class="container">
+<table class="table table-striped">
+	<thead>독후감 신청</thead>
+	<tbody>
+<form action="/book_report/book_reportinsert" method="post">
+			<tr>
+                <th>제목: </th>
+                <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/></td>
+            </tr>
+            <tr>
+            	<th>작성자:</th>
+                <td><input type="text" placeholder="이름을 입력하세요" name="writer" class="form-control"/></td>
+            </tr>
+            <tr>
+                <th>내용: </th>
+                <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+            </tr>
+    
+    <tr>        
+         <th>파일첨부</th>   				<td><input type="file" name="uploadFile" id="uploadFile" multiple="multiple" class="form-control" placeholder="파일을 첨부하세요."/></td>
+	
+	</tr>
+                        <tr>
+                <td colspan="2">
+                    <input type="submit" value="등록" class="btn btn-light pull-right "/>
+                    <input type="button" value="reset" class="btn btn-light pull-left"/>
+                    <input type="button" value="글 목록으로... " class="btn btn-light pull-right" onclick="javascript:location.href='boardmain.jsp'"/>
+                </td>
+            </tr>
+     </form>
+</tbody>
+</table>
+</div>
+<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
@@ -166,19 +138,12 @@
 		</div>
 	</footer>
 
-	<!-- Bootstrap core JavaScript -->
+
+<!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
-	
-
 </body>
-
-</html>
-
-
-
-
 </html>
