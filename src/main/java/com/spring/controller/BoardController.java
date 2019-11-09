@@ -25,6 +25,11 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
+	@GetMapping("/boardinfo")
+	public void boardinfo() {
+		log.info("소통참여 홈페이지 호출");
+	}
+	
 	@GetMapping("/boardmain")
 	public void getlist(Model model) {
 		log.info("게시판글 목록 불러오기");
