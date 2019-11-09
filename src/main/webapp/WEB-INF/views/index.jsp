@@ -153,8 +153,7 @@
 
 			</div>
 		</div>
-		</div>
-		</div>
+	
 	</header>
 
 	<!-- Main Content -->

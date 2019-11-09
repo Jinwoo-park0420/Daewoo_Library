@@ -109,6 +109,7 @@
 			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
 				<div class="text-center">
 					<ul class="pagination">
+					
 						<li><a class="btn btn-default" href="#">이전</a></li>
 						<li><a class="btn btn-default" href="#">1</a></li>
 						<li><a class="btn btn-default" href="#">2</a></li>
