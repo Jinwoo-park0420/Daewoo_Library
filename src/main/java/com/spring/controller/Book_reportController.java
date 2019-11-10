@@ -21,12 +21,12 @@ public class Book_reportController{
 	
 	@Autowired
 	private Book_reportService service;
-	
+		
 	@GetMapping("book_reportmain")
 	public void book_reportMain(Model model) {
-		log.info("메인페이지 요청");
-		
+		log.info("독후감 메인페이지 요청");
 		List<Book_reportVO> list=service.book_reportList();
+		System.out.println(list);
 		
 		model.addAttribute("list",list);
 		
@@ -43,10 +43,15 @@ public class Book_reportController{
 		int result=service.book_reportinsert(report);
 		if(result>0) {
 			
-			return "book_report/book_reportmain";
+			return "redirect:/book_report/book_reportmain";
 		}
 		else {
 			return "book_report/book_reportinsert";
 		}
+	}
+	@GetMapping("book_reportread")
+	public String book_reportreadGet(Book_reportVO report) {
+		
+		return "book_report/book_reportread";
 	}
 }

@@ -6,7 +6,7 @@ insert into book_report(bno,title,writer,content) values(seq_reportbno.nextVal,#
 </insert>
 
 <select id="book_reportList" resultType="com.spring.domain.Book_reportVO">
-select * from book_report
+select * from book_report order by bno
 </select>
 
 </mapper>

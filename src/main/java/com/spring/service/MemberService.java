@@ -12,4 +12,8 @@ public interface MemberService {
 	
 	public boolean idCheck(String userid); //아이디체크
 	
+	public MemberVO memberinfo(String userid); //회원정보보기
+	
+	public boolean memberupdate(MemberVO vo); //회원정보수정
+	
 }
