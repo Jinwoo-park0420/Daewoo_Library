@@ -32,7 +32,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -42,7 +42,7 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -51,7 +51,7 @@ textarea{resize:none;}
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -100,7 +100,7 @@ textarea{resize:none;}
                 <td colspan="2">
                     <input type="submit" value="등록" class="btn btn-light pull-right "/>
                     <input type="button" value="reset" class="btn btn-light pull-left"/>
-                    <input type="button" value="글 목록으로... " class="btn btn-light pull-right" onclick="javascript:location.href='boardmain.jsp'"/>
+                    <input type="button" value="글 목록으로... " class="btn btn-light pull-right" onclick="javascript:location.href='/book_report/book_reportmain'"/>
                 </td>
             </tr>
      </form>

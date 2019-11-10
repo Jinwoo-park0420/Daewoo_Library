@@ -38,4 +38,11 @@
 
 <!-- 컨트룰러없이 띄우는법 -->
 <mvc:view-controller path="/" view-name="index"/>
+
+
+
+
+
+
+
 </beans>
