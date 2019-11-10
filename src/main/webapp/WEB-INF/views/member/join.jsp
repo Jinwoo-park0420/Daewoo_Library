@@ -175,11 +175,7 @@ function dupId(){
           <div id="success"></div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-<<<<<<< HEAD
             <button type="reset" class="btn btn-primary" id="sendMessageButton">Reset</button>
-=======
-            <button type="reset" class="btn btn-primary" id="sendMessageButton">다시입력</button>
->>>>>>> refs/remotes/origin/master
           </div>
         </form>
       </div>
