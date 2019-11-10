@@ -10,4 +10,6 @@ public interface MemberService {
 	
 	public LoginVO login(LoginVO vo);//로그인
 	
+	public boolean idCheck(String userid); //아이디체크
+	
 }

@@ -17,7 +17,20 @@
 		<!-- Mail -->
 		<!-- google맵 사용 -->
 
+<!-- fileupload  -->
 
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.4</version>
+</dependency>
+
+<!-- json사용 -->		
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.10.0</version>
+</dependency>
 
 <dependency>
 
