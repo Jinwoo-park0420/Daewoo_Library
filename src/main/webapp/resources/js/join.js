@@ -7,7 +7,7 @@ $(function(){
 			},
 			birthYear:{
 				required:true,
-				rangelength:[8]				
+				rangelength:[8,8]				
 			},
 			userid:{
 				required:true,
