@@ -32,7 +32,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -42,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -51,7 +51,7 @@
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -92,15 +92,23 @@
 					<th>제 목</th>
 					<th>작 성 자</th>
 					<th>작 성 일</th>
+					<th>신청 여부</th>
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${list}">
 			<tbody>
 				<tr>
 					<td>${vo.bno}</td>
-					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
+					<td><a href="/book_report/book_reportread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.regdate}</td>
+					<c:if test="${vo.apply ==0 }">
+					<td>확인대기</td>
+					</c:if>
+					<c:if test="${vo.apply!=0 }">
+					<td>확인완료</td>
+					</c:if>
+	
 				</tr>
 			</c:forEach>
 			</tbody>
