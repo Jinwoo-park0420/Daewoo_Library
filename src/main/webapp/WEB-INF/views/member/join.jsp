@@ -60,7 +60,7 @@ function dupId(){
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/index">대우 도서관</a>
+      <a class="navbar-brand" href="/member/index">대우 도서관</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -68,7 +68,7 @@ function dupId(){
       	<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -77,7 +77,7 @@ function dupId(){
 				
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -175,7 +175,7 @@ function dupId(){
           <div id="success"></div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-            <button type="reset" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <button type="reset" class="btn btn-primary" id="sendMessageButton">다시입력</button>
           </div>
         </form>
       </div>
