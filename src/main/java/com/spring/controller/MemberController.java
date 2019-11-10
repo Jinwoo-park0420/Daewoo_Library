@@ -29,6 +29,11 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@GetMapping("index")
+	public String index() {
+		log.info("index페이지요청");
+		return "redirect:/ ";
+	}
 
 	@GetMapping("join")
 	public void joinForm() {
