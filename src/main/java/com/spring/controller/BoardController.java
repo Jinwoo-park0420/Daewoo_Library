@@ -50,15 +50,20 @@ public class BoardController {
 		return "redirect:/board/boardmain";
 	}
 	
-	@GetMapping(value= {"/boardread"})
+	@GetMapping({"/boardread","/modify"})
 	public void read(@RequestParam("bno") int bno,/*@ModelAttribute("cri")Criteria cri*/Model model) {
 		log.info("글 읽기 페이지 이동"+bno+"번 글");
 		model.addAttribute("vo", service.selectboard(bno));
 		
 	}
 	
-	@GetMapping("/modify")
-	public void modifyform() {
-		log.info("글 수정 페이지 이동");
+	@PostMapping("/modify")
+	public String modifyform(BoardVO vo,RedirectAttributes rttr) {
+		log.info("글 수정"+vo);
+		
+		if(service.updateboard(vo)>0) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/board/boardmain";
 	}
 }
