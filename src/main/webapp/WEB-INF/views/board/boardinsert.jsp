@@ -91,6 +91,10 @@ textarea{resize:none;}
                 <th>내용: </th>
                 <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
             </tr>
+            <tr>
+                <th>비밀번호: </th>
+                <td><input type="password" name="password" class="form-control"/></td>
+            </tr>
                         <tr>
                 <td colspan="2">
                     <input type="submit" value="등록" class="btn btn-light pull-right "/>

@@ -5,6 +5,7 @@ create table library_board(
 bno number(10) not null primary key,
 title nvarchar2(200) not null,
 content nvarchar2(2000) not null,
+password nvarchar2(20) not null,
 writer nvarchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,

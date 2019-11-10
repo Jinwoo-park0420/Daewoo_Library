@@ -80,7 +80,6 @@ textarea{resize:none;}
 <table class="table table-striped">
 	<thead>${vo.bno}번 글</thead>
 	<tbody>
-<form action="/board/insert" method="post">
 			<tr>
                 <th>제목: </th>
                 <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>
@@ -95,14 +94,35 @@ textarea{resize:none;}
             </tr>
                         <tr>
                 <td colspan="2">
-                    <input type="submit" value="수정하기" class="btn btn-light pull-right "/>
-                    <input type="button" value="취소" class="btn btn-light pull-left"/>
-                    <input type="button" value="글 목록으로... " class="btn btn-light pull-right" onclick="javascript:location.href='boardmain.jsp'"/>
+                    <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
+                    <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
+                
+                <form id="operForm" action="/board/modify" method="get">
+                	<input type="hidden" id='bno' name='bno' value='<c:out value="${vo.bno}"/>'>
+                </form>
                 </td>
-            </tr>
-     </form>
+            </tr>     
 </tbody>
 </table>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var operForm =$("#operForm");
+	
+	$("button[data-oper='modify']").on("click",function(e){
+		
+		operForm.attr("action","/board/modify").submit();
+	});
+	
+	$("button[data-oper='list']").on("click",function(e){
+		
+		operForm.find("#bno").remove();
+		operForm.attr("action","/board/list")
+		operForm.submit();
+	});
+});
+
+</script>
 </body>
 </html>

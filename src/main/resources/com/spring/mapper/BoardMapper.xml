@@ -22,13 +22,20 @@
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
 			select seq_libbno.nextVal from dual
 		</selectKey>
-insert into library_board(bno,title,content,writer,regdate)
-		values(#{bno},#{title},#{content},#{writer},sysdate)
+insert into library_board(bno,title,content,password,writer,regdate)
+		values(#{bno},#{title},#{content},#{password},#{writer},sysdate)
 </insert>
 
 <select id="read" resultType="com.spring.domain.BoardVO">
 select bno,title,writer,content,regdate,updatedate from library_board where bno = #{bno}
 </select>
+
+<update id="updateboard">
+		update spring_board
+		set title=#{title}, content=#{content}, updatedate=sysdate
+		where bno=#{bno} and password=#{password}
+</update>
+
 
 <!-- 동적 sql문 :재사용 가능함 -->
 <!-- <sql id="criteria">

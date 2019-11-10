@@ -84,7 +84,7 @@
 	<h3 align="center">건의사항</h3>
 	</div>
 	<div class="container">
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
 					<th>번 호</th>
@@ -100,7 +100,7 @@
 					<td>${vo.bno}</td>
 					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
-					<td>${vo.regdate}</td>
+					<td>${vo.updatedate}</td>
 					<td>${vo.readcnt}</td>
 				</tr>
 			</c:forEach>
@@ -119,7 +119,30 @@
 						<li><a class="btn btn-default" href="#">다음</a></li>
 					</ul>
 				</div>
+				<div>
+				<label>검색 &nbsp&nbsp&nbsp</label><input type="text" name="keyword" />
+				<input type="button" class="btn btn-light" value="검색"/>
+				</div>
 			</div>
+			
+<%-- 페이지 번호를 클릭하면 보낼 폼 --%>
+<form action="" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${pageVO.cri.type}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
+</form>
+
+<script>
+
+//하단의 페이지 번호 클릭시 작동하는 스크립트
+var actionForm=$("#actionForm");
+$(".paginate_button a").click(function(e){
+	e.preventDefault(); //a 태그의 동작 막기
+	actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+	actionForm.submit();
+})
+</script>
 
 <!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

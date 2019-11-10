@@ -36,4 +36,10 @@ public class BoardServiceImpl implements BoardService {
 		log.info("글 읽기");
 		return bmapper.read(bno);
 	}
+	
+	@Override
+	public int updateboard(BoardVO vo) {
+		log.info("글 수정하기");
+		return bmapper.updateboard(vo);
+	}
 }

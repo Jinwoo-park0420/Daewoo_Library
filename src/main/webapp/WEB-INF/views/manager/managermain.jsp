@@ -106,7 +106,7 @@
 								</ul></li>
 							<li class="menu"><a> <label>소통·참여</label></a>
 								<ul class="hide">
-									<li><a href="#">건의사항</a></li>
+									<li><a href="/board/boardmain">건의사항</a></li>
 									<li><a href="#">도서 신청</a></li>
 									<li><a href="#">도서관 소식</a></li>
 								</ul></li>
