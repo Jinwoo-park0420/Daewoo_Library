@@ -106,7 +106,20 @@ public class MemberController {
 		} else {
 			return "false";
 		}
-
 	}
+	
+	@RequestMapping(value="update")
+	public String update() {
+		log.info("update 페이지로 이동합니다.");
+		return "/member/update";
+	}
+	
+	@RequestMapping(value="leave")
+	public String leave() {
+		log.info("회원탈퇴 페이지로 이동합니다.");
+		return "/member/leave";
+	}
+	
+	
 
 }
