@@ -50,8 +50,8 @@ public class BoardController {
 		return "redirect:/board/boardmain";
 	}
 	
-	@GetMapping({"/boardread","/modify"})
-	public void read(@RequestParam("bno") int bno,/*@ModelAttribute("cri")Criteria cri*/Model model) {
+	@GetMapping(value= {"/boardread","/modify"})
+	public void read(@RequestParam("bno") int bno,Model model) {
 		log.info("글 읽기 페이지 이동"+bno+"번 글");
 		model.addAttribute("vo", service.selectboard(bno));
 		

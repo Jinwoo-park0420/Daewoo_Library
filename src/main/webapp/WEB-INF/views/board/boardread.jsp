@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <head>
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
@@ -97,32 +100,29 @@ textarea{resize:none;}
                     <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
                 
-                <form id="operForm" action="/board/modify" method="get">
-                	<input type="hidden" id='bno' name='bno' value='<c:out value="${vo.bno}"/>'>
-                </form>
+                <form id='operForm' action="modify">
+					<input type='hidden' id='bno' name='bno' value='<c:out value="${vo.bno}"/>'>					
+				</form>
                 </td>
             </tr>     
 </tbody>
 </table>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
+<script>
+$(function() {
+	var operForm = $("#operForm");
 	
-	var operForm =$("#operForm");
+	$("button[data-oper='modify']").on("click", function() {
+	operForm.attr("action", "/board/boardmodify").submit();
+	})
 	
-	$("button[data-oper='modify']").on("click",function(e){
-		
-		operForm.attr("action","/board/modify").submit();
-	});
-	
-	$("button[data-oper='list']").on("click",function(e){
-		
+	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
-		operForm.attr("action","/board/list")
-		operForm.submit();
-	});
-});
+		operForm.attr("action", "/board/boardmain")
+			operForm.submit();
+		})
 
+	})
 </script>
 </body>
 </html>
