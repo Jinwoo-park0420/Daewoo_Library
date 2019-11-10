@@ -10,4 +10,5 @@ public interface BoardService {
 	public List<BoardVO> getList(Criteria cri);
 	public void insert(BoardVO vo);
 	public BoardVO selectboard(int bno);
+	public int updateboard(BoardVO vo);
 }
