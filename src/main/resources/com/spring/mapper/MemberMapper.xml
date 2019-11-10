@@ -19,5 +19,15 @@ select userid,password,grade from Library_member where userid=#{userid} and pass
 	where userid=#{userid}	
 </select>
 
+<select id="memberinfo" resultType="com.spring.domain.MemberVO">
+	select name, birthYear, userid, email, address, phone_number 
+	from Library_member where userid=#{userid}
+</select>
+
+<update id="memberupdate">
+	update Library_member set name=#{name}, password=#{password}, phone_number=#{phone_number} 
+	where userid=#{userid}
+</update>
+
 </mapper>
 
