@@ -1,6 +1,6 @@
 create table Library_member(
 name nvarchar2(20) not null,
-userid nvarchar2(20) constraint pk_member not null primary key,
+userid nvarchar2(20) constraint pk_Library_member not null primary key,
 password nvarchar2(20) not null,
 email nvarchar2(40) not null,
 address nvarchar2(100) not null,
@@ -10,7 +10,6 @@ joindate date default sysdate,
 lease_status number(8) default 0  not null,
 birthYear nvarchar2(50) not null
 );
-
 
 
 insert into LIBRARY_MEMBER(name,userid,password,email,address,phone_number,grade,joindate,lease_status,birthYear)

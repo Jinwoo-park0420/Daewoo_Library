@@ -6,6 +6,7 @@ bno number(10) not null primary key,
 title nvarchar2(200) not null,
 content nvarchar2(2000) not null,
 password nvarchar2(20) not null,
+--current_password nvarchar2(20) not null,
 writer nvarchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,
@@ -20,3 +21,22 @@ drop sequence seq_libbno;
 insert into library_board(bno,title,content,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','이찬해',sysdate,0);
 
 select * from library_board;
+
+update library_board
+		set title='qq', content='asd', updatedate=sysdate
+		where bno=2 and password=123;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
