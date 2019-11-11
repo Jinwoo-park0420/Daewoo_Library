@@ -10,5 +10,5 @@ public class Book_reportVO {
 	private String content;
 	private String regdate;
 	private String updatedate;
-	private int apply;
+	private int apply; //등록확인 유무
 }
