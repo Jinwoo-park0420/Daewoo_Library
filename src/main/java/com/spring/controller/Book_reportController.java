@@ -50,8 +50,14 @@ public class Book_reportController{
 		}
 	}
 	@GetMapping("book_reportread")
-	public String book_reportreadGet(Book_reportVO report) {
+	public String book_reportreadGet(int bno,Model model) {
 		
+		Book_reportVO report_select=service.book_reportSelectList(bno);
+		model.addAttribute("report_select",report_select);
 		return "book_report/book_reportread";
+	}
+	
+	public void book_reportmodify() {
+		log.info("수정페이지요청");
 	}
 }

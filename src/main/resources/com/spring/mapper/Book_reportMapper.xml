@@ -9,4 +9,9 @@ insert into book_report(bno,title,writer,content) values(seq_reportbno.nextVal,#
 select * from book_report order by bno
 </select>
 
+<select id="book_reportSelectList" resultType="com.spring.domain.Book_reportVO">
+select * from book_report where bno=#{bno}
+</select>
+
+
 </mapper>

@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>글작성</title>
+<title>글수정</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -80,7 +80,6 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
-                <form id='operForm' action="modify" method="get">
 <table class="table table-striped">
 	<thead>${report_select.bno}번 글</thead>
 	<tbody>
@@ -102,24 +101,23 @@ textarea{resize:none;}
                     <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
                 
+                <form id='operForm' action="modify">
 					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
+				</form>
                 </td>
             </tr>     
 </tbody>
 </table>
-				</form>
 </div>
+   <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
  $(function() {
-	
-	 var operForm = $("#operForm");
+	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function() {
-	
-		operForm.attr("action", "/book_report/book_reportmodify");
-	operForm.submit();
+	operForm.attr("action", "/book_report/book_reportmodify").submit();
 	})
 	$("button[data-oper='delete']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportdelete").submit();
