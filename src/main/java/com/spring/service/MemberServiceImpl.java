@@ -36,4 +36,18 @@ public class MemberServiceImpl implements MemberService {
 		log.info("service id:"+userid);
 		return mapper.idCheck(userid)==null?true:false;
 	}
+
+
+	@Override
+	public MemberVO memberinfo(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.memberinfo(userid);
+	}
+
+
+	@Override
+	public boolean memberupdate(MemberVO vo) {
+		
+		return mapper.memberupdate(vo)==1?true:false;
+	}
 }

@@ -23,26 +23,6 @@
   <!-- Custom styles for this template -->
   <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 
-<!-- 	<style>
-  	div#myinfo_left{
-  		width:13%;
-  		height:98%;
-  		background-color: white;
-  		float:left;
-  	}
-  	#myinfo_right{
-  		width:13%;
-  		height:98%;
-  		background-color: white;
-  		float:right;
-  	}
-  	#myinfo_btn{
-  		width:230px;
-  		height:50px;
-  		margin: center;
-  	}
-	</style> -->
-
 </head>
 
 <body>
@@ -50,7 +30,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-    		<a class="navbar-brand" href="/member/index">대우 도서관</a>
+    		<a class="navbar-brand" href="/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -60,7 +40,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -69,7 +49,7 @@
 				
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
@@ -85,64 +65,70 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 align="center">My page</h1>
+            <h1 align="center">Update User INFO</h1>
           </div>
         </div>
       </div>
     </div>
   </header>
- <!--    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-  <!-- Post Content -->
+	<!-- Post Content -->
   <hr>
-
-	
   
-<div class="row">
+  
+<div class="rows">
 	<div class="container">
-		<div class="col-lg-12">
-			<div class="myinfo-context">
-			 <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#8099af; ">회원 정보</h3>
-				<h3 class="text-center">Myinfo</h3>
-			<div class="myinfo-body">
-				<div class="table-response">
-					<table class="table table-striped" style="align:center">
-						<thead>
-							<tr>
-								<th>이름</th>
-								<th>user ID</th>
-								<th>Address</th>
-								<th>BirthYear</th>
-								<th>Email</th>
-								<th>phone number</th>
-							</tr>
-						</thead>
-							<c:forEach items="${list}" var="vo">
-						<tbody>
-							<tr>
-								<td>${vo.name}</td>
-								<td>${vo.userid}</td>
-								<td>${vo.address}</td>
-								<td>${vo.birthYear}</td>
-								<td>${vo.email}</td>
-								<td>${vo.phone_number}</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			</div>
-			<div class="myinfo-btn">
-			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/update">회원수정페이지</a></button>
- 			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/leave">회원탈퇴페이지</a></button>
-  			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id="">내가 쓴 게시글 보기</button>
-			
-			</div>
-		</div>
+	   <div class="col-lg-12">
+	      <h1 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h1>
+	      <div class="col-xs-3 col-sm-3"></div>
+	        <p>&nbsp;</p>
+	     <!--    <p class="text-center">
+	          <span style="color:blue;">userid는 변경할 수 없습니다.</span>
+	        </p> -->
+	       <form method="post" action="regeditOk.asp" name="form1" >
+	         <table class="table table-striped" >
+	            <tr>
+	              <th>user ID</th>
+	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>비밀번호</th>
+	              <td><input type="password" value="" class="form-control" name="password" /></td>
+	            </tr>
+	            <tr>
+	              <th>이름</th>
+	              <td><input type="text" class="form-control" name="username" value=""/></td>
+	            </tr>
+	 
+	            <tr>
+	              <th>E-mail</th>
+	              <td><input type="email" class="form-control" name="email" value="" readonly="readonly"/></td>
+	            </tr>
+	 
+	            <tr>
+	              <th>전화번호</th>
+	              <td><input type="tel" class="form-control" name="tel" value="" /></td>
+	            </tr>
+	            <tr>
+	              <th>주소</th>
+	              <td><input type="text" class="form-control" name="address" value="" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>생일</th>
+	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="" readonly="readonly"/></td>
+	            </tr>
+	            <tr class="text-center">
+	              <td colspan="2">
+	                <button type="button" class="btn btn-primary " style="width:260px; height:50px;" id="">Submit</button>
+	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
+	              </td>
+	            </tr>
+	         </table>
+	     </form>
+	   </div>
 	</div>
 </div>
-	
-	
+  
+  
 	<hr>
   <!-- Footer -->
   <footer>

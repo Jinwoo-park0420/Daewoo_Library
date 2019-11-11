@@ -175,7 +175,7 @@ function dupId(){
           <div id="success"></div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-            <button type="reset" class="btn btn-primary" id="sendMessageButton">다시입력</button>
+            <button type="reset" class="btn btn-primary" id="sendMessageButton">Reset</button>
           </div>
         </form>
       </div>

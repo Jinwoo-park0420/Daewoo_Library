@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -106,57 +107,42 @@ textarea{resize:none;}
 </tbody>
 </table>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	// 게시물 수정
-	  var formObj = $("form");
-	  $('button').on("click", function(e){
-	    e.preventDefault(); 
-
-	    var operation = $(this).data("oper");
-	    console.log(operation);
-	    
-	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
-	    }else if(operation === 'list'){
-	      //move to list
-	      formObj.attr("action", "/board/boardmain").attr("method","get");
-	      
-	      var pageNumTag = $("input[name='pageNum']").clone();
-	      var amountTag = $("input[name='amount']").clone();
-	      var keywordTag = $("input[name='keyword']").clone();
-	      var typeTag = $("input[name='type']").clone();
-	      
-	      formObj.empty();
-	      formObj.append(pageNumTag);
-	      formObj.append(amountTag);
-	      formObj.append(keywordTag);
-	      formObj.append(typeTag);
-	    }else if(operation === 'modify'){
-	        console.log("수정하기 클릭");
-	        var str = "";
-	        
-	        $(".uploadResult ul li").each(function(i, obj){
-	          var jobj = $(obj);
-	          console.dir(jobj);
-	          
-	          str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-	          str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-	        });
-	        formObj.append(str).submit();
-        }
-	    formObj.submit();
-	  });
+</body>
+<script>
+$(function(){
+	//remove와 list 버튼이 눌러지면 새로 만든 폼 보내고
+	//modify 버튼이 눌러지면 원래의 폼 보내기
+	var formObj=$("#operForm");
+	
+	$("button").click(function(e){
+		//submit 막기
+		e.preventDefault();
+		
+		var oper=$(this).data("oper");
+		
+		if(oper=='remove'){
+			formObj.attr('action','remove');
+		}else if(oper=='list'){
+			formObj.attr('action','list');
+			formObj.attr('method','get');
+		}else{ //oper=> modify
+			formObj=$("form[role='form']");
+		//첨부파일 정보를 수집하기
+		var str="";
+		
+		//uploadResult ul li 가 가지고 있는 값 수집하기
+		$(".uploadResult ul li").each(function(i, ele) {
+			var job=$(ele);
+			
+			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
+			str+="<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("filetype")+"'>";
+		})
+		formObj.append(str);		
+		}
+		formObj.submit();
+	})
 });
 </script>
-<!-- Bootstrap core JavaScript -->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Custom scripts for this template -->
-	<script src="/resources/js/clean-blog.min.js"></script>
-</body>
 </html>
