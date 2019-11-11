@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>글작성</title>
+<title>${vo.bno}번째 글</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -80,12 +80,14 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
+<form action="boardmodify" role="form">
 <table class="table table-striped">
 	<thead>${vo.bno}번 글</thead>
 	<tbody>
 			<tr>
                 <th>제목: </th>
                 <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>
+                <input type="hidden" value="${vo.bno}" name="bno" />   
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -99,14 +101,11 @@ textarea{resize:none;}
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
-                
-                <form id='operForm' action="modify">
-					<input type='hidden' id='bno' name='bno' value='<c:out value="${vo.bno}"/>'>					
-				</form>
                 </td>
             </tr>     
 </tbody>
 </table>
+</form>
 </div>
 <script>
 $(function() {

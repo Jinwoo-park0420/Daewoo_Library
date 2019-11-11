@@ -83,6 +83,7 @@ textarea{resize:none;}
 			<tr>
                 <th>제목: </th>
                 <td><input type="text" value="${vo.title}" name="title" class="form-control"/></td>
+                <input type="hidden" value="${vo.bno}" name="bno"/>
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -94,7 +95,7 @@ textarea{resize:none;}
             </tr>
             <tr>
                 <th>비밀번호: </th>
-                <td><input type="password" name="password" class="form-control"/></td>
+                <td><input type="password" name="password" class="form-control" required/></td>
             </tr>
                         <tr>
                 <td colspan="2">
