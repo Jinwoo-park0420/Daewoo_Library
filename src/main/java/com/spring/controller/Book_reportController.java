@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,19 +59,6 @@ public class Book_reportController{
 		return "book_report/book_reportread";
 	}
 	
-	@GetMapping("book_reportmodify")
-	public String modify(BoardVO vo,Model model) {
-		log.info("수정 페이지 이동");
-		model.addAttribute("vo",service.book_reportSelectList(vo.getBno()));
-		
-		return "book_report/book_reportmodify";
-	}
-	
-	@GetMapping("book_reportdelete")
-	public void delete() {
-		log.info("삭제페이지 이동");
-		
-	}
 	
 	
 }
