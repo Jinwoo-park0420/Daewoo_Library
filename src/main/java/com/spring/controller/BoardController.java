@@ -18,6 +18,7 @@ import com.spring.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @RequestMapping("/board/*")
 @Controller
