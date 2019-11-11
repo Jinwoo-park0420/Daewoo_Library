@@ -78,21 +78,13 @@
 <div class="rows">
 	<div class="container">
 	   <div class="col-lg-12">
-	      <h1 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h1>
+	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h3>
 	      <div class="col-xs-3 col-sm-3"></div>
-	        <p>&nbsp;</p>
-	     <!--    <p class="text-center">
-	          <span style="color:blue;">userid는 변경할 수 없습니다.</span>
-	        </p> -->
-	       <form method="post" action="regeditOk.asp" name="form1" >
+	       <form method="post" action="" name="form_update" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
 	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>비밀번호</th>
-	              <td><input type="password" value="" class="form-control" name="password" /></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
@@ -114,7 +106,7 @@
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="" readonly="readonly"/></td>
+	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="" /></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">

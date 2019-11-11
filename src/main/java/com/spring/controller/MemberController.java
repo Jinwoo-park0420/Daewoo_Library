@@ -45,8 +45,9 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public void postForm() {
-		log.info("mypage페이지 요청");
+	public void memberInfo(String userid, Model model) {
+		log.info("mypage페이지 요청");		
+		
 	}
 
 	@PostMapping("/join")
@@ -115,16 +116,26 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="update")
+	@GetMapping("/update")
 	public String update() {
 		log.info("update 페이지로 이동합니다.");
 		return "/member/update";
 	}
 	
-	@RequestMapping(value="leave")
+	
+	
+	@GetMapping("/leave")
 	public String leave() {
 		log.info("회원탈퇴 페이지로 이동합니다.");
 		return "/member/leave";
+	}
+	
+	
+	
+	@GetMapping("/chPwd")
+	public String chPwd() {
+		log.info("비밀번호 변경 페이지로 이동");
+		return "/member/chPwd";
 	}
 	
 	
