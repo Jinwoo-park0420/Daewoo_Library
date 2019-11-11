@@ -82,7 +82,7 @@ textarea{resize:none;}
 <form role="form" action="/board/modify" method="post">
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" value="${vo.title}" name="title" class="form-control"/></td>
+                <td><input type="text" value="${vo.title}" name="title" class="form-control" required/></td>
                 <input type="hidden" value="${vo.bno}" name="bno"/>
             </tr>
             <tr>
@@ -91,17 +91,20 @@ textarea{resize:none;}
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control">${vo.content}</textarea></td>
+                <td><textarea cols="20" rows="25" name="content" class="form-control" required>${vo.content}</textarea></td>
             </tr>
             <tr>
                 <th>비밀번호: </th>
-                <td><input type="password" name="password" class="form-control" required/></td>
+                <td><input type="password" name="password" class="form-control" required /></td>
             </tr>
                         <tr>
                 <td colspan="2">
-                    <button type="submit" data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
-                    <button type="submit" data-oper='remove' class="btn btn-light pull-left ">삭제하기</button>
-                    <button type="submit" data-oper='list' class="btn btn-light pull-right ">목록으로</button>
+
+                    <button type="submit" data-oper='modify' class="btn btn-light pull-right ">수정완료</button>
+                    <button type="submit" onclick="location.href='/board/boardmain'" class="btn btn-light pull-right ">목록으로</button>
+                    <button type="submit" onclick="location.href='/board/boarddelete?bno=${vo.bno}'" class="btn btn-light pull-left">삭제하기</button>
+                    <!-- <button type="submit" data-oper='remove' class="btn btn-light pull-left ">삭제하기</button> -->
+                    <!-- <button type="submit" data-oper='list' class="btn btn-light pull-right ">목록으로</button> -->
                 </td>
             </tr>
      </form>
@@ -109,7 +112,7 @@ textarea{resize:none;}
 </table>
 </div>
 </body>
-<script>
+<!-- <script>
 $(function(){
 	//remove와 list 버튼이 눌러지면 새로 만든 폼 보내고
 	//modify 버튼이 눌러지면 원래의 폼 보내기
@@ -122,28 +125,15 @@ $(function(){
 		var oper=$(this).data("oper");
 		
 		if(oper=='remove'){
-			formObj.attr('action','remove');
+			formObj.attr('action','/board/boarddelete');
+			formObj.attr('method','get')
+			formObj.submit();
 		}else if(oper=='list'){
-			formObj.attr('action','list');
+			formObj.attr('action','/board/boardmain');
 			formObj.attr('method','get');
 		}else{ //oper=> modify
 			formObj=$("form[role='form']");
-		//첨부파일 정보를 수집하기
-		var str="";
-		
-		//uploadResult ul li 가 가지고 있는 값 수집하기
-		$(".uploadResult ul li").each(function(i, ele) {
-			var job=$(ele);
-			
-			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("filetype")+"'>";
-		})
-		formObj.append(str);		
 		}
-		formObj.submit();
-	})
-});
-</script>
+})
+</script> -->
 </html>

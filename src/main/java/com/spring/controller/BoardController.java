@@ -60,7 +60,7 @@ public class BoardController {
 	public String modify(BoardVO vo,Model model) {
 		log.info("수정 페이지 이동");
 		model.addAttribute("vo",service.selectboard(vo.getBno()));
-		return "/board/boardmodify";
+		return "board/boardmodify";
 	}
 	
 	@PostMapping("/modify")
@@ -72,6 +72,26 @@ public class BoardController {
 			rttr.addFlashAttribute("result","success");
 		}else {
 			log.info("수정실패");
+		}
+		return "redirect:/board/boardmain";
+	}
+	
+	@GetMapping("/boarddelete")
+	public String deleteForm(BoardVO vo,Model model) {
+		log.info("삭제 페이지 이동"+vo);
+		model.addAttribute("vo",service.selectboard(vo.getBno()));
+		return "board/boarddelete";
+	}
+	
+	@PostMapping("/delete")
+	public String delete(BoardVO vo,RedirectAttributes rttr) {
+		log.info("글 삭제하기"+vo);
+		
+		if(service.delete(vo)>0) {
+			log.info("삭제 성공");
+			rttr.addFlashAttribute("result","success");
+		}else {
+			log.info("삭제실패");
 		}
 		return "redirect:/board/boardmain";
 	}

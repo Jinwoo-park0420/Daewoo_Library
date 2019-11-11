@@ -100,22 +100,20 @@ textarea{resize:none;}
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
-                    <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
+</form>
+<form action="" id="operForm">
+                    <button type='reset' class="btn btn-dark pull-left ">목록으로</button>
+                    </form>
                 </td>
             </tr>     
 </tbody>
 </table>
-</form>
 </div>
 <script>
 $(function() {
 	var operForm = $("#operForm");
 	
-	$("button[data-oper='modify']").on("click", function() {
-	operForm.attr("action", "/board/boardmodify").submit();
-	})
-	
-	$("button[data-oper='list']").on("click", function() {
+	$(".btn-dark").on("click", function() {
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/board/boardmain")
 			operForm.submit();

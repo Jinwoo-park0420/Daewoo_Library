@@ -37,4 +37,8 @@ select * from library_board where bno = #{bno}
 		where bno=#{bno} and password=#{password}
 </update>
 
+<delete id="delete">
+delete from library_board where bno=#{bno} and password=#{password}
+</delete>
+
 </mapper>

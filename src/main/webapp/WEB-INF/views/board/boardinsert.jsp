@@ -81,19 +81,19 @@ textarea{resize:none;}
 <form action="/board/insert" method="post">
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/></td>
+                <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control" required/></td>
             </tr>
             <tr>
             	<th>작성자:</th>
-                <td><input type="text" placeholder="아이디넣을거" name="writer" class="form-control"/></td>
+                <td><input type="text" placeholder="아이디넣을거" name="writer" class="form-control" required/></td>
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+                <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control" required></textarea></td>
             </tr>
             <tr>
                 <th>비밀번호: </th>
-                <td><input type="password" name="password" class="form-control"/></td>
+                <td><input type="password" name="password" class="form-control" required/></td>
             </tr>
                         <tr>
                 <td colspan="2">
