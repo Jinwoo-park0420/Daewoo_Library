@@ -80,27 +80,36 @@
 	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#d1c9b7;">비밀번호 변경</h3>
 		<div class="col-xs-3 col-sm-3"></div>
 	        <!-- <p>&nbsp;</p> -->
-	         <form method="post" action="" name="form_chpwd" >
+	         <form method="post" action="/member/chPwd" name="form_chpwd" id="chPwd" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="name" readonly="readonly"/>
+	              <small class="text-danger" id="name"></small>
+	              </td>
+	              
 	            </tr>
 	            <tr>
 	              <th>현재 비밀번호</th>
-	              <td><input type="password" value="" class="form-control" name="password" /></td>
+	              <td><input type="password" id="current_password" class="form-control" name="current_password" />
+	               <small class="text-danger" id="current_password"></small>
+	              </td>
 	            </tr>
 	            <tr>
 	              <th>변경할 비밀번호</th>
-	              <td><input type="password" value="" class="form-control" name="current_password" /></td>
+	              <td><input type="password" id="new_password" class="form-control" name="new_password" />
+	              <small class="text-danger" id="new_password"></small>
+	              </td>
 	            </tr>
 	            <tr>
 	              <th>비밀번호 확인</th>
-	              <td><input type="password" value="" class="form-control" name="confirm_password" /></td>
+	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" />
+	              <small class="text-danger" id="confirm_password"></small>
+	              </td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="button" class="btn btn-primary " style="width:260px; height:50px;" id="">변경하기</button>
+	                <button type="submit" class="btn btn-primary" onclick="location.href='/index'" style="width:260px; height:50px;" id="">변경하기</button>
 	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
 	              </td>
 	            </tr>

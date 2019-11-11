@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
@@ -45,8 +49,17 @@ public class MemberController {
 	}
 
 	@GetMapping("mypage")
-	public void memberInfo(String userid, Model model) {
-		log.info("mypage페이지 요청");		
+	public void memberInfo(Model model, HttpSession session) {
+		log.info("mypage페이지 요청");
+		
+		//sessiion에서 id 가져오기
+		LoginVO vo =(LoginVO) session.getAttribute("vo1");
+		//아이디 를 이용해서 mypage 에 보여줄 정보 요청
+		String userid = vo.getUserid();
+		MemberVO vo1 =service.memberinfo(userid);
+		log.info("v1"+vo1);
+		//받아온 정보를 모델에 담고 페이지 이동
+		model.addAttribute("modelVO", vo1);
 		
 	}
 
@@ -99,9 +112,7 @@ public class MemberController {
 		if (!session.isComplete()) {
 			session.setComplete();
 		}
-
 		return "redirect:/index";
-
 	}
 
 	@RequestMapping(value = "/ck_userid", method = RequestMethod.POST)
@@ -116,28 +127,53 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/update")
-	public String update() {
+	@GetMapping("update")
+	public String update(Model model, HttpSession session) {
 		log.info("update 페이지로 이동합니다.");
+		
 		return "/member/update";
 	}
-	
 	
 	
 	@GetMapping("/leave")
 	public String leave() {
 		log.info("회원탈퇴 페이지로 이동합니다.");
+		
 		return "/member/leave";
 	}
 	
+	@PostMapping("/leave")
+	public String leavePost(HttpSession session, LoginVO login) {
+		log.info("회원탈퇴 실행");
+//		
+//		service.memberdelete();
+		return "/member/leave";
+	}
 	
 	
 	@GetMapping("/chPwd")
 	public String chPwd() {
 		log.info("비밀번호 변경 페이지로 이동");
+		
 		return "/member/chPwd";
 	}
 	
+	
+	@PostMapping("/chPwd")
+	public String chPwd(ChangeVO change, HttpSession session) {
+		log.info("비밀번호 변경 ");
+		LoginVO vo =(LoginVO) session.getAttribute("vo1");
+		String password=vo.getPassword();
+		change.setUserid(vo.getUserid());
+		if(password.equals(change.getCurrent_password()))
+		{
+			if(change.getNew_password().equals(change.getConfirm_password())) {
+				service.pwdupdate(change);
+				session.invalidate();
+			}
+		}
+		return "/index";
+	}
 	
 
 }

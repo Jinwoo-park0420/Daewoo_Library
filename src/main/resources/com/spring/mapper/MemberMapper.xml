@@ -25,7 +25,7 @@ select userid,password,grade from Library_member where userid=#{userid} and pass
 </select>
 
 <update id="memberupdate">
-	update Library_member set name=#{name}, phone_number=#{phone_number}, birthYear=#{birthYear}
+	update Library_member set name=#{name}, email=#{email}, phone_number=#{phone_number} 
 	where userid=#{userid}
 </update>
 
@@ -35,7 +35,7 @@ select userid,password,grade from Library_member where userid=#{userid} and pass
 
 <update id="pwdupdate">
 	update Library_member set password=#{confirm_password} 
-	where userid=#{userid}
+	where userid=#{userid} 
 </update>
 
 

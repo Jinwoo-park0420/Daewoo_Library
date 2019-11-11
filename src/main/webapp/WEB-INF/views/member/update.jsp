@@ -84,29 +84,29 @@
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
+	              <td><input type="text" value="${vo1.name}" class="form-control" name="name" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value=""/></td>
+	              <td><input type="text" class="form-control" name="username" value="${vo1.name}"/></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="" readonly="readonly"/></td>
+	              <td><input type="email" class="form-control" name="email" value="${vo1.email}"/></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="" /></td>
+	              <td><input type="tel" class="form-control" name="tel" value="${vo1.phone_number}" /></td>
 	            </tr>
 	            <tr>
 	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="address" value="${vo1.address}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="" /></td>
+	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="${vo1.birthYear}"  readonly="readonly"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">

@@ -104,36 +104,36 @@
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" class="form-control" name="name" value="${vo.userid}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="name" value="${modelVO.userid}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value="${vo.name}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="username" value="${modelVO.name}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="${vo.email}" readonly="readonly"/></td>
+	              <td><input type="email" class="form-control" name="email" value="${modelVO.email}" readonly="readonly"/></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="${vo.phone_number}" readonly="readonly" /></td>
+	              <td><input type="tel" class="form-control" name="tel" value="${modelVO.phone_number}" readonly="readonly" /></td>
 	            </tr>
 	            <tr>
 	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${vo.address}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="address" value="${modelVO.address}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" class="form-control"  name="birthYear"  value="${vo.birthYear}" readonly="readonly"/></td>
+	              <td><input type="number" class="form-control"  name="birthYear"  value="${modelVO.birthYear}" readonly="readonly"/></td>
 	            </tr>
 			
 	            <tr class="text-center">
 	              <td colspan="2">
-			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/update">회원수정페이지</a></button>
-			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/chPwd">비밀번호변경</a></button>
- 			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/leave">회원탈퇴페이지</a></button>
-  			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id="">내가 쓴 게시글 보기</button>
+			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
+			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
+ 			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
+  			<button type="button" class="btn btn-primary btn-block" onclick="location.href=''" style="width:260px; height:50px;" id="">내가 쓴 게시글 보기</button>
 	              </td>
 	            </tr>
 	         </table>

@@ -84,7 +84,7 @@
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="name" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>비밀번호</th>
