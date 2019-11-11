@@ -8,15 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.BoardVO;
 import com.spring.domain.Book_reportVO;
 import com.spring.service.Book_reportService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @Slf4j
 @RequestMapping("/book_report/*")
+@Controller
 public class Book_reportController{
 	
 	@Autowired
@@ -25,10 +28,8 @@ public class Book_reportController{
 	@GetMapping("book_reportmain")
 	public void book_reportMain(Model model) {
 		log.info("독후감 메인페이지 요청");
-		List<Book_reportVO> list=service.book_reportList();
-		System.out.println(list);
 		
-		model.addAttribute("list",list);
+		model.addAttribute("list",service.book_reportList());
 		
 	}
 	
@@ -38,11 +39,11 @@ public class Book_reportController{
 	}
 	
 	@PostMapping("book_reportinsert")
-	public String book_reportInsertPost(Book_reportVO report) {
+	public String book_reportInsertPost(Book_reportVO report, RedirectAttributes rttr) {
 		log.info("독후감 등록 요청");
 		int result=service.book_reportinsert(report);
 		if(result>0) {
-			
+			rttr.addFlashAttribute("result", report.getBno());
 			return "redirect:/book_report/book_reportmain";
 		}
 		else {
@@ -50,14 +51,26 @@ public class Book_reportController{
 		}
 	}
 	@GetMapping("book_reportread")
-	public String book_reportreadGet(int bno,Model model) {
+	public String book_reportreadGet(@RequestParam(value="bno")int bno,Model model) {
 		
 		Book_reportVO report_select=service.book_reportSelectList(bno);
 		model.addAttribute("report_select",report_select);
 		return "book_report/book_reportread";
 	}
 	
-	public void book_reportmodify() {
-		log.info("수정페이지요청");
+	@GetMapping("book_reportmodify")
+	public String modify(BoardVO vo,Model model) {
+		log.info("수정 페이지 이동");
+		model.addAttribute("vo",service.book_reportSelectList(vo.getBno()));
+		
+		return "book_report/book_reportmodify";
 	}
+	
+	@GetMapping("book_reportdelete")
+	public void delete() {
+		log.info("삭제페이지 이동");
+		
+	}
+	
+	
 }

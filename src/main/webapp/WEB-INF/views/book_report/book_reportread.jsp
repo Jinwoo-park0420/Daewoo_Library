@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>글작성</title>
+<title>글수정</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -109,17 +109,15 @@ textarea{resize:none;}
 </table>
 				</form>
 </div>
+   <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
  $(function() {
-	
-	 var operForm = $("#operForm");
+	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function() {
-	
-		operForm.attr("action", "/book_report/book_reportmodify");
-	operForm.submit();
+	operForm.attr("action", "/book_report/book_reportmodify").submit();
 	})
 	$("button[data-oper='delete']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportdelete").submit();
