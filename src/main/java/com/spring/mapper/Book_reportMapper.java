@@ -10,4 +10,5 @@ public interface Book_reportMapper {
 
 	public List<Book_reportVO> book_reportList();
 
+	public Book_reportVO book_reportSelectList(int bno);
 }

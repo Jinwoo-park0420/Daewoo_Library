@@ -78,43 +78,35 @@
 <div class="rows">
 	<div class="container">
 	   <div class="col-lg-12">
-	      <h1 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h1>
+	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h3>
 	      <div class="col-xs-3 col-sm-3"></div>
-	        <p>&nbsp;</p>
-	     <!--    <p class="text-center">
-	          <span style="color:blue;">userid는 변경할 수 없습니다.</span>
-	        </p> -->
-	       <form method="post" action="regeditOk.asp" name="form1" >
+	       <form method="post" action="" name="form_update" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="" class="form-control" name="name" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>비밀번호</th>
-	              <td><input type="password" value="" class="form-control" name="password" /></td>
+	              <td><input type="text" value="${vo1.name}" class="form-control" name="name" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value=""/></td>
+	              <td><input type="text" class="form-control" name="username" value="${vo1.name}"/></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="" readonly="readonly"/></td>
+	              <td><input type="email" class="form-control" name="email" value="${vo1.email}"/></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="" /></td>
+	              <td><input type="tel" class="form-control" name="tel" value="${vo1.phone_number}" /></td>
 	            </tr>
 	            <tr>
 	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="address" value="${vo1.address}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="" readonly="readonly"/></td>
+	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="${vo1.birthYear}"  readonly="readonly"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">

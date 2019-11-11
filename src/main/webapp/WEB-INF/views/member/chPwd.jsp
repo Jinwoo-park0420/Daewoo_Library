@@ -65,7 +65,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 align="center">Withdrawal</h1>
+            <h1 align="center">Change Password</h1>
           </div>
         </div>
       </div>
@@ -77,26 +77,39 @@
 <div class="rows">
 	<div class="container">
 		<div class="col-lg-12">
-	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#95bd8c;">회원 탈퇴</h3>
+	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#d1c9b7;">비밀번호 변경</h3>
 		<div class="col-xs-3 col-sm-3"></div>
 	        <!-- <p>&nbsp;</p> -->
-	         <form method="post" action="" name="form_leave" >
+	         <form method="post" action="/member/chPwd" name="form_chpwd" id="chPwd" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="${vo1.userid}" class="form-control" name="userid" readonly="readonly"/></td>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="name" readonly="readonly"/>
+	              <small class="text-danger" id="name"></small>
+	              </td>
+	              
 	            </tr>
 	            <tr>
-	              <th>비밀번호</th>
-	              <td><input type="password" id="current_password" class="form-control" name="current_password" /></td>
+	              <th>현재 비밀번호</th>
+	              <td><input type="password" id="current_password" class="form-control" name="current_password" />
+	               <small class="text-danger" id="current_password"></small>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th>변경할 비밀번호</th>
+	              <td><input type="password" id="new_password" class="form-control" name="new_password" />
+	              <small class="text-danger" id="new_password"></small>
+	              </td>
 	            </tr>
 	            <tr>
 	              <th>비밀번호 확인</th>
-	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" /></td>
+	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" />
+	              <small class="text-danger" id="confirm_password"></small>
+	              </td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="submit" class="btn btn-primary" style="width:260px; height:50px;" id="">탈퇴</button>
+	                <button type="submit" class="btn btn-primary" onclick="location.href='/index'" style="width:260px; height:50px;" id="">변경하기</button>
 	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
 	              </td>
 	            </tr>
@@ -153,7 +166,10 @@
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
     
-  
+   <!-- validation 라이브러리 삽입 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+  <!-- validation 사용자 작성 코드 삽입-->
+  <script src="/resources/js/chPwd.js"></script>
 
 </body>
 
