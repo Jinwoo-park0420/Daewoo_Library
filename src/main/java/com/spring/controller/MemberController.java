@@ -22,7 +22,7 @@ import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SessionAttributes("vo1")
+//@SessionAttributes("vo1")
 @Slf4j
 @Controller
 @RequestMapping("/member/*")
@@ -78,27 +78,29 @@ public class MemberController {
 	}
 
 	@PostMapping("login")
-	public String login(LoginVO vo, RedirectAttributes rttr, Model model) {
+	public String login(LoginVO vo, RedirectAttributes rttr, HttpSession session) {
 		log.info("로그인 요청");
 		LoginVO vo1 = service.login(vo);
+		if(vo1!=null)
+			session.setAttribute("vo1", vo1);
 
 		int managergrade = vo1.getGrade();
 
 		System.out.println("회원등급" + managergrade);
+		
+		
 		if (managergrade == 1) {
 			log.info("관리자페이지요청");
-			model.addAttribute("vo1", vo1);
 			return "redirect:/manager/managermain";
 		} else {
 
-			if (vo1 != null) {
-				model.addAttribute("vo1", vo1);
+			//if (vo1 != null) {
 				return "redirect:/";
 
-			} else {
-				rttr.addFlashAttribute("error", "아이디혹은 비밀번호가 잘못되었습니다.");
-				return "member/login";
-			}
+			/*
+			 * } else { rttr.addFlashAttribute("error", "아이디혹은 비밀번호가 잘못되었습니다."); return
+			 * "member/login"; }
+			 */
 
 		}
 	}
@@ -143,11 +145,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("/leave")
-	public String leavePost(HttpSession session, LoginVO login) {
-		log.info("회원탈퇴 실행");
-//		
-//		service.memberdelete();
-		return "/member/leave";
+	public String leavePost(HttpSession session, ChangeVO change) {
+		log.info("회원탈퇴 실행"+change);
+		LoginVO vo = (LoginVO) session.getAttribute("vo1");
+		String password = vo.getPassword();
+		if(password.equals(change.getCurrent_password())) {
+			if(change.getCurrent_password().equals(change.getConfirm_password())) {
+				service.memberdelete(change);
+				session.invalidate();
+			}
+		}
+		return "/index";
 	}
 	
 	

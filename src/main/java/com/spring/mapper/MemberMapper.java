@@ -16,7 +16,7 @@ public interface MemberMapper {
 	
 	public int memberupdate(MemberVO vo); //회원정보수정
 	
-	public int memberdelete(LoginVO vo); //회원탈퇴
+	public int memberdelete(ChangeVO vo); //회원탈퇴
 	
 	public int pwdupdate(ChangeVO vo); //비밀번호 변경
 	

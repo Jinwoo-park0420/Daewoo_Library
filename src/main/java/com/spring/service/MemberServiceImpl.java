@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public boolean memberdelete(LoginVO vo) {
+	public boolean memberdelete(ChangeVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.memberdelete(vo)==1?true:false;
 	}

@@ -84,19 +84,19 @@
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="${vo1.userid}" class="form-control" name="name" readonly="readonly"/></td>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="userid" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>비밀번호</th>
-	              <td><input type="password" value="" class="form-control" name="password" /></td>
+	              <td><input type="password" id="current_password" class="form-control" name="current_password" /></td>
 	            </tr>
 	            <tr>
 	              <th>비밀번호 확인</th>
-	              <td><input type="password" value="" class="form-control" name="current_password" /></td>
+	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" /></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="button" class="btn btn-primary " style="width:260px; height:50px;" id="">탈퇴</button>
+	                <button type="submit" class="btn btn-primary" style="width:260px; height:50px;" id="">탈퇴</button>
 	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
 	              </td>
 	            </tr>
