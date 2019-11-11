@@ -27,35 +27,14 @@ insert into library_board(bno,title,content,password,writer,regdate)
 </insert>
 
 <select id="read" resultType="com.spring.domain.BoardVO">
-select bno,title,writer,content,regdate,updatedate from library_board where bno = #{bno}
+<!-- select bno,title,writer,content,regdate,updatedate from library_board where bno = #{bno} -->
+select * from library_board where bno = #{bno}
 </select>
 
 <update id="updateboard">
-		update spring_board
+		update library_board
 		set title=#{title}, content=#{content}, updatedate=sysdate
 		where bno=#{bno} and password=#{password}
 </update>
-
-
-<!-- 동적 sql문 :재사용 가능함 -->
-<!-- <sql id="criteria">
-		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<foreach collection="typeArr" item='type'>
-				<trim prefix="OR">
-					<choose>
-						<when test="type=='T'.toString()">
-							title like '%'||#{keyword}||'%'
-						</when>
-						<when test="type=='C'.toString()">
-							content like '%'||#{keyword}||'%'
-						</when>
-						<when test="type=='W'.toString()">
-							writer like '%'||#{keyword}||'%'
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql> -->
 
 </mapper>

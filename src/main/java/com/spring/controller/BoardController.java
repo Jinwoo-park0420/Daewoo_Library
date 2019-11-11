@@ -50,11 +50,17 @@ public class BoardController {
 		return "redirect:/board/boardmain";
 	}
 	
-	@GetMapping(value= {"/boardread","/modify"})
-	public void read(@RequestParam("bno") int bno,Model model) {
+	@GetMapping("/boardread")
+	public void read(@RequestParam(value="bno")int bno,Model model) {
 		log.info("글 읽기 페이지 이동"+bno+"번 글");
 		model.addAttribute("vo", service.selectboard(bno));
 		
+	}
+	@GetMapping("/boardmodify")
+	public String modify(BoardVO vo,Model model) {
+		log.info("수정 페이지 이동");
+		model.addAttribute("vo",service.selectboard(vo.getBno()));
+		return "/board/boardmodify";
 	}
 	
 	@PostMapping("/modify")
@@ -62,7 +68,10 @@ public class BoardController {
 		log.info("글 수정"+vo);
 		
 		if(service.updateboard(vo)>0) {
+			log.info("수정 성공");
 			rttr.addFlashAttribute("result","success");
+		}else {
+			log.info("수정실패");
 		}
 		return "redirect:/board/boardmain";
 	}
