@@ -166,7 +166,10 @@
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
     
-  
+   <!-- validation 라이브러리 삽입 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+  <!-- validation 사용자 작성 코드 삽입-->
+  <script src="/resources/js/chPwd.js"></script>
 
 </body>
 
