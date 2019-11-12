@@ -45,23 +45,25 @@
 	
 	
 	<!-- interceptor 설정 -->
-<!-- <beans:bean id="Interceptor" class="com.spring.interceptor.security.AuthInterceptor"/>
+<beans:bean id="Interceptor" class="com.spring.interceptor.security.AuthInterceptor"/>
 <interceptors>
 	<interceptor>
-		<mapping path="/**"/> 위와 같은 URL 요청이 있을 경우 인터셉터가 가로챔
+		<mapping path="/**"/> 
 	<exclude-mapping path="/member/index"/>
 	<exclude-mapping path="/index"/>
 	<exclude-mapping path="/"/>
 	<exclude-mapping path="/member/login"/>
+	<exclude-mapping path="/member/join"/>
 	<exclude-mapping path="/assets/**"/>
+	<exclude-mapping path="/resourecs/**"/>
 		<beans:ref bean="Interceptor"/>
 	</interceptor>
 </interceptors>
-	 -->
+	 
 	
 		<!-- commons fileupload담당 클래스 생성 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="100000000"/>
+		<beans:property name="maxUploadSize" value="52428800"/>
 	</beans:bean>
 	
 
