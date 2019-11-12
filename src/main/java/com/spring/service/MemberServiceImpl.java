@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
+import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
 import com.spring.mapper.MemberMapper;
 
@@ -47,9 +48,9 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public boolean memberupdate(String userid) {
+	public boolean memberupdate(MemberUpdateVO vo) {
 		
-		return mapper.memberupdate(userid)==1?true:false;
+		return mapper.memberupdate(vo)==1?true:false;
 	}
 
 

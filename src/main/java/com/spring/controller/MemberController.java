@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ChangeVO;
@@ -94,15 +91,7 @@ public class MemberController {
 			log.info("관리자페이지요청");
 			return "redirect:/manager/managermain";
 		} else {
-
-			//if (vo1 != null) {
 				return "redirect:/";
-
-			/*
-			 * } else { rttr.addFlashAttribute("error", "아이디혹은 비밀번호가 잘못되었습니다."); return
-			 * "member/login"; }
-			 */
-
 		}
 	}
 
@@ -126,18 +115,15 @@ public class MemberController {
 		}
 	}
 	
-//	@GetMapping("/update")
-//	public String update(String userid) {
-//		log.info("update 페이지로 이동합니다.");
-//		//userid에 해당하는 정보를 읽어오기
-//		return "/member/update";
-//	}
 	
 	@PostMapping("/update")
-	public String updatePost(MemberVO member, HttpSession session) {
+	public String updatePost(MemberVO member, HttpSession session, MemberUpdateVO update) {
 		log.info("회원정보 수정 실행");
-		
-		
+		if(service.memberupdate(update)) {
+			member.setName(update.getName());
+			member.setEmail(update.getEmail());
+			member.setPhone_number(update.getPhone_number());
+		}
 		return "/index"; 
 	}
 	
@@ -145,7 +131,7 @@ public class MemberController {
 	@GetMapping("/leave")
 	public String leave() {
 		log.info("회원탈퇴 페이지로 이동합니다.");
-		
+
 		return "/member/leave";
 	}
 	
