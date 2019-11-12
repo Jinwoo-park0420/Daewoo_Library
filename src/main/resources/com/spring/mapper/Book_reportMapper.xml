@@ -13,5 +13,11 @@ select * from book_report order by bno
 select * from book_report where bno=#{bno}
 </select>
 
+<update id="book_reportupdate">
+update book_report set title=#{title} ,  content=#{content} , updatedate=sysdate where bno=#{bno} and password=#{password} 
+</update>
+<delete id="book_reportdelete">
+delete from book_report where  bno=#{bno} and password=#{password} 
+</delete>
 
 </mapper>

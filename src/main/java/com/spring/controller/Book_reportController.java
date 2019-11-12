@@ -1,5 +1,6 @@
 package com.spring.controller;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,47 @@ public class Book_reportController{
 		return "book_report/book_reportread";
 	}
 	@GetMapping("book_reportmodify")
-	public void book_reportmodifyGet() {
+	public String book_reportmodifyGet(Book_reportVO report,Model model) {
 		log.info("수정페이지요청");
+		int bno=report.getBno();
+		Book_reportVO report_select=service.book_reportSelectList(bno);
+		model.addAttribute("report_select",report_select);
+		return "book_report/book_reportmodify";
+	}
+	
+	@PostMapping("book_reportmodify")
+	public String book_reportmodifyPost(Book_reportVO report,RedirectAttributes rttr) {
+		log.info("수정 실행 요청"+report);
+		int result=service.book_reportupdate(report);
+		if(result>0) {
+			log.info("수정성공");
+			
+			
+			return "redirect:/book_report/book_reportmain";
+		}
+		log.info("수정실패");
+		return "book_report/book_reportmodify";
+	
+	}
+	@GetMapping("book_reportdelete")
+	public void book_reportdeleteGet(Book_reportVO report,Model model) {
+		int bno=report.getBno();
+		Book_reportVO report_select=service.book_reportSelectList(bno);
+		model.addAttribute("report_select",report_select);
+		
+		log.info("탈퇴페이지 홈페이지요청"+report);
+	
+	}
+	@PostMapping("book_reportdelete")
+	public String book_reportdeletePost(Book_reportVO report) {
+		log.info("독후감 삭제 실행"+report);
+		int result=service.book_reportdelete(report);
+				if(result>0)
+				{
+					log.info("독후감 삭제 성공");
+					return  "redirect:/book_report/book_reportmain";
+				}
+				log.info("독후감 삭제 실패");
+				return "book_report/book_reportdelete";
 	}
 }		

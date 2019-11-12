@@ -33,5 +33,17 @@ public class Book_reportServiceImpl implements Book_reportService {
 		return mapper.book_reportSelectList(bno);
 	}
 
+	@Override
+	public int book_reportupdate(Book_reportVO report) {
+		// TODO Auto-generated method stub
+		return mapper.book_reportupdate(report);
+	}
+
+	@Override
+	public int book_reportdelete(Book_reportVO report) {
+		// TODO Auto-generated method stub
+		return mapper.book_reportdelete(report);
+	}
+
 	
 }
