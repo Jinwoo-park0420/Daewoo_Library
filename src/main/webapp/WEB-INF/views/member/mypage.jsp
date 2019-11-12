@@ -112,7 +112,6 @@
 	              <th>E-mail</th>
 	              <td><input type="email" class="form-control" name="email" value="${modelVO.email}" readonly="readonly"/></td>
 	            </tr>
-	 
 	            <tr>
 	              <th>전화번호</th>
 	              <td><input type="tel" class="form-control" name="tel" value="${modelVO.phone_number}" readonly="readonly" /></td>
@@ -128,10 +127,10 @@
 			
 	            <tr class="text-center">
 	              <td colspan="2">
-			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
-			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
- 			<button type="button" class="btn btn-primary btn-block" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
-  			<button type="button" class="btn btn-primary btn-block" onclick="location.href=''" style="width:260px; height:50px;" id="">내가 쓴 게시글 보기</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
+ 			<button type="button" class="btn btn-primary" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
+  			<button type="button" class="btn btn-primary" onclick="location.href=''" style="width:260px; height:50px;" id="">이메일 인증하기</button>
 	              </td>
 	            </tr>
 	         </table>
@@ -141,8 +140,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 	<hr>
   <!-- Footer -->
