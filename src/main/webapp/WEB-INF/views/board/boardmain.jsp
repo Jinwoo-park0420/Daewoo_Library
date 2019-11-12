@@ -59,7 +59,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -69,21 +69,19 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -152,25 +150,7 @@
 				</div>
 			</div>
 			
-<!-- 모달 추가 -->
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">게시글 등록</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>처리가 완료되었습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>       
-      </div>
-    </div>
-  </div>
-</div>		
+
 
 <%-- 페이지 번호를 클릭하면 보낼 폼 --%>
 <form action="" id="actionForm">
@@ -179,25 +159,6 @@
 	<input type="hidden" name="type" value="${pageVO.cri.type}" />
 	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
-
-<script>
-$(function(){
-	var result='${result}';
-	
-	checkModal(result);
-	//뒤로가기 버튼을 클릭할 때 모달 창이 안 뜨도록 하기
-	history.replaceState({},null,null);
-	
-	function checkModal(result){
-		if(result==='' || history.state){
-			return;
-		}
-		if(parseInt(result)>0){
-			$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
-		}
-		$("#myModal").modal("show");
-	}
-</script>
 
 <script>
 //하단의 페이지 번호 클릭시 작동하는 스크립트

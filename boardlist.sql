@@ -26,19 +26,25 @@ cno number(10) not null,
 writer nvarchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,
-reply nvarchar2(2000)
+reply nvarchar2(2000),
+primary key(bno,cno)
 );
+
+alter table board_reply
+add constraint board_reply_bno foreign key(bno)
+references library_board(bno);
+
+insert into BOARD_REPLY(bno,cno,reply,writer,regdate)
+values(21,seq_libcno.nextval,'댓글','이찬해',sysdate);
+
+insert into BOARD_REPLY(bno,cno,reply,writer,regdate)
+values(21,seq_libcno.nextval,'제발 달려라 진짜','이찬해',sysdate);
 
 drop table board_reply;
 
 create sequence seq_libcno;
 
-selct * from board_reply;
-
-
-
-
-
+select * from board_reply;
 
 
 
