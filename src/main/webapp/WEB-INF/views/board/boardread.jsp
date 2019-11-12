@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>${vo.bno}번째 글</title>
+<title>${vo.title}</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -65,7 +65,7 @@ textarea{resize:none;}
 			</div>
 		</div>
 	</nav>
-<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/libraryy.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -82,7 +82,7 @@ textarea{resize:none;}
 <div class="container">
 <form action="boardmodify" role="form">
 <table class="table table-striped">
-	<thead>${vo.bno}번 글</thead>
+	<thead>${vo.bno}번째 글</thead>
 	<tbody>
 			<tr>
                 <th>제목: </th>
@@ -108,7 +108,8 @@ textarea{resize:none;}
             </tr>     
 </tbody>
 </table>
-</div>
+<!-- 댓글넣기  -->
+<%@ include file="../board/boardrep.jsp" %>
 <script>
 $(function() {
 	var operForm = $("#operForm");

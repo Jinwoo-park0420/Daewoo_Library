@@ -1,6 +1,3 @@
-select * from LIBRARY_MEMBER;
-
-
 create table library_board(
 bno number(10) not null primary key,
 title nvarchar2(200) not null,
@@ -22,13 +19,21 @@ insert into library_board(bno,title,content,writer,regdate,readcnt) values(seq_l
 
 select * from library_board;
 
-update library_board
-		set title='qq', content='asd', updatedate=sysdate
-		where bno=2 and password=123;
 
+create table board_reply(
+bno number(10) not null,
+cno number(10) not null,
+writer nvarchar2(50) not null,
+regdate date default sysdate,
+updatedate date default sysdate,
+reply nvarchar2(2000)
+);
 
+drop table board_reply;
 
+create sequence seq_libcno;
 
+selct * from board_reply;
 
 
 

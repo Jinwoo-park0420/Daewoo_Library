@@ -5,14 +5,13 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class BoardVO {
-
+public class BoardRepVO {
+	
 	private int bno;
-	private String title;
+	private int cno;
 	private String writer;
-	private String content;
-	private String password;
 	private Date regdate;
 	private Date updatedate;
-	private int readcnt; //게시물 댓글수
+	private String reply;
+	
 }

@@ -27,6 +27,32 @@
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>게시판</title>
+
+<style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 
+</style>
 </head>
 <body>
 
@@ -101,7 +127,7 @@
 					<td>${vo.bno}</td>
 					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
-					<td>${vo.updatedate}</td>
+					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${vo.readcnt}</td>
 				</tr>
 			</c:forEach>
@@ -126,6 +152,26 @@
 				</div>
 			</div>
 			
+<!-- 모달 추가 -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시글 등록</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>처리가 완료되었습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>       
+      </div>
+    </div>
+  </div>
+</div>		
+
 <%-- 페이지 번호를 클릭하면 보낼 폼 --%>
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
@@ -135,7 +181,25 @@
 </form>
 
 <script>
+$(function(){
+	var result='${result}';
+	
+	checkModal(result);
+	//뒤로가기 버튼을 클릭할 때 모달 창이 안 뜨도록 하기
+	history.replaceState({},null,null);
+	
+	function checkModal(result){
+		if(result==='' || history.state){
+			return;
+		}
+		if(parseInt(result)>0){
+			$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
+		}
+		$("#myModal").modal("show");
+	}
+</script>
 
+<script>
 //하단의 페이지 번호 클릭시 작동하는 스크립트
 var actionForm=$("#actionForm");
 $(".paginate_button a").click(function(e){
@@ -144,6 +208,7 @@ $(".paginate_button a").click(function(e){
 	actionForm.submit();
 })
 </script>
+
 
 <!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
