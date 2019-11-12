@@ -6,7 +6,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
 <meta charset="UTF-8">
-<title>대우 도서관 - 전체목록 페이지</title>
+<title>대우 도서관 - 대출 급상승 도서 페이지</title>
 <!-- 검색박스용 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
@@ -77,16 +77,22 @@
 				<div class="col-lg-10 col-md-10 mx-auto">
 					<div class="page-heading">
 						<h1>자료검색</h1>
-						<form action="booksearch" id="searchForm" method="post">
-							<select name="criteria" id="">
+						<form action="" id="searchForm" method="get">
+							<select name="type" id="">
 								<option value="">---</option>
-								<option value="bookname" <c:out value=""/>>도서명</option>
-								<option value="writer" <c:out value=""/>>저 자</option>
-								<option value="publisher" <c:out value=""/>>출판사</option>
+								<option value="T" <c:out value=""/>>도서명</option>
+								<option value="G" <c:out value=""/>>저 자</option>
+								<option value="W" <c:out value=""/>>출판사</option>
 							</select> 
-							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
-							<button class="btn btn-outline-light" type="submit">Search</button>
+							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요." />
+							<button class="btn  btn-outline-light" type="submit">Search</button>
 						</form>
+						<!-- <div class="box">
+								<div class="container-1">
+									<input type="search" id="search" placeholder="검색어를 입력하세요." />
+									<i class="fa fa-search"><span class="icon"></span></i>
+								</div>
+							</div> -->
 					</div>
 				</div>
 			</div>
@@ -121,7 +127,7 @@
 			<c:forEach var="vo" items="${list}">
 				<tr>
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
-					<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
+					<td><a href="">${vo.bookname }</a></td>
 					<td>${vo.genre }</td>
 					<td>${vo.writer }</td>
 					<td>${vo.publisher }</td>
@@ -131,15 +137,6 @@
 			</tbody>
 		</table>
 	</div>
-	<!-- 도서목록 -->
-<!-- 	<ul class="book-list">
-		<li>
-			<div class="thumb">
-				
-			</div>
-		</li>
-	</ul> -->
-
 
 	<!-- Footer -->
 	<footer>
@@ -173,16 +170,4 @@
 		</div>
 	</footer>
 </body>
-
-<script>
-//제목을 클릭하면 실행될 스크립트
-$(".move").click(function(e){
-	e.preventDefault(); //a 태그 막기
-	//제목 클릭시 글 번호, pageNum, amount, 검색정보를 보내야 함
-	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
-	actionForm.attr("action","bookDetail");
-	actionForm.submit();
-
-})
-</script>
 </html>

@@ -3,7 +3,51 @@
 <mapper namespace="com.spring.mapper.BookMapper">
 <insert id="ApplyBook">
 insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN) values(#{bookname},#{writer},#{publisher},#{publish_year},#{price},#{ISBN})
-
-
 </insert>
+
+<select id="getList" resultType="com.spring.domain.BookVO">
+select * from bookList order by bookno
+</select>
+
+<select id="newbook" resultType="com.spring.domain.BookVO">
+<![CDATA[
+select * from bookList where bookno>=21 and bookno<=30
+]]>
+</select>
+
+<select id="recommandbook" resultType="com.spring.domain.BookVO">
+<![CDATA[
+select * from bookList where bookno>=31 and bookno<=50
+]]>
+</select>
+
+<select id="popularbook" resultType="com.spring.domain.BookVO">
+<![CDATA[
+select * from bookList where bookno>=1 and bookno<=10
+]]>
+</select>
+
+<select id="loanbook" resultType="com.spring.domain.BookVO">
+<![CDATA[
+select * from bookList where bookno>=11 and bookno<=20
+]]>
+</select>
+
+<select id="book_search" resultType="com.spring.domain.BookVO">
+	select * from bookList where 
+		<if test="criteria=='bookname'.toString()">
+			bookname like '%'||#{keyword}||'%'
+		</if>
+		<if test="criteria=='writer'.toString()">
+			writer like '%'||#{keyword}||'%'
+		</if>
+		<if test="criteria=='publisher'.toString()">
+			publisher like '%'||#{keyword}||'%'
+		</if>
+</select>
+
+<select id="bookDetail" resultType="com.spring.domain.BookVO">
+	select * from bookList where bookno=#{bookno}
+</select>
+
 </mapper>
