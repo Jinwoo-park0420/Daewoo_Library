@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
+import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
 
@@ -48,7 +49,7 @@ public class MemberController {
 		log.info("login페이지 요청");
 	}
 
-	@GetMapping("mypage")
+	@GetMapping(value= {"mypage","update"})
 	public void memberInfo(Model model, HttpSession session) {
 		log.info("mypage페이지 요청");
 		
@@ -57,7 +58,7 @@ public class MemberController {
 		//아이디 를 이용해서 mypage 에 보여줄 정보 요청
 		String userid = vo.getUserid();
 		MemberVO vo1 =service.memberinfo(userid);
-		log.info("v1"+vo1);
+		log.info("vo1"+vo1);
 		//받아온 정보를 모델에 담고 페이지 이동
 		model.addAttribute("modelVO", vo1);
 		
@@ -129,11 +130,19 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("update")
-	public String update(Model model, HttpSession session) {
-		log.info("update 페이지로 이동합니다.");
+//	@GetMapping("/update")
+//	public String update(String userid) {
+//		log.info("update 페이지로 이동합니다.");
+//		//userid에 해당하는 정보를 읽어오기
+//		return "/member/update";
+//	}
+	
+	@PostMapping("/update")
+	public String updatePost(MemberVO member, HttpSession session) {
+		log.info("회원정보 수정 실행");
 		
-		return "/member/update";
+		
+		return "/index"; 
 	}
 	
 	
@@ -168,7 +177,7 @@ public class MemberController {
 	
 	
 	@PostMapping("/chPwd")
-	public String chPwd(ChangeVO change, HttpSession session) {
+	public String chPwdPost(ChangeVO change, HttpSession session) {
 		log.info("비밀번호 변경 ");
 		LoginVO vo =(LoginVO) session.getAttribute("vo1");
 		String password=vo.getPassword();

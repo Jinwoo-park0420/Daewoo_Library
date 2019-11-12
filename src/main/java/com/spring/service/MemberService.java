@@ -15,7 +15,7 @@ public interface MemberService {
 	
 	public MemberVO memberinfo(String userid); //회원정보보기
 	
-	public boolean memberupdate(MemberVO vo); //회원정보수정
+	public boolean memberupdate(String userid); //회원정보수정
 	
 	public boolean memberdelete(ChangeVO vo); //회원탈퇴
 	

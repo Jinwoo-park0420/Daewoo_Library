@@ -14,7 +14,7 @@ public interface MemberMapper {
 	
 	public MemberVO memberinfo(String userid); //회원정보보기
 	
-	public int memberupdate(MemberVO vo); //회원정보수정
+	public int memberupdate(String userid); //회원정보수정
 	
 	public int memberdelete(ChangeVO vo); //회원탈퇴
 	

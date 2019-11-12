@@ -47,9 +47,9 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public boolean memberupdate(MemberVO vo) {
+	public boolean memberupdate(String userid) {
 		
-		return mapper.memberupdate(vo)==1?true:false;
+		return mapper.memberupdate(userid)==1?true:false;
 	}
 
 

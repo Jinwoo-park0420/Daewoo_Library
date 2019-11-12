@@ -78,37 +78,37 @@
 	   <div class="col-lg-12">
 	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h3>
 	      <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="" name="form_update" >
+	       <form method="post" action="/member/update" name="form_update" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="${vo1.name}" class="form-control" name="name" readonly="readonly"/></td>
+	              <td><input type="text" value="${modelVO.userid}" class="form-control" name="userid" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value="${vo1.name}"/></td>
+	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name" /></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="${vo1.email}"/></td>
+	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" /></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="${vo1.phone_number}" /></td>
+	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" /></td>
 	            </tr>
 	            <tr>
 	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${vo1.address}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="address" value="${modelVO.address}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="${vo1.birthYear}"  readonly="readonly"/></td>
+	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="${modelVO.birthYear}"  readonly="readonly"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="button" class="btn btn-primary " style="width:260px; height:50px;" id="">Submit</button>
+	                <button type="submit" class="btn btn-primary " style="width:260px; height:50px;" id="">Submit</button>
 	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
 	              </td>
 	            </tr>
