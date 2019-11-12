@@ -107,17 +107,13 @@ public class MemberController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(SessionStatus session) {
+	public String logout(HttpSession session) {
 		log.info("로그아웃 처리 메세지");
-
-		// iscomplete는 미리 저장되어있는 session이 있는지 체크
-		// 세션이 있다면 삭제
-		if (!session.isComplete()) {
-			session.setComplete();
-		}
+		//세션삭제
+		session.invalidate();
 		return "redirect:/index";
 	}
-
+	
 	@RequestMapping(value = "/ck_userid", method = RequestMethod.POST)
 	@ResponseBody
 	public String idCheck(String userid) {

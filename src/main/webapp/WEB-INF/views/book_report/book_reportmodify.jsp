@@ -70,12 +70,13 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
+                <form id='operForm' action="modify">
 <table class="table table-striped">
 	<thead>${report_select.bno}번 글</thead>
 	<tbody>
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" value="${report_select.title}" name="title" class="form-control" readonly="readonly"/></td>
+                <td><input type="text"  name="title" class="form-control" /></td>
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -83,21 +84,24 @@ textarea{resize:none;}
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
+                <td><textarea cols="20" rows="25" name="content" class="form-control"></textarea></td>
+            </tr>
+            
+            <tr>
+            	<th>비밀번호:</th>
+                <td><input type="password"  name="password" class="form-control" /></td>
             </tr>
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
-                    <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
                 
-                <form id='operForm' action="modify">
-					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
-				</form>
+					<input type='hidden' id='bno' name='bno' value="${report_select.bno}"/>					
                 </td>
             </tr>     
 </tbody>
 </table>
+				</form>
 </div>
    <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -107,14 +111,14 @@ textarea{resize:none;}
 	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function() {
+		operForm.attr('method','post')
 	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	})
-	$("button[data-oper='delete']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportdelete").submit();
+	
 	})
 	
 	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
+		
 		operForm.attr("action", "/book_report/book_reportmain")
 			operForm.submit();
 		})
