@@ -35,7 +35,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,7 +45,7 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					</ul>
@@ -53,7 +53,7 @@ textarea{resize:none;}
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -107,6 +107,7 @@ textarea{resize:none;}
 </table>
 				</form>
 </div>
+   <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -115,21 +116,18 @@ textarea{resize:none;}
 	
 	$("button[data-oper='modify']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	
 	})
-	
 	$("button[data-oper='delete']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportdelete").submit();
-	
 	})
 	
 	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/book_report/book_reportmain")
 			operForm.submit();
-	
+		})
+
 	})
-})
 </script>
 
 </body>
