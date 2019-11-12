@@ -6,22 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template -->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
@@ -35,7 +27,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,21 +37,19 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -80,12 +70,13 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
+                <form id='operForm' action="modify">
 <table class="table table-striped">
 	<thead>${report_select.bno}번 글</thead>
 	<tbody>
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" value="${report_select.title}" name="title" class="form-control" readonly="readonly"/></td>
+                <td><input type="text"  name="title" class="form-control" /></td>
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -93,21 +84,24 @@ textarea{resize:none;}
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
+                <td><textarea cols="20" rows="25" name="content" class="form-control"></textarea></td>
+            </tr>
+            
+            <tr>
+            	<th>비밀번호:</th>
+                <td><input type="password"  name="password" class="form-control" /></td>
             </tr>
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
-                    <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
                 
-                <form id='operForm' action="modify">
-					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
-				</form>
+					<input type='hidden' id='bno' name='bno' value="${report_select.bno}"/>					
                 </td>
             </tr>     
 </tbody>
 </table>
+				</form>
 </div>
    <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -117,14 +111,14 @@ textarea{resize:none;}
 	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function() {
+		operForm.attr('method','post')
 	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	})
-	$("button[data-oper='delete']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportdelete").submit();
+	
 	})
 	
 	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
+		
 		operForm.attr("action", "/book_report/book_reportmain")
 			operForm.submit();
 		})

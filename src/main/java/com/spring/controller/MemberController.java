@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ChangeVO;
@@ -109,13 +106,18 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		log.info("로그아웃 처리 메세지");
 
+
 		// iscomplete는 미리 저장되어있는 session이 있는지 체크
 		// 세션이 있다면 삭제
 		 session.invalidate();
 		
+
+		//세션삭제
+		session.invalidate();
+
 		return "redirect:/index";
 	}
-
+	
 	@RequestMapping(value = "/ck_userid", method = RequestMethod.POST)
 	@ResponseBody
 	public String idCheck(String userid) {

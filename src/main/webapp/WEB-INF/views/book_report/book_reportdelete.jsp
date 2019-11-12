@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -26,7 +24,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>글수정</title>
+<title>글 수정하기</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -54,10 +52,8 @@ textarea{resize:none;}
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -78,59 +74,25 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
-                <form id='operForm' action="modify" method="get">
+<form role="form" action="/book_report/book_reportdelete" method="post">
 <table class="table table-striped">
-	<thead>${report_select.bno}번 글</thead>
+	<thead>${report_select.bno}번 글 삭제하기</thead>
 	<tbody>
 			<tr>
-                <th>제목: </th>
-                <td><input type="text" value="${report_select.title}" name="title" class="form-control" readonly="readonly"/></td>
+               <td> <input type="hidden" value="${report_select.title}" name="title"  />
+               <td> <input type="hidden" value="${report_select.bno}" name="bno"/>
+                <td><input type="hidden" value="${report_select.writer}" name="writer" />
+				<td><input type="hidden" value="${report_select.content}" name="content"/></td>
             </tr>
             <tr>
-            	<th>작성자:</th>
-                <td><input type="text" value="${report_select.writer}" name="writer" class="form-control" readonly="readonly"/></td>
+                <th>비밀번호: </th>
+                <td><input type="password" name="password" class="form-control" required /></td>
+                <td><button type="submit" data-oper='delete' class="btn btn-light pull-right ">삭제하기</button></td>
             </tr>
-            <tr>
-                <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
-            </tr>
-                        <tr>
-                <td colspan="2">
-                    <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
-                    <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
-                    <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
-                
-					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
-                </td>
-            </tr>     
 </tbody>
 </table>
-				</form>
+     </form>
 </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
- $(function() {
-	var operForm = $("#operForm");
-	
-	$("button[data-oper='modify']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	
-	})
-	
-	$("button[data-oper='delete']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportdelete").submit();
-	
-	})
-	
-	$("button[data-oper='list']").on("click", function() {
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/book_report/book_reportmain")
-			operForm.submit();
-	
-	})
-})
-</script>
-
 </body>
+
 </html>
