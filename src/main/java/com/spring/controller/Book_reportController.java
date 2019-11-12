@@ -26,8 +26,7 @@ public class Book_reportController{
 	public void book_reportMain(Model model) {
 		log.info("독후감 메인페이지 요청");
 		
-		model.addAttribute("list",service.book_reportList());
-		
+		model.addAttribute("list",service.book_reportList());		
 	}
 	
 	@GetMapping("book_reportinsert")
@@ -52,5 +51,9 @@ public class Book_reportController{
 		Book_reportVO report_select=service.book_reportSelectList(bno);
 		model.addAttribute("report_select",report_select);
 		return "book_report/book_reportread";
-	}	
+	}
+	@GetMapping("book_reportmodify")
+	public void book_reportmodifyGet() {
+		log.info("수정페이지요청");
+	}
 }		

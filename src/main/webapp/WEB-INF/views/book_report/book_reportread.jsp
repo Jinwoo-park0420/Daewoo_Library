@@ -115,18 +115,21 @@ textarea{resize:none;}
 	
 	$("button[data-oper='modify']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportmodify").submit();
+	
 	})
+	
 	$("button[data-oper='delete']").on("click", function() {
 	operForm.attr("action", "/book_report/book_reportdelete").submit();
+	
 	})
 	
 	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/book_report/book_reportmain")
 			operForm.submit();
-		})
-
+	
 	})
+})
 </script>
 
 </body>
