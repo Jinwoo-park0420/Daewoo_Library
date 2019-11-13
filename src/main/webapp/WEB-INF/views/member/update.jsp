@@ -84,7 +84,7 @@
 	     <!--    <p class="text-center">
 	          <span style="color:blue;">userid는 변경할 수 없습니다.</span>
 	        </p> -->
-	       <form method="post" action="regeditOk.asp" name="form1" >
+	       <form method="post" id="memberUpdate" action="regeditOk.asp" name="form1" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
