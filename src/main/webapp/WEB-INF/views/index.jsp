@@ -159,19 +159,19 @@
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">신간도서</h2>
+					<a href="/book/newbook">
+						<h2 class="post-title">신규도서</h2>
 				</div>
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">베스트 셀러</h2>
+					<a href="/book/popularbook">
+						<h2 class="post-title">인기도서</h2>
 					</a>
 				</div>
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">인기도서</h2>
+					<a href="/book/recommandbook">
+						<h2 class="post-title">추천도서</h2>
 					</a>
 
 				</div>
