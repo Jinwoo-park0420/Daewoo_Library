@@ -123,24 +123,17 @@
 						</div>
 						<div class="row justify-content-center">
 							<div class="col-12 col-md-10 col-lg-8">
-								<form class="navbar">
-									<div class="navbar row no-gutters align-items-center">
-
-										<!--end of col-->
-										<div class="col">
-											<input
-												class="form-control form-control-lg form-control-borderless"
-												type="search" placeholder="찾을 도서를 입력하세요">
-										</div>
-										<!--end of col-->
-
-										<div class="col-auto">
-											<button class="btn  btn-outline-light" type="submit">Search</button>
-										</div>
-										<!--end of col-->
-									</div>
-								</form>
-							</div>
+								<form action="/book/booksearch" id="searchForm" method="post">
+							<select name="criteria" id="">
+								<option value="">---</option>
+								<option value="bookname" <c:out value=""/>>도서명</option>
+								<option value="writer" <c:out value=""/>>저 자</option>
+								<option value="publisher" <c:out value=""/>>출판사</option>
+							</select> 
+							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
+							<button class="btn btn-outline-light" type="submit">Search</button>
+						</form>
+							
 							<!--end of col-->
 						</div>
 					</div>
@@ -166,19 +159,19 @@
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">신간도서</h2>
+					<a href="/book/newbook">
+						<h2 class="post-title">신규도서</h2>
 				</div>
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">베스트 셀러</h2>
+					<a href="/book/popularbook">
+						<h2 class="post-title">인기도서</h2>
 					</a>
 				</div>
 				<hr>
 				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">인기도서</h2>
+					<a href="/book/recommandbook">
+						<h2 class="post-title">추천도서</h2>
 					</a>
 
 				</div>
@@ -285,6 +278,29 @@
 			marker.setMap(map);
 
 		}
+		
+		$(function(){
+		//검색 버튼이 눌러지면 작동할 스크립트
+		$(".btn-outline-light").click(function(){
+			var searchForm=$("#searchForm");
+			//검색조건이나 검색어가 비어있는지 확인하고
+			//알림창 띄우고
+			//비어 잇으면 searchForm으로 되돌려 보내기
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 선택하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("검색어를 입력하세요");
+				searchForm.find("input[name='keyword']").focus();
+				return false;
+			}
+			//검색 폼을 보내기 전에 pageNum값을 1로 변경 후 보내기
+			searchForm.find("input[name='pageNum']").val("1");
+			searchForm.submit();
+		})
+	})
+	
 	</script>
  
  	<script async defer

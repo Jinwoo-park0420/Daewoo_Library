@@ -14,59 +14,76 @@
 		<org.slf4j-version>1.7.28</org.slf4j-version>
 	</properties>
 	<dependencies>
+	<!-- 비밀번호 암호화 spring security 라이브러리 -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-web</artifactId>
+	    <version>4.2.4.BUILD-SNAPSHOT</version>
+	</dependency>
+	<!-- spring security taglibs 라이브러리  -->
+	<dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-taglibs</artifactId>
+	<version>5.1.2.RELEASE</version>
+	</dependency>
+	<!-- spring security config 라이브러리 : security와 관련된 XML 설정 or 자바 설정을 위해 필요한 라이브러리  -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-config</artifactId>
+	    <version>5.1.2.RELEASE</version>
+	</dependency>
+	<!-- spring security web 라이브러리 : 웹 기반의 인증과 URL 기반의 접근 제어를 위해 필요한 라이브러리-->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-web</artifactId>
+	    <version>5.1.2.RELEASE</version>
+	</dependency>
 		<!-- Mail -->
 		<!-- google맵 사용 -->
 
-<!-- fileupload  -->
-  <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.0.1</version>
-        </dependency>
+	<!-- fileupload  -->
+  	<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+	<version>2.0.1</version>
+    </dependency>
 
 
-<dependency>
+	<dependency>
     <groupId>commons-fileupload</groupId>
     <artifactId>commons-fileupload</artifactId>
     <version>1.4</version>
-</dependency>
-
-
-<dependency>
-    <groupId>net.coobird</groupId>
-    <artifactId>thumbnailator</artifactId>
-    <version>0.4.8</version>
-</dependency>
-
-
-<!-- json사용 -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.10.0</version>
-</dependency>
-		
-		
-<dependency>
-    <groupId>com.fasterxml.jackson.dataformat</groupId>
-    <artifactId>jackson-dataformat-xml</artifactId>
-    <version>2.10.0</version>
-</dependency>
-
-<dependency>
-
-<groupId>com.google.code.geocoder-java</groupId>
-
-<artifactId>geocoder-java</artifactId>
-
-<version>0.16</version>
-
-</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
+	</dependency>
+	
+	
+	<dependency>
+	    <groupId>net.coobird</groupId>
+	    <artifactId>thumbnailator</artifactId>
+	    <version>0.4.8</version>
+	</dependency>
+	<!-- json사용 -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.10.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.dataformat</groupId>
+	    <artifactId>jackson-dataformat-xml</artifactId>
+	    <version>2.10.0</version>
+	</dependency>
+	
+	<dependency>
+	<groupId>com.google.code.geocoder-java</groupId>
+	<artifactId>geocoder-java</artifactId>
+	<version>0.16</version>
+	</dependency>
+	
+	<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context-support</artifactId>
+	<version>${org.springframework-version}</version>
+	</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
@@ -194,6 +211,16 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	
 	<build>
 		
