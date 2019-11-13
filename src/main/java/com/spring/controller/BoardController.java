@@ -37,9 +37,11 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardmain")
-	public void getlist(Model model,Criteria cri) {
+	public void getlist(BoardVO bvo,Model model,Criteria cri) {
 		log.info("게시판글 목록 불러오기");
 		model.addAttribute("list",service.getList(cri));
+		
+		
 	}
 	
 	@GetMapping("/boardinsert")
