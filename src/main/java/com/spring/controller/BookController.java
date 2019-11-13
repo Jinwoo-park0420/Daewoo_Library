@@ -71,13 +71,7 @@ public class BookController {
 		model.addAttribute("list", list);
 	}
 	
-	@GetMapping("search")
-	public String searchGet(RedirectAttributes rttr) {
-		rttr.addFlashAttribute("tab", "search");
-		return "redirect:/";
-	}
-	
-	@PostMapping("booksearch")
+	@PostMapping(value= {"booksearch","newbook","recommandbook","popularbook","loanbook"})
 	public String book_search(String criteria, String keyword, RedirectAttributes rttr, Model model) {
 		log.info("도서 검색 실행");
 		
@@ -97,7 +91,16 @@ public class BookController {
 		log.info("도서 상세보기... "+bookno);
 		BookVO vo=service.bookDetail(bookno);
 		model.addAttribute("vo", vo);
-		//model.addAttribute("cri", cri);
+		//아직 미완성
+		
+	}
+	@PostMapping("bookDetail")
+	public String bookDetailPost(int bookno, Model model) {
+		log.info("도서 상세보기... "+bookno);
+		BookVO vo=service.bookDetail(bookno);
+		model.addAttribute("vo", vo);
+		return "/book/bookDetail";
+		//아직 미완성
 		
 	}
 
