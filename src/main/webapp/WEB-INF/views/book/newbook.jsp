@@ -77,12 +77,12 @@
 				<div class="col-lg-10 col-md-10 mx-auto">
 					<div class="page-heading">
 						<h1>자료검색</h1>
-						<form action="" id="searchForm" method="get">
-							<select name="type" id="">
+						<form action="booksearch" id="searchForm" method="get">
+							<select name="criteria" id="">
 								<option value="">---</option>
-								<option value="T" <c:out value=""/>>도서명</option>
-								<option value="G" <c:out value=""/>>저 자</option>
-								<option value="W" <c:out value=""/>>출판사</option>
+								<option value="bookname" <c:out value=""/>>도서명</option>
+								<option value="write" <c:out value=""/>>저 자</option>
+								<option value="publisher" <c:out value=""/>>출판사</option>
 							</select> 
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요." />
 							<button class="btn  btn-outline-light" type="submit">Search</button>
