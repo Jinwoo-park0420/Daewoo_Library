@@ -70,7 +70,7 @@ public class AjaxUploadController {
 				File saveFile=new File(uploadPath, uploadFileName);
 				//이미지 여부 판단
 				if(checkType(saveFile)) {
-					attach.setImage(true);
+					//attach.setImage(true);
 					//업로드하는 파일이 이미지라면 썸네일 이미지 생성하기				
 					FileOutputStream stream=new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
 					InputStream in=multiFile.getInputStream();
