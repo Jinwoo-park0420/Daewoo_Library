@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.PageVO;
 import com.spring.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,11 +33,19 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardmain")
-	public void getlist(BoardVO bvo,Model model,Criteria cri) {
+	public String getlist(Model model,Criteria cri) {
 		log.info("게시판글 목록 불러오기");
-		model.addAttribute("list",service.getList(cri));
 		
+		List<BoardVO> list=service.getList(cri);
+		
+		if(!list.isEmpty()) {
+		model.addAttribute("list",list);
+		//model.addAttribute("page",new PageVO(cri,))
+		}
+			
+		return "/board/boardmain";
 	}
+	
 	
 	@GetMapping("/boardinsert")
 	public void insertform() {

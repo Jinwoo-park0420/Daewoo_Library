@@ -20,3 +20,4 @@ drop sequence seq_libbno;
 insert into library_board(bno,title,content,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','이찬해',sysdate,0);
 
 select * from library_board;
+
