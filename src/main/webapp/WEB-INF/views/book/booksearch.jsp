@@ -159,7 +159,7 @@
 </body>
 
 <script>
-
+$(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
 $(".btn-outline-light").click(function(){
 	var searchForm=$("#searchForm");
@@ -180,14 +180,15 @@ $(".btn-outline-light").click(function(){
 	searchForm.submit();
 })
 
-//제목을 클릭하면 실행될 스크립트
+//제목을 클릭하면 실행될 스크립트(미완성)
 $(".move").click(function(e){
 	e.preventDefault(); //a 태그 막기
 	//제목 클릭시 글 번호, pageNum, amount, 검색정보를 보내야 함
-	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+	actionForm.append("<input type='hidden' name='bookno' value='"+$(this).attr("href")+"'>");
 	actionForm.attr("action","bookDetail");
 	actionForm.submit();
 
+	})
 })
 </script>
 </html>
