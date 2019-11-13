@@ -97,47 +97,35 @@
 				<a class="list-group-item list-group-item-action" href="popularbook">인기 도서</a>
 				<a class="list-group-item list-group-item-action" href="loanbook">대출 급상승 도서</a>
 			</div>
+
+			<div class="panel-body col-lg-8 mx-10">
+    			<table class="table table-striped table-bordered table-hover" style="width: 1000px">
+    				<thead>
+    					<tr align="center">
+                    		<th></th>
+                    		<th width="auto">도서명</th>
+                    		<th width="110px">장 르</th>
+                    		<th width="175px">저 자</th>
+                    		<th width="100px">출판사</th>
+                    		<th width="110px">도서상태</th>
+                		</tr>									
+            		</thead>
+					<tbody>
+					<c:forEach var="vo" items="${list}">
+							<tr>
+								<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
+								<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
+								<td>${vo.genre }</td>
+								<td align="auto">${vo.writer }</td>
+								<td>${vo.publisher }</td>
+								<td>${vo.status}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-
-	<div class="panel-body">
-    	<table class="table table-striped table-bordered table-hover">
-    		<thead>
-    			<tr>
-                    <th></th>
-                    <th>도서명</th>
-                    <th>장 르</th>
-                    <th>저 자</th>
-                    <th>출판사</th>
-                    <th>도서상태</th>
-                </tr>									
-            </thead>
-			<!-- 게시판 리스트 반복문 -->
-			<tbody>
-			<c:forEach var="vo" items="${list}">
-				<tr>
-					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
-					<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
-					<td>${vo.genre }</td>
-					<td>${vo.writer }</td>
-					<td>${vo.publisher }</td>
-					<td>${vo.status}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<!-- 도서목록 -->
-<!-- 	<ul class="book-list">
-		<li>
-			<div class="thumb">
-				
-			</div>
-		</li>
-	</ul> -->
-
-
-	<!-- Footer -->
 	<footer>
 		<div class="container">
 			<div class="row">
