@@ -171,4 +171,38 @@
 		</div>
 	</footer>
 </body>
+
+<script>
+$(function(){
+//검색 버튼이 눌러지면 작동할 스크립트
+$(".btn-outline-light").click(function(){
+	var searchForm=$("#searchForm");
+	//검색조건이나 검색어가 비어있는지 확인하고
+	//알림창 띄우고
+	//비어 잇으면 searchForm으로 되돌려 보내기
+	if(!searchForm.find("option:selected").val()){
+		alert("검색 종류를 선택하세요");
+		return false;
+	}
+	if(!searchForm.find("input[name='keyword']").val()){
+		alert("검색어를 입력하세요");
+		searchForm.find("input[name='keyword']").focus();
+		return false;
+	}
+	//검색 폼을 보내기 전에 pageNum값을 1로 변경 후 보내기
+	searchForm.find("input[name='pageNum']").val("1");
+	searchForm.submit();
+})
+
+//제목을 클릭하면 실행될 스크립트(미완성)
+$(".move").click(function(e){
+	e.preventDefault(); //a 태그 막기
+	//제목 클릭시 글 번호, pageNum, amount, 검색정보를 보내야 함
+	actionForm.append("<input type='hidden' name='bookno' value='"+$(this).attr("href")+"'>");
+	actionForm.attr("action","bookDetail");
+	actionForm.submit();
+
+	})
+})
+</script>
 </html>
