@@ -30,7 +30,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-    		<a class="navbar-brand" href="/index">대우 도서관</a>
+    		<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -40,19 +40,17 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 				
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 			</div>
@@ -65,7 +63,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 align="center">Update User INFO</h1>
+            <h1 align="center">Withdrawal</h1>
           </div>
         </div>
       </div>
@@ -77,7 +75,31 @@
 <div class="rows">
 	<div class="container">
 		<div class="col-lg-12">
-	      <h1 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#95bd8c;">회원 탈퇴</h1>
+	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#95bd8c;">회원 탈퇴</h3>
+		<div class="col-xs-3 col-sm-3"></div>
+	        <!-- <p>&nbsp;</p> -->
+	         <form method="post" action="" name="form_leave" >
+	         <table class="table table-striped" >
+	            <tr>
+	              <th>user ID</th>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="userid" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>비밀번호</th>
+	              <td><input type="password" id="current_password" class="form-control" name="current_password" /></td>
+	            </tr>
+	            <tr>
+	              <th>비밀번호 확인</th>
+	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" /></td>
+	            </tr>
+	            <tr class="text-center">
+	              <td colspan="2">
+	                <button type="submit" class="btn btn-primary" style="width:260px; height:50px;" id="">탈퇴</button>
+	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
+	              </td>
+	            </tr>
+	         </table>
+	         </form>
 		</div>
 	</div>
 </div>

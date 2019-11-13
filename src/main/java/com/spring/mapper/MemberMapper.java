@@ -1,6 +1,8 @@
 package com.spring.mapper;
 
+import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
+import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
 
 public interface MemberMapper {
@@ -13,5 +15,10 @@ public interface MemberMapper {
 	
 	public MemberVO memberinfo(String userid); //회원정보보기
 	
-	public int memberupdate(MemberVO vo); //회원정보수정
+	public int memberupdate(MemberUpdateVO vo); //회원정보수정
+	
+	public int memberdelete(ChangeVO vo); //회원탈퇴
+	
+	public int pwdupdate(ChangeVO vo); //비밀번호 변경
+	
 }

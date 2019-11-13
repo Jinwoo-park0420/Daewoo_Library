@@ -10,4 +10,9 @@ public interface Book_reportService {
 	
 	public List<Book_reportVO> book_reportList();
 
+	public Book_reportVO book_reportSelectList(int bno);
+	
+	public int book_reportupdate(Book_reportVO report);
+	
+	public int book_reportdelete(Book_reportVO report);
 }

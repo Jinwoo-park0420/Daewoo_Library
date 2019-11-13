@@ -51,7 +51,6 @@
 					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 				
@@ -60,7 +59,6 @@
 					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 			</div>

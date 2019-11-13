@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 
   <meta charset="utf-8">
@@ -63,84 +63,63 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 align="center">도서 신청</h1>
+            <h1 align="center">Change Password</h1>
           </div>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Post Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-        <form name="sentMessage" id="contactForm" action="/book/apply" method="post" novalidate>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>책 이름</label>
-              <input type="text" class="form-control" placeholder="책 이름" id="bookname" name="bookname" required data-validation-required-message="책이름을 입력 바랍니다." >
-              <p class="help-block text-danger"></p>
-            </div>
-            <div class="form-group floating-label-form-group controls">
-              <label>글쓴이</label>
-              <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" required data-validation-required-message="글쓴이를 입력 바랍니다." >
-              <p class="help-block text-danger"></p>
-            </div>
-            <div class="form-group floating-label-form-group controls">
-              <label>출판사</label>
-              <input type="text" class="form-control" placeholder="출판사" id="publisher" name="publisher" required data-validation-required-message="출판사를 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
-            </div>
-            <div class="form-group floating-label-form-group controls">
-            <tr>
-            <td>
-                <input type="text" name="publish_year_yy" id="publish_year" size="5" placeholder="발행년도"  required data-validation-required-message="발행년도를 입력 바랍니다."/>
-                <select name ="publish_year_mm" class="inBorder">
-                    <option value="">월</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>                   
-                </select> 월
-        </td>
-        </tr>       
-          </div>
-            <div class="form-group floating-label-form-group controls">
-              <label>가격</label>
-              <input type="text" class="form-control" placeholder="가격" id="price" name="price" required data-validation-required-message="가격을 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
-            </div>
-            <div class="form-group floating-label-form-group controls">
-              <label>ISBN</label>
-              <input type="text" class="form-control" placeholder="ISBN" id="ISBN" name="ISBN" required data-validation-required-message="ISBN을 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
-            </div>
-          </div>
-          <div id="success"></div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">신청하기</button>
-            <button type="reset" class="btn btn-primary" id="sendMessageButton">초기화</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-  
-
+	<!-- Post Content -->
   <hr>
+  
+<div class="rows">
+	<div class="container">
+		<div class="col-lg-12">
+	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#d1c9b7;">비밀번호 변경</h3>
+		<div class="col-xs-3 col-sm-3"></div>
+	        <!-- <p>&nbsp;</p> -->
+	         <form method="post" action="/member/chPwd" name="form_chpwd" id="chPwd" >
+	         <table class="table table-striped" >
+	            <tr>
+	              <th>user ID</th>
+	              <td><input type="text" value="${vo1.userid}" class="form-control" name="name" readonly="readonly"/>
+	              <small class="text-danger" id="name"></small>
+	              </td>
+	              
+	            </tr>
+	            <tr>
+	              <th>현재 비밀번호</th>
+	              <td><input type="password" id="current_password" class="form-control" name="current_password" />
+	               <small class="text-danger" id="current_password"></small>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th>변경할 비밀번호</th>
+	              <td><input type="password" id="new_password" class="form-control" name="new_password" />
+	              <small class="text-danger" id="new_password"></small>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th>비밀번호 확인</th>
+	              <td><input type="password" id="confirm_password" class="form-control" name="confirm_password" />
+	              <small class="text-danger" id="confirm_password"></small>
+	              </td>
+	            </tr>
+	            <tr class="text-center">
+	              <td colspan="2">
+	                <button type="submit" class="btn btn-primary" onclick="location.href='/index'" style="width:260px; height:50px;" id="">변경하기</button>
+	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
+	              </td>
+	            </tr>
+	         </table>
+	         </form>
+		</div>
+	</div>
+</div>
 
+  
+  
+	<hr>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -184,6 +163,11 @@
 
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
+    
+   <!-- validation 라이브러리 삽입 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+  <!-- validation 사용자 작성 코드 삽입-->
+  <script src="/resources/js/pwchange.js"></script>
 
 </body>
 
