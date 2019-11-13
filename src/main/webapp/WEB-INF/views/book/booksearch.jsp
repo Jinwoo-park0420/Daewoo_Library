@@ -35,7 +35,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/index">대우 도서관</a>
+			<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,23 +45,19 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-			
 					</ul>
 				</c:if>
 			</div>
@@ -175,6 +171,27 @@
 </body>
 
 <script>
+
+//검색 버튼이 눌러지면 작동할 스크립트
+$(".btn-outline-light").click(function(){
+	var searchForm=$("#searchForm");
+	//검색조건이나 검색어가 비어있는지 확인하고
+	//알림창 띄우고
+	//비어 잇으면 searchForm으로 되돌려 보내기
+	if(!searchForm.find("option:selected").val()){
+		alert("검색 종류를 선택하세요");
+		return false;
+	}
+	if(!searchForm.find("input[name='keyword']").val()){
+		alert("검색어를 입력하세요");
+		searchForm.find("input[name='keyword']").focus();
+		return false;
+	}
+	//검색 폼을 보내기 전에 pageNum값을 1로 변경 후 보내기
+	searchForm.find("input[name='pageNum']").val("1");
+	searchForm.submit();
+})
+
 //제목을 클릭하면 실행될 스크립트
 $(".move").click(function(e){
 	e.preventDefault(); //a 태그 막기
