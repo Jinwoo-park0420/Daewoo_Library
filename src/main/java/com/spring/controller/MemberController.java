@@ -103,11 +103,7 @@ public class MemberController {
 		// iscomplete는 미리 저장되어있는 session이 있는지 체크
 		// 세션이 있다면 삭제
 		 session.invalidate();
-		
-
-		//세션삭제
-		session.invalidate();
-
+	
 		return "redirect:/index";
 	}
 	

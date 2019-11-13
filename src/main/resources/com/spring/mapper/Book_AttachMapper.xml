@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.Book_AttachMapper">
+<insert id="attach_insert">
+	insert into book_attach values(#{uuid},#{uploadPath},#{fileName},#{fileType},#{bno})
+</insert>
+
+<select id="getAttachList" resultType="com.spring.domain.AttachFileVO">
+	select * from book_attach where bno=#{bno}
+</select>
+
+<delete id="attach_delete">
+	delete from book_attach where bno=#{bno}
+</delete>
+
+<select id="getYesterDayList" resultType="com.spring.domain.AttachFileVO">
+	select * from book_attach where uploadPath = to_char(sysdate-1,'yyyy\MM\dd')
+</select>
+
+</mapper>
