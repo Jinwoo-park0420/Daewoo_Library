@@ -11,4 +11,5 @@ public interface BoardService {
 	public void insert(BoardVO vo);
 	public BoardVO selectboard(int bno);
 	public int updateboard(BoardVO vo);
+	public int delete(BoardVO vo);
 }

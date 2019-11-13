@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans 
+
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -41,9 +43,27 @@
 		</beans:property>
 	</beans:bean>
 	
+	
+	<!-- interceptor 설정 -->
+<beans:bean id="Interceptor" class="com.spring.interceptor.security.AuthInterceptor"/>
+<interceptors>
+	<interceptor>
+		<mapping path="/**"/> 
+	<exclude-mapping path="/member/index"/>
+	<exclude-mapping path="/index"/>
+	<exclude-mapping path="/"/>
+	<exclude-mapping path="/member/login"/>
+	<exclude-mapping path="/member/join"/>
+	<exclude-mapping path="/assets/**"/>
+	<exclude-mapping path="/resourecs/**"/>
+		<beans:ref bean="Interceptor"/>
+	</interceptor>
+</interceptors>
+	 
+	
 		<!-- commons fileupload담당 클래스 생성 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="100000000"/>
+		<beans:property name="maxUploadSize" value="52428800"/>
 	</beans:bean>
 	
 
