@@ -1,6 +1,7 @@
 package com.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
@@ -22,7 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 
 	public int memberJoin(MemberVO vo) {
-		// TODO Auto-generated method stub
+		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		String password = bcrypt.encode(vo.getPassword());
+		vo.setPassword(password);
 		return mapper.memberJoin(vo);
 	}
 
