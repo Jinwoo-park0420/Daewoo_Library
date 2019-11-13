@@ -41,7 +41,6 @@ public class BoardController {
 		log.info("게시판글 목록 불러오기");
 		model.addAttribute("list",service.getList(cri));
 		
-		
 	}
 	
 	@GetMapping("/boardinsert")
