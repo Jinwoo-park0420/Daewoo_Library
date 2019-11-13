@@ -94,6 +94,23 @@ textarea{resize:none;}
                 <th>내용: </th>
                 <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
             </tr>
+            <tr>        
+         <th>파일첨부</th>   		
+         <td>
+		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" readonly="readonly"/>
+		<div class="uploadResult">
+		<ul>
+		
+		</ul>
+	</div>
+	<div class='bigPictureWrapper'>
+	  <div class='bigPicture'>
+	  </div>
+	</div>
+	</td>	
+	</tr>
+            
+            
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
@@ -128,6 +145,91 @@ textarea{resize:none;}
 		})
 
 	})
+</script>
+<script>
+var bno=${vo.bno};
+
+$.getJSON("/board/getAttachList",{bno:bno},function(list){
+	showFileUploadResult(list);
+})
+	
+	function showFileUploadResult(uploadResultArr){
+		var uploadResult = $(".uploadResult ul");
+		var str="";
+		$(uploadResultArr).each(function(i, element){
+			if(!element.fileType){
+				var fileCallPath=encodeURIComponent(element.uploadPath+"/"+element.uuid+"_"+element.fileName);
+				str+="<li data-path='"+element.uploadPath+"' data-uuid='"+element.uuid+"' ";
+				str+="data-filename='"+element.fileName+"' data-type='"+element.fileType+"'>";
+				str+="<span>"+element.fileName+"</span>";
+				//str+="<a href='/download?fileName="+fileCallPath+"'>";
+				str+="<image src='/resources/img/attach.png'></a>"
+				str+="</li>";
+			}else{
+				//encodeURIComponent이유는 / or \\를 하나의 유형으로 통합시키려고 처리한 것
+				var fileCallPath=encodeURIComponent(element.uploadPath+"/s_"+element.uuid+"_"+element.fileName);
+				//원본파일 경로 생성
+				var fileOriginPath=element.uploadPath+"/"+element.uuid+"_"+element.fileName;
+				//경로가 \와/가 섞이게 되는 부분 정리하기!!
+				fileOriginPath=fileOriginPath.replace(new RegExp(/\\/g), "/");
+				
+				str+="<li data-path='"+element.uploadPath+"' data-uuid='"+element.uuid+"' ";
+				str+="data-filename='"+element.fileName+"' data-type='"+element.fileType+"'>";
+				str+="<span>"+element.fileName+"</span>";
+				//str+="<a href=\"javascript:showImage(\'"+fileOriginPath+"\')\">";
+				str+="<img src='/display?fileName="+fileCallPath+"'></a>";
+				str+="</li>";				
+			}
+		})
+		uploadResult.append(str);
+	}
+	
+	
+$(".uploadResult").on("click","li",function(){
+	var liObj = $(this);
+	var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+	
+	if(liObj.data("type")){
+		showImage(path.replace(new RegExp(/\\/g),"/"));
+	}
+	else{
+		self.location="/download?fileName="+path;
+	}
+	});
+
+$(".bigPictureWrapper").on("click", function(){
+	$(".bigPicture").animate({width:'0%', height:'0%'}, 500);
+	setTimeout(function(){
+		$(".bigPictureWrapper").hide();
+	},500);
+});
+	
+	
+	
+function showImage(fileCallPath){
+	$(".bigPictureWrapper").css("display","flex").show();
+	$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
+}
+
+</script>
+
+
+<script>
+
+var operForm = $("#operForm");
+
+$(function(){
+	$(".btn-info").click(function(){
+		/* bno값을 삭제하고 폼 보내기!! */
+		operForm.find("input[name='bno']").remove();
+		operForm.attr("action", "list");
+		operForm.submit();
+	})
+	
+	$(".btn-default").click(function(){
+		operForm.submit();
+	})
+})
 </script>
 
 </body>

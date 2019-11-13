@@ -78,7 +78,7 @@
 	   <div class="col-lg-12">
 	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h3>
 	      <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="/member/update" name="form_update" >
+	       <form method="post" action="/member/update" id="memberUpdate"  >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
@@ -86,17 +86,20 @@
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name" /></td>
+	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name" />
+	              <small class="text-danger" id="name"></small></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" /></td>
+	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" />
+	              <small class="text-danger" id="email"></small></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" /></td>
+	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" />
+	              <small class="text-danger" id="phone_number"></small></td>
 	            </tr>
 	            <tr>
 	              <th>주소</th>

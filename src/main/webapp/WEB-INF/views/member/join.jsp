@@ -8,6 +8,7 @@
 
 <!-- 우편주소 스크립트 -->
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -41,9 +42,11 @@ function dupId(){
 	var id = $('#userid').val(); //userid가져오기
 	$.ajax({
 		type:'post',
-		url:'ck_userid',  
+		url:'/member/ck_userid',  
 		data:{userid:id}, // 파라미터 값 : 사용자가 입력한 값
 		success: function(result){
+			
+		console.log(result);
 			if(result=="true"){
 				$("small[id='userid']").text('사용 가능한 아이디입니다.').removeClass('text-danger').css('color','blue');
 			} else {
@@ -127,7 +130,7 @@ function dupId(){
               <label for="userid">아이디</label>
               <!-- <input type="text" class="form-control userid" placeholder="아이디" id="userid" name="userid" required data-validation-required-message="아이디를 입력 바랍니다."> -->
               <input type="text" class="form-control userid" placeholder="아이디" id="userid" name="userid">
-              <button type="button" style="width:75px; height:32px;" onclick="dupId()" id="ck_userid" value="중복체크">중복체크</button>
+              <button type="button" style="width:75px; height:32px;" onclick="dupId()"  value="중복체크">중복체크</button>
               <small class="text-danger" id="userid"></small>
             </div>
           </div>
@@ -220,7 +223,6 @@ function dupId(){
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Contact Form JavaScript -->

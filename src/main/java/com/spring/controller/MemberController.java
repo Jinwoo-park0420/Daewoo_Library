@@ -103,19 +103,18 @@ public class MemberController {
 		// iscomplete는 미리 저장되어있는 session이 있는지 체크
 		// 세션이 있다면 삭제
 		 session.invalidate();
-		
-
-		//세션삭제
-		session.invalidate();
-
+	
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "/ck_userid", method = RequestMethod.POST)
+	@PostMapping(value = "/ck_userid")
 	@ResponseBody
 	public String idCheck(String userid) {
+		System.out.println("sddsdsd");
+		
 		// userid = request.getParameter("userid");
-		log.info("아이디 중복 " + userid);
+		System.out.println("아이디 중복 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + userid);
+		log.info("아이디 중복 111!!!!!!!!!!!" + userid);
 		if (service.idCheck(userid)) {
 			return "true";
 		} else {

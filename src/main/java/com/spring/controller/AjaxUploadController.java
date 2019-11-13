@@ -30,47 +30,52 @@ import com.spring.domain.AttachFileVO;
 
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Slf4j
 @Controller
 public class AjaxUploadController {
 	
 	@PostMapping("/uploadAjax")
-	public ResponseEntity<List<AttachFileVO>> uploadPostAjax(MultipartFile[] uploadFile) {
-		log.info("upload 요청");
+	public ResponseEntity<List<AttachFileVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
+		log.info("파일 업로드 요청!");
+		
 		
 		//저장 폴더 생성
-		String uploadFolder="d:\\upload";
-		String uploadFolderPath=getFolder(); //  2019/10/29
-		File uploadPath = new File(uploadFolder, uploadFolderPath);
-			if(!uploadPath.exists()) {
+		String uploadFolder="D:\\upload";
+		String uploadFolderPath=getFolder(); // 2019/10/29형식으로 리턴 됨
+		File uploadPath = new File(uploadFolder,uploadFolderPath);
+		
+		if(!uploadPath.exists()) {
 			uploadPath.mkdirs();
 		}
-
-
-		List<AttachFileVO> attachList=new ArrayList<AttachFileVO>();
+		
+		List<AttachFileVO> list = new ArrayList<AttachFileVO>();
+		
 		for(MultipartFile multiFile:uploadFile) {
 			
-			//원본 파일명 가져오기
-			String uploadOrignalFileName=multiFile.getOriginalFilename();
+			//원본 파일명
+			String uploadOriginalFileName=multiFile.getOriginalFilename();
 			
-			//IE 브라우저가 파일 저장시 파일 패스를 가지고 오는 부분 해결
-			String uploadFileName=uploadOrignalFileName.substring(uploadOrignalFileName.lastIndexOf("\\")+1);
+			//IE 브라우저는 파일이 저장된 경로까지 갖고오게 되는데 불필요한 파일저장경로를 버리고 필요한 파일명만을 꺼내오기 위한 작업
+			String uploadFileName=uploadOriginalFileName.substring(uploadOriginalFileName.lastIndexOf("\\")+1);
 			
-			//uuid 생성
-			UUID uuid=UUID.randomUUID();
+			//uuid생성
+			UUID uuid = UUID.randomUUID();
 			uploadFileName=uuid.toString()+"_"+uploadFileName;
-			//AttachFileVO 에 생성된 정보 담기
-			AttachFileVO attach=new AttachFileVO();
-			attach.setFileName(uploadOrignalFileName);
-			attach.setUploadPath(uploadFolderPath);
-			attach.setUuid(uuid.toString());
+			
+			//attachFileVO에 데이터 담기
+			AttachFileVO vo = new AttachFileVO();
+			vo.setFileName(uploadOriginalFileName);
+			vo.setUploadPath(uploadFolderPath);
+			vo.setUuid(uuid.toString());
 			
 			try {
-				File saveFile=new File(uploadPath, uploadFileName);
-				//이미지 여부 판단
+				//파일 지정될 곳, 파일명
+				File saveFile = new File(uploadPath, uploadFileName);
+		//이미지 여부 판단
 				if(checkType(saveFile)) {
-					attach.setImage(true);
+					
 					//업로드하는 파일이 이미지라면 썸네일 이미지 생성하기				
 					FileOutputStream stream=new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
 					InputStream in=multiFile.getInputStream();
@@ -81,13 +86,16 @@ public class AjaxUploadController {
 				//서버에 저장
 				multiFile.transferTo(saveFile);				
 				//서버에 저장된 파일의 정보를 List에 추가
-				attachList.add(attach);
 				
-			} catch (IllegalStateException | IOException e) {			
+				list.add(vo);
+				
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 		}
-		return new ResponseEntity<>(attachList,HttpStatus.OK);
+		
+		return new ResponseEntity<List<AttachFileVO>>(list,HttpStatus.OK);
 	}
 	
 	//썸네일 이미지를 가져와서 보여주기
@@ -194,6 +202,7 @@ public class AjaxUploadController {
 		return new ResponseEntity<>(resource,headers,HttpStatus.OK);
 	}
 	
+
 	
 		
 	

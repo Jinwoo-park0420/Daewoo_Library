@@ -2,8 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.Book_reportMapper">
 <insert id="book_reportinsert">
-insert into book_report(bno,title,writer,content,password) values(seq_reportbno.nextVal,#{title},#{writer},#{content},#{password})
+		<!-- insert SQL문이 실행하기 전에(order="BEFORE") resultType="int"타입의 keyProperty="bno"의 변수 이름으로 해당 값을 저장!!! -->
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+
+			select seq_reportbno.nextVal from dual
+		</selectKey>
+insert into book_report(bno,title,writer,content,password) values(#{bno},#{title},#{writer},#{content},#{password})
 </insert>
+
+
 
 <select id="book_reportList" resultType="com.spring.domain.Book_reportVO">
 select * from book_report order by bno
