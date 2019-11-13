@@ -2,11 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.Book_reportMapper">
 <insert id="book_reportinsert">
-insert into book_report(bno,title,writer,content) values(seq_reportbno.nextVal,#{title},#{writer},#{content})
+insert into book_report(bno,title,writer,content,password) values(seq_reportbno.nextVal,#{title},#{writer},#{content},#{password})
 </insert>
 
 <select id="book_reportList" resultType="com.spring.domain.Book_reportVO">
 select * from book_report order by bno
 </select>
+
+<select id="book_reportSelectList" resultType="com.spring.domain.Book_reportVO">
+select * from book_report where bno=#{bno}
+</select>
+
+<update id="book_reportupdate">
+update book_report set title=#{title} ,  content=#{content} , updatedate=sysdate where bno=#{bno} and password=#{password} 
+</update>
+<delete id="book_reportdelete">
+delete from book_report where  bno=#{bno} and password=#{password} 
+</delete>
 
 </mapper>
