@@ -14,5 +14,5 @@ public class BoardVO {
 	private String password;
 	private Date regdate;
 	private Date updatedate;
-	private int readcnt; //게시물 댓글수
+	private int readcnt;
 }

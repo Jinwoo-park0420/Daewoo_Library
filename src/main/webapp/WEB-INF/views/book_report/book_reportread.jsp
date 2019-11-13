@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +23,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>글수정</title>
+<title>글작성</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -35,7 +32,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,19 +42,21 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -78,59 +77,35 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
-                <form id='operForm' action="modify" method="get">
 <table class="table table-striped">
-	<thead>${report_select.bno}번 글</thead>
+	<c:forEach var="vo" items="${list}">
+	<thead>${vo.bno}번 글</thead>
 	<tbody>
+<form action="/board/insert" method="post">
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" value="${report_select.title}" name="title" class="form-control" readonly="readonly"/></td>
+                <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>
             </tr>
             <tr>
             	<th>작성자:</th>
-                <td><input type="text" value="${report_select.writer}" name="writer" class="form-control" readonly="readonly"/></td>
+                <td><input type="text" value="${vo.writer}" name="writer" class="form-control" readonly="readonly"/></td>
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
+                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${vo.content}</textarea></td>
             </tr>
                         <tr>
                 <td colspan="2">
-                    <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
-                    <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
-                    <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
-                
-					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
+                    <input type="submit" value="수정하기" class="btn btn-light pull-right "/>
+                    <input type="button" value="취소" class="btn btn-light pull-left"/>
+                    <input type="button" value="글 목록으로... " class="btn btn-light pull-right" onclick="javascript:location.href='boardmain.jsp'"/>
                 </td>
-            </tr>     
+            </tr>
+     </form>
+     
 </tbody>
+</c:forEach>
 </table>
-				</form>
 </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
- $(function() {
-	var operForm = $("#operForm");
-	
-	$("button[data-oper='modify']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	
-	})
-	
-	$("button[data-oper='delete']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportdelete").submit();
-	
-	})
-	
-	$("button[data-oper='list']").on("click", function() {
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/book_report/book_reportmain")
-			operForm.submit();
-	
-	})
-})
-</script>
-
 </body>
 </html>

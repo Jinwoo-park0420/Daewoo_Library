@@ -27,39 +27,13 @@
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>게시판</title>
-
-<style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-    
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */                          
-        }
- 
-</style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -69,19 +43,21 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -125,7 +101,7 @@
 					<td>${vo.bno}</td>
 					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 					<td>${vo.writer}</td>
-					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+					<td>${vo.updatedate}</td>
 					<td>${vo.readcnt}</td>
 				</tr>
 			</c:forEach>
@@ -150,8 +126,6 @@
 				</div>
 			</div>
 			
-
-
 <%-- 페이지 번호를 클릭하면 보낼 폼 --%>
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
@@ -161,6 +135,7 @@
 </form>
 
 <script>
+
 //하단의 페이지 번호 클릭시 작동하는 스크립트
 var actionForm=$("#actionForm");
 $(".paginate_button a").click(function(e){
@@ -169,7 +144,6 @@ $(".paginate_button a").click(function(e){
 	actionForm.submit();
 })
 </script>
-
 
 <!-- Bootstrap core JavaScript -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>

@@ -42,10 +42,4 @@ public class BoardServiceImpl implements BoardService {
 		log.info("글 수정하기");
 		return bmapper.updateboard(vo);
 	}
-	
-	@Override
-	public int delete(BoardVO vo) {
-		log.info("게시글 삭제");
-		return bmapper.delete(vo);
-	}
 }

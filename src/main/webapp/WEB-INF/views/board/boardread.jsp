@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>${vo.title}</title>
+<title>글작성</title>
 <style>
 textarea{resize:none;}
 </style>
@@ -35,7 +35,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,25 +45,27 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
 		</div>
 	</nav>
-<header class="masthead" style="background-image: url('/resources/img/libraryy.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -78,14 +80,12 @@ textarea{resize:none;}
 		</div>
 </header>
 <div class="container">
-<form action="boardmodify" role="form">
 <table class="table table-striped">
-	<thead>${vo.bno}번째 글</thead>
+	<thead>${vo.bno}번 글</thead>
 	<tbody>
 			<tr>
                 <th>제목: </th>
                 <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>
-                <input type="hidden" value="${vo.bno}" name="bno" />   
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -98,21 +98,25 @@ textarea{resize:none;}
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
-</form>
-<form action="" id="operForm">
-                    <button type='reset' class="btn btn-dark pull-left ">목록으로</button>
-                    </form>
+                    <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
+                
+                <form id='operForm' action="modify">
+					<input type='hidden' id='bno' name='bno' value='<c:out value="${vo.bno}"/>'>					
+				</form>
                 </td>
             </tr>     
 </tbody>
 </table>
-<!-- 댓글넣기  -->
-<%@ include file="../board/boardreply.jsp" %>
+</div>
 <script>
 $(function() {
 	var operForm = $("#operForm");
 	
-	$(".btn-dark").on("click", function() {
+	$("button[data-oper='modify']").on("click", function() {
+	operForm.attr("action", "/board/boardmodify").submit();
+	})
+	
+	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/board/boardmain")
 			operForm.submit();

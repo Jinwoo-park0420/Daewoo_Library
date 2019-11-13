@@ -45,6 +45,7 @@ textarea{resize:none;}
 						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
@@ -53,6 +54,7 @@ textarea{resize:none;}
 						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -88,10 +90,6 @@ textarea{resize:none;}
             <tr>
                 <th>내용: </th>
                 <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
-            </tr>
-            <tr>
-            	<th>비밀번호:</th>
-                <td><input type="password" placeholder="비밀번호를 입력하세요" name="password" class="form-control"/></td>
             </tr>
     
     <tr>        

@@ -70,6 +70,7 @@
 						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 
@@ -80,6 +81,7 @@
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -123,24 +125,17 @@
 						</div>
 						<div class="row justify-content-center">
 							<div class="col-12 col-md-10 col-lg-8">
-								<form class="navbar">
-									<div class="navbar row no-gutters align-items-center">
-
-										<!--end of col-->
-										<div class="col">
-											<input
-												class="form-control form-control-lg form-control-borderless"
-												type="search" placeholder="찾을 도서를 입력하세요">
-										</div>
-										<!--end of col-->
-
-										<div class="col-auto">
-											<button class="btn  btn-outline-light" type="submit">Search</button>
-										</div>
-										<!--end of col-->
-									</div>
-								</form>
-							</div>
+								<form action="/book/booksearch" id="searchForm" method="post">
+							<select name="criteria" id="">
+								<option value="">---</option>
+								<option value="bookname" <c:out value=""/>>도서명</option>
+								<option value="writer" <c:out value=""/>>저 자</option>
+								<option value="publisher" <c:out value=""/>>출판사</option>
+							</select> 
+							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
+							<button class="btn btn-outline-light" type="submit">Search</button>
+						</form>
+							
 							<!--end of col-->
 						</div>
 					</div>

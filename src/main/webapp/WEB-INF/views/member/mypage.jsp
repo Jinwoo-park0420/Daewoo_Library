@@ -63,6 +63,7 @@
 					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 				
@@ -71,6 +72,7 @@
 					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
 				</c:if>
 			</div>
@@ -92,55 +94,55 @@
  <!--    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
   <!-- Post Content -->
   <hr>
+
+	
   
 <div class="row">
 	<div class="container">
 		<div class="col-lg-12">
+			<div class="myinfo-context">
 			 <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#8099af; ">회원 정보</h3>
-			 <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="" name="form_mypage" >
-	         <table class="table table-striped" >
-	            <tr>
-	              <th>user ID</th>
-	              <td><input type="text" class="form-control" name="name" value="${modelVO.userid}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value="${modelVO.name}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="${modelVO.email}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="${modelVO.phone_number}" readonly="readonly" /></td>
-	            </tr>
-	            <tr>
-	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${modelVO.address}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>생일</th>
-	              <td><input type="number" class="form-control"  name="birthYear"  value="${modelVO.birthYear}" readonly="readonly"/></td>
-	            </tr>
-			
-	            <tr class="text-center">
-	              <td colspan="2">
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
- 			<button type="button" class="btn btn-primary" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
-  			<button type="button" class="btn btn-primary" onclick="location.href=''" style="width:260px; height:50px;" id="">이메일 인증하기</button>
-	              </td>
-	            </tr>
-	         </table>
-	         </form>
+				<h3 class="text-center">Myinfo</h3>
+			<div class="myinfo-body">
+				<div class="table-response">
+					<table class="table table-striped" style="align:center">
+						<thead>
+							<tr>
+								<th>이름</th>
+								<th>user ID</th>
+								<th>Address</th>
+								<th>BirthYear</th>
+								<th>Email</th>
+								<th>phone number</th>
+							</tr>
+						</thead>
+							<c:forEach items="${list}" var="vo">
+						<tbody>
+							<tr>
+								<td>${vo.name}</td>
+								<td>${vo.userid}</td>
+								<td>${vo.address}</td>
+								<td>${vo.birthYear}</td>
+								<td>${vo.email}</td>
+								<td>${vo.phone_number}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			</div>
 			<div class="myinfo-btn">
+			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/update">회원수정페이지</a></button>
+ 			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id=""><a href="/member/leave">회원탈퇴페이지</a></button>
+  			<button type="button" class="btn btn-primary btn-block" style="width:260px; height:50px;" id="">내가 쓴 게시글 보기</button>
+			
 			</div>
 		</div>
 	</div>
 </div>
-
+	
+	
 	<hr>
   <!-- Footer -->
   <footer>
