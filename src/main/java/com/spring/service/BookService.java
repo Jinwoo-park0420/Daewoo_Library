@@ -2,8 +2,9 @@ package com.spring.service;
 
 import java.util.List;
 
+
 import com.spring.domain.ApplyBookVO;
-import com.spring.domain.BoardVO;
+import com.spring.domain.BookCriteria;
 import com.spring.domain.BookVO;
 
 public interface BookService {
@@ -12,7 +13,7 @@ public interface BookService {
 	public int ApplyBook(ApplyBookVO Apply);
 		
 	//도서 전체목록
-	public List<BookVO> getList();
+	public List<BookVO> getList(BookCriteria cri);
 	//신규 도서 목록
 	public List<BookVO> newbook();
 	//추천 도서 목록
@@ -23,6 +24,9 @@ public interface BookService {
 	public List<BookVO> loanbook();
 	//도서 검색
 	public List<BookVO> book_search(String criteria, String keyword);
+	
+	public int totalCnt(BookCriteria cri);
+	
 	//도서 상세보기
 	public BookVO bookDetail(int bookno);
 }
