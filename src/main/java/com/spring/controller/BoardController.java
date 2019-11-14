@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.PageVO;
 import com.spring.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class BoardController {
 		
 		if(!list.isEmpty()) {
 		model.addAttribute("list",list);
-		//model.addAttribute("page",new PageVO(cri,))
+		model.addAttribute("pageVO",new PageVO(cri,service.totalCnt(cri)));
 		}
 			
 		return "/board/boardmain";

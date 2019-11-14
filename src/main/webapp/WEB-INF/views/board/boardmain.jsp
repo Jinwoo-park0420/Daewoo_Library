@@ -131,7 +131,9 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		<div>
 			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
+		</div>
 			<input type="hidden" value="${pageVO.prev}" />
 			<input type="hidden" value="${pageVO.next}" />
 			<input type="hidden" value="${pageVO.startPage}" />
