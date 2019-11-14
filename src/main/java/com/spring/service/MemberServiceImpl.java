@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
-import com.spring.domain.LoginSessionVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
@@ -48,9 +47,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(result) {
 			vo.setPassword(password);
-			LoginSessionVO ls = new LoginSessionVO();
-			ls.setUserid(vo.getUserid());
-			ls.setGrade(vo.getGrade());
 			return mapper.login(vo);
 		}
 		return mapper.login(vo);
