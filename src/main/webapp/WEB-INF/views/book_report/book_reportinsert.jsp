@@ -83,7 +83,8 @@ textarea{resize:none;}
             </tr>
             <tr>
             	<th>작성자:</th>
-                <td><input type="text" placeholder="이름을 입력하세요" name="writer" class="form-control" value="${vo1.userid}"/></td>
+                <td><input type="text" placeholder="이름을 입력하세요" name="writer" class="form-control" value="${vo1.userid }" readonly="readonly"></td>
+                <td><input type="hidden"  name="userid" value="${vo1.userid }" class="form-control"/></td>
             </tr>
             <tr>
                 <th>내용: </th>

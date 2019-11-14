@@ -93,12 +93,9 @@ public class MemberController {
 		log.info("로그인 요청");	
 		
 		LoginVO vo1 = service.login(vo);
-		
 		if(vo1!=null)
 			session.setAttribute("vo1", vo1);
-		else {
-			return "/member/login";
-		}
+
 		int managergrade = vo1.getGrade();
 		
 		System.out.println("회원등급" + managergrade);
@@ -121,7 +118,7 @@ public class MemberController {
 		// 세션이 있다면 삭제
 		 session.invalidate();
 	
-		return "redirect:/member/index";
+		return "redirect:/index";
 	}
 	
 	@PostMapping(value = "/ck_userid")

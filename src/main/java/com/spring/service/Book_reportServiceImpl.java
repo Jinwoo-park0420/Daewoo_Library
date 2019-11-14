@@ -54,18 +54,14 @@ public class Book_reportServiceImpl implements Book_reportService {
 		return mapper.book_reportSelectList(bno);
 	}
 
-	
-	
 	@Override
 	public boolean book_reportupdate(Book_reportVO report) {
 		// TODO Auto-generated method stub
-		System.out.println("serviceimpl 내의 "+report);
+		
 		attach.attach_delete(report.getBno());
 		if(report.getAttachList()==null||report.getAttachList().size()<=0) {
 			return false;
 		}
-		System.out.println("serviceimpl 내의 서비스 실행 후에 "+report);
-		
 		boolean modifyResult = mapper.book_reportupdate(report)==1;
 		if(modifyResult&&report.getAttachList().size()>0) {
 			for(AttachFileVO attachVO:report.getAttachList()) {

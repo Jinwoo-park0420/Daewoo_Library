@@ -146,7 +146,7 @@ public class Book_reportController{
 		}
 	}
 
-	@GetMapping("getAttachList")
+	@GetMapping("/getAttachList")
 	public ResponseEntity<List<AttachFileVO>> getAttachList(int bno){
 		log.info("첨부파일 목록 리스트 요청 / bno : " + bno);
 		
