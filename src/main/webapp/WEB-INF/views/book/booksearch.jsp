@@ -129,7 +129,7 @@
 	
 	<!-- start Pagination -->
 	<div class="text-center">
-    	<ul class="pagination" style="margin-left: 320px;">
+    	<ul class="pagination" style="margin-left: 400px;">
         	<c:if test="${pageVO.prev }">
             	<li class="paginate_button previous">
                 	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
