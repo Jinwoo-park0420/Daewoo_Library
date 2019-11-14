@@ -77,13 +77,15 @@ public class MemberController {
 
 	@PostMapping("login")
 	public String login(LoginVO vo, RedirectAttributes rttr, HttpSession session) {
-		log.info("로그인 요청");
+		log.info("로그인 요청");	
+		
+		
+		
 		LoginVO vo1 = service.login(vo);
 		if(vo1!=null)
 			session.setAttribute("vo1", vo1);
-
 		int managergrade = vo1.getGrade();
-
+		
 		System.out.println("회원등급" + managergrade);
 		
 		

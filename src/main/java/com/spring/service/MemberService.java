@@ -21,7 +21,6 @@ public interface MemberService {
 	public boolean memberdelete(ChangeVO vo); //회원탈퇴
 	
 	public boolean pwdupdate(ChangeVO vo); //비밀번호 변경
-
 	
 	
 	
