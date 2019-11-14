@@ -78,13 +78,15 @@
 					<div class="page-heading">
 						<h1>자료검색</h1>
 						<form action="loanbook" id="searchForm" method="post">
-							<select name="criteria" id="">
+							<select name="type" id="">
 								<option value="">---</option>
 								<option value="bookname" <c:out value=""/>>도서명</option>
 								<option value="writer" <c:out value=""/>>저 자</option>
 								<option value="publisher" <c:out value=""/>>출판사</option>
 							</select> 
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요." />
+							<input type="hidden" name="type" value="${bookpageVO.cri.type}" />
+							<input type="hidden" name="keyword" value="${bookpageVO.cri.keyword}" />
 							<button class="btn  btn-outline-light" type="submit">Search</button>
 						</form>
 						<!-- <div class="box">
@@ -135,8 +137,34 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+<!-- start Pagination -->
+	<div class="text-center">
+    	<ul class="pagination" style="margin-left: 665px;">
+        	<c:if test="${pageVO.prev }">
+            	<li class="paginate_button previous">
+                	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
+                </li>
+                </c:if>
+                <c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }" >
+	            	<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':'' }">
+	                	<a href="${idx }" class="btn btn-light">${idx }</a>
+	                </li>
+                    </c:forEach>
+                    <c:if test="${pageVO.next }">
+	                	<li class="paginate_button next">
+		                	<a href="${pageVO.nowPage+1 }" class="btn btn-light">다음</a>
+	                   	</li>
+                    </c:if>
+                </ul>
+			</div>
+            <!-- end Pagination -->
+            	</div>
 	</div>
+<!-- 페이지 번호를 클릭하면 보낼 폼 -->
+<form action="" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+</form>
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -191,6 +219,14 @@ $(".btn-outline-light").click(function(){
 	searchForm.find("input[name='pageNum']").val("1");
 	searchForm.submit();
 })
+
+//하단의 페이지 번호 클릭시 작동하는 스크립트
+	var actionForm=$("#actionForm");
+	$(".paginate_button a").click(function(e){
+		e.preventDefault(); //a 태그의 동작 막기
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	})
 
 //제목을 클릭하면 실행될 스크립트(미완성)
 $(".move").click(function(e){
