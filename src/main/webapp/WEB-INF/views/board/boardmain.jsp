@@ -131,17 +131,26 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		<div>
 			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
-				<div class="text-center">
+		</div>
+			<input type="hidden" value="${pageVO.prev}" />
+			<input type="hidden" value="${pageVO.next}" />
+			<input type="hidden" value="${pageVO.startPage}" />
+			<input type="hidden" value="${pageVO.endPage}" />
+				<div class="text-center container">
 					<ul class="pagination">
-					
-						<li><a class="btn btn-default" href="#">이전</a></li>
-						<li><a class="btn btn-default" href="#">1</a></li>
-						<li><a class="btn btn-default" href="#">2</a></li>
-						<li><a class="btn btn-default" href="#">3</a></li>
-						<li><a class="btn btn-default" href="#">4</a></li>
-						<li><a class="btn btn-default" href="#">5</a></li>
-						<li><a class="btn btn-default" href="#">다음</a></li>
+						<c:if test="${pageVO.prev}">
+						<li class="paginate_button previous"><a class="btn btn-light" href="${pageVO.startPage-1}">이전</a></li>
+						</c:if>
+						<c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+                            <li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}">
+                            	<a href="${idx}" class="btn btn-light">${idx}</a>
+                            </li>
+                        </c:forEach>
+						<c:if test="${pageVO.next}">
+						<li class="paginate_button next"><a class="btn btn-light" href="${pageVO.endPage+1}">다음</a></li>
+					</c:if>
 					</ul>
 				</div>
 				<div>
@@ -150,7 +159,6 @@
 				</div>
 			</div>
 			
-
 
 <%-- 페이지 번호를 클릭하면 보낼 폼 --%>
 <form action="" id="actionForm">

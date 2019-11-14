@@ -15,10 +15,9 @@ create sequence seq_libbno; --bno 시퀀스
 drop table library_board;
 drop sequence seq_libbno;
 
-insert into library_board(bno,title,content,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','이찬해',sysdate,0);
+insert into library_board(bno,title,content,password,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','123','김사장',sysdate,0);
 
 select * from library_board;
-
 
 create table board_reply(
 bno number(10) not null,
@@ -45,8 +44,6 @@ drop table board_reply;
 create sequence seq_libcno;
 
 select * from board_reply;
-
-
 
 
 

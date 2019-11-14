@@ -12,4 +12,6 @@ public interface BoardService {
 	public BoardVO selectboard(int bno);
 	public int updateboard(BoardVO vo);
 	public int delete(BoardVO vo);
+	
+	public int totalCnt(Criteria cri); //총 게시물 수
 }

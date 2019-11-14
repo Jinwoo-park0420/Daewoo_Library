@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +14,6 @@ public class Book_reportVO {
 	private String updatedate;
 	private String password;
 	private int apply; //등록확인 유무
+	
+	private List<AttachFileVO> attachList;
 }

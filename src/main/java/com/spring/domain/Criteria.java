@@ -12,6 +12,9 @@ public class Criteria {
 	private int pageNum; //페이지 번호
 	private int amount; //한 페이지당 데이터 개수
 	
+	private String type;
+	private String keyword;
+	
 	public Criteria() {
 		this(1,10); //기본 1페이지에 10개씩 담기
 	}

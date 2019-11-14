@@ -41,4 +41,9 @@ select * from library_board where bno = #{bno}
 delete from library_board where bno=#{bno} and password=#{password}
 </delete>
 
+<!-- 전체 게시물 수 구하기 -->
+<select id="getCount" resultType="int">
+select count(*) from library_board where bno>0
+</select>
+
 </mapper>

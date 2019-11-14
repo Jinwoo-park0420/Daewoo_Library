@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
+import com.spring.domain.LoginSessionVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
@@ -32,7 +33,26 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public LoginVO login(LoginVO vo) {
-		// TODO Auto-generated method stub
+		//vo => userid, password, grade
+		
+		
+		//userid 값을 이용해서 비밀번호 받기
+		//MemberVO member;
+		//String userid = vo.getUserid();	
+		
+		//암호화 된 비밀번호 뽑아오기
+		String password= mapper.loginpassword(vo.getUserid());
+		//받아온 password 값을
+		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		boolean result=bcrypt.matches(vo.getPassword(), password);			
+		
+		if(result) {
+			vo.setPassword(password);
+			LoginSessionVO ls = new LoginSessionVO();
+			ls.setUserid(vo.getUserid());
+			ls.setGrade(vo.getGrade());
+			return mapper.login(vo);
+		}
 		return mapper.login(vo);
 	}
 	

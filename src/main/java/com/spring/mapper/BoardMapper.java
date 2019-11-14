@@ -13,5 +13,6 @@ public interface BoardMapper {
 	public int updateboard(BoardVO vo);
 	public int delete(BoardVO vo);
 	
+	public int getCount(Criteria cri);
 	
 }

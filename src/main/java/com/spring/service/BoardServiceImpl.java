@@ -48,4 +48,10 @@ public class BoardServiceImpl implements BoardService {
 		log.info("게시글 삭제");
 		return bmapper.delete(vo);
 	}
+	
+	@Override
+	public int totalCnt(Criteria cri) {
+		// TODO Auto-generated method stub
+		return bmapper.getCount(cri);
+	}
 }
