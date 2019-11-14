@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -24,13 +30,14 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.domain.AttachFileVO;
 
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Slf4j
 @Controller
@@ -201,9 +208,67 @@ public class AjaxUploadController {
 		}
 		return new ResponseEntity<>(resource,headers,HttpStatus.OK);
 	}
-	
-
-	
-		
+	@RequestMapping(value="/AjaxUploadController/download")
+	public void fileDownload( HttpServletResponse response, HttpServletRequest request, @RequestParam Map<String, String> paramMap) {
+		log.info("파일다운로드");
+		String path = paramMap.get("filePath"); //full경로
+		    String fileName = paramMap.get("fileName"); //파일명
+		 System.out.println("경로"+path+"파일명"+ fileName);
+		    File file = new File(path);
+		 
+		    FileInputStream fileInputStream = null;
+		    ServletOutputStream servletOutputStream = null;
+		 
+		    try{
+		        String downName = null;
+		        String browser = request.getHeader("User-Agent");
+		        //파일 인코딩
+		        if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")){//브라우저 확인 파일명 encode  
+		             
+		            downName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+		             
+		        }else{
+		             
+		            downName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+		             
+		        }
+		         
+		        response.setHeader("Content-Disposition","attachment;filename=\"" + downName+"\"");             
+		        response.setContentType("application/octer-stream");
+		        response.setHeader("Content-Transfer-Encoding", "binary;");
+		 
+		        fileInputStream = new FileInputStream(file);
+		        servletOutputStream = response.getOutputStream();
+		 
+		        byte b [] = new byte[1024];
+		        int data = 0;
+		 
+		        while((data=(fileInputStream.read(b, 0, b.length))) != -1){
+		             
+		            servletOutputStream.write(b, 0, data);
+		             
+		        }
+		 
+		        servletOutputStream.flush();//출력
+		         
+		    }catch (Exception e) {
+		        e.printStackTrace();
+		    }finally{
+		        if(servletOutputStream!=null){
+		            try{
+		                servletOutputStream.close();
+		            }catch (IOException e){
+		                e.printStackTrace();
+		            }
+		        }
+		        if(fileInputStream!=null){
+		            try{
+		                fileInputStream.close();
+		            }catch (IOException e){
+		                e.printStackTrace();
+		            }
+		        }
+		    }
+		}
 	
 }

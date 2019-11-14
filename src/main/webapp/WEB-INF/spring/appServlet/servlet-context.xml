@@ -57,6 +57,9 @@
 	<exclude-mapping path="/member/ck_userid"/>
 	<exclude-mapping path="/assets/**"/>
 	<exclude-mapping path="/resources/**"/>
+	<exclude-mapping path="/book_report/getAttachList"/>
+	<exclude-mapping path="/AjaxUploadController/**"/>
+	
 		<beans:ref bean="Interceptor"/>
 	</interceptor>
 </interceptors>
