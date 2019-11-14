@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper bmapper;
-	
+
 	@Override
 	public List<BoardVO> getList(Criteria cri) {
 		return bmapper.getListWithPaging(cri);
@@ -36,22 +36,28 @@ public class BoardServiceImpl implements BoardService {
 		log.info("글 읽기");
 		return bmapper.read(bno);
 	}
-	
+
 	@Override
 	public int updateboard(BoardVO vo) {
 		log.info("글 수정하기");
 		return bmapper.updateboard(vo);
 	}
-	
+
 	@Override
 	public int delete(BoardVO vo) {
 		log.info("게시글 삭제");
 		return bmapper.delete(vo);
 	}
-	
+
 	@Override
 	public int totalCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return bmapper.getCount(cri);
+	}
+
+	@Override
+	public int readCountupdate(int bno) {
+
+		return bmapper.readCountupdate(bno);
 	}
 }

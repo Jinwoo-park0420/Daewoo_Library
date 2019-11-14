@@ -10,12 +10,14 @@ updatedate date default sysdate,
 readcnt number(10)--조회수
 );
 
+update library_board set readcnt=readcnt+200 where bno=81;
+
 create sequence seq_libbno; --bno 시퀀스
 
 drop table library_board;
 drop sequence seq_libbno;
 
-insert into library_board(bno,title,content,password,writer,regdate,readcnt) values(seq_libbno.nextVal,'1등','처음글','123','김사장',sysdate,0);
+insert into library_board(bno,title,content,password,writer,regdate,readcnt) values(seq_libbno.nextVal,'123','123','123','123',sysdate,0);
 
 select * from library_board;
 
@@ -42,6 +44,7 @@ values(21,seq_libcno.nextval,'제발 달려라 진짜','이찬해',sysdate);
 drop table board_reply;
 
 create sequence seq_libcno;
+drop sequence seq_libcno;
 
 select * from board_reply;
 

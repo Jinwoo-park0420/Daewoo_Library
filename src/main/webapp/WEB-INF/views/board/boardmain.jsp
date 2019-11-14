@@ -119,18 +119,31 @@
 					<th>조 회 수</th>
 				</tr>
 			</thead>
+			<c:set var="page" value="${pageVO.cri.pageNum}"/>
+			<%  
+				Integer page1=(Integer)pageContext.getAttribute("page");
+			
+							
+			    int start=(page1-1)*10+1;
+			
+			%>
 			<c:forEach var="vo" items="${list}">
 			<tbody>
 				<tr>
-					<td>${vo.bno}</td>
-					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
+					<td><%=start%></td>				
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]</td>
 					<td>${vo.writer}</td>
 					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${vo.readcnt}</td>
 				</tr>
-			</c:forEach>
+				<%
+					start=start+1;
+				%>
+				</c:forEach>	
+					
 			</tbody>
 		</table>
+		<div><p>총 게시글 수: ${pageVO.total}</p></div>
 		<div>
 			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
 		</div>
@@ -154,9 +167,16 @@
 					</ul>
 				</div>
 				<div>
-				<label>검색 &nbsp&nbsp&nbsp</label><input type="text" name="keyword" />
+				<form action="" method="get" id="search">
+				<select name="" id="">
+				<option value="n" <c:out value="${pageVO.cri.type == null?'selected':''}"/>>---</option>
+				<option value="t" <c:out value="${pageVO.cri.type == 't'?'selected':''}"/>>제목</option>
+				<option value="w" <c:out value="${pageVO.cri.type == 'w'?'selected':''}"/>>작성자</option>
+				</select>
+				<input type="text" name="keyword" />
 				<input type="button" class="btn btn-light" value="검색"/>
-				</div>
+				</form>
+				</div>				
 			</div>
 			
 
