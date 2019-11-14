@@ -7,18 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ApplyBookVO;
-import com.spring.domain.BoardVO;
+import com.spring.domain.BookCriteria;
+import com.spring.domain.BookPageVO;
 import com.spring.domain.BookVO;
-import com.spring.domain.Criteria;
 import com.spring.service.BookService;
-import com.spring.service.BookServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +29,14 @@ public class BookController {
 	private BookService service;
 
 	@GetMapping("booksearch")
-	public void booksearch(Model model) {
+	public void booksearch(Model model, BookCriteria cri) {
 		log.info("전체 목록 페이지 요청");
-		List<BookVO> list=service.getList();
+		List<BookVO> list=service.getList(cri);
 		
-		model.addAttribute("list", list);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO", new BookPageVO(cri, service.totalCnt(cri)));
+			}
 		
 	}
 

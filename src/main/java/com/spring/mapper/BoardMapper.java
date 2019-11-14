@@ -14,5 +14,6 @@ public interface BoardMapper {
 	public int delete(BoardVO vo);
 	
 	public int getCount(Criteria cri);
+	public int readCountupdate(int bno);
 	
 }

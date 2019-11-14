@@ -21,4 +21,6 @@ public interface MemberMapper {
 	
 	public int pwdupdate(ChangeVO vo); //비밀번호 변경
 	
+	public String loginpassword(String userid);
+	
 }

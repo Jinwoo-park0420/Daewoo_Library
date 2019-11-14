@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ApplyBookVO;
+import com.spring.domain.BookCriteria;
 import com.spring.domain.BookVO;
 import com.spring.mapper.BookMapper;
 
@@ -24,9 +25,9 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public List<BookVO> getList() {
+	public List<BookVO> getList(BookCriteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.getList();
+		return mapper.getList(cri);
 	}
 	
 	@Override
@@ -57,6 +58,12 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> book_search(String criteria, String keyword) {
 		// TODO Auto-generated method stub
 		return mapper.book_search(criteria, keyword);
+	}
+	
+	@Override
+	public int totalCnt(BookCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
 	}
 	
 	@Override
