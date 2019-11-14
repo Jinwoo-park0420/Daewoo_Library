@@ -108,6 +108,7 @@
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="sendMessageButton">로그인</button>
          	<button type="button" class="btn btn-primary" id="sendMessageButton">회원가입</button>
+         	<button type="button" class="btn btn-primary" id="sendMessageButton" onclick="location.href='/member/email'">비밀번호 찾기</button>
           </div>
         </form>
       </div>

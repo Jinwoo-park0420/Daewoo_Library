@@ -6,12 +6,16 @@
 
 <insert id="memberJoin" >
 
-insert into Library_member(name,birthYear,userid,password,email,address,phone_number) values(#{name},#{birthYear},#{userid},#{password},#{email},#{address},#{phone_number})
+	insert into Library_member(name,birthYear,userid,password,email,address,phone_number) values(#{name},#{birthYear},#{userid},#{password},#{email},#{address},#{phone_number})
 
 </insert>
 
 <select id="login" resultType="com.spring.domain.LoginVO">
-select userid,password,grade from Library_member where userid=#{userid} and password=#{password}
+	select userid, grade from Library_member where userid=#{userid} and password=#{password}
+</select>
+
+<select id="loginpassword" resultType="String">
+	select password from Library_member where userid=#{userid}
 </select>
 
 <select id="idCheck" resultType="String">
