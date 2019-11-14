@@ -14,4 +14,5 @@ public interface BoardService {
 	public int delete(BoardVO vo);
 	
 	public int totalCnt(Criteria cri); //총 게시물 수
+	public int readCountupdate(int bno);
 }

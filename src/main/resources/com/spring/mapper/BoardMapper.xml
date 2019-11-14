@@ -10,10 +10,10 @@
  <![CDATA[
 	select * from
 	(select /*+INDEX_DESC(library_board pk_library_board)*/ 
-	rownum rn,bno,title,content,writer,regdate,updatedate
+	rownum rn,bno,title,content,writer,regdate,updatedate,readcnt
 	from library_board where 
 	rownum <= #{pageNum}*#{amount})
-	where rn > (#{pageNum}-1) * #{amount}
+	where rn > (#{pageNum}-1) * #{amount} order by regdate desc
 	]]><!-- pageNum*amount 끝 번호 pageNum-1 * amount 는 시작번호 -->
 
 </select>
@@ -22,14 +22,18 @@
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
 			select seq_libbno.nextVal from dual
 		</selectKey>
-insert into library_board(bno,title,content,password,writer,regdate)
-		values(#{bno},#{title},#{content},#{password},#{writer},sysdate)
+insert into library_board(bno,title,content,password,writer,regdate,readcnt)
+		values(#{bno},#{title},#{content},#{password},#{writer},sysdate,0)
 </insert>
 
 <select id="read" resultType="com.spring.domain.BoardVO">
 <!-- select bno,title,writer,content,regdate,updatedate from library_board where bno = #{bno} -->
 select * from library_board where bno = #{bno}
 </select>
+
+<update id="readCountupdate">
+update library_board set readcnt=readcnt+1 where bno=#{bno}
+</update>
 
 <update id="updateboard">
 		update library_board
