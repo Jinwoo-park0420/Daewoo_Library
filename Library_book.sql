@@ -1,5 +1,5 @@
 create table bookList(
-	bookno number(10) not null primary key,
+	bookno number(10,0),
 	bookname nvarchar2(100) not null,
 	genre nvarchar2(20) not null,
 	writer nvarchar2(50) not null,
@@ -8,12 +8,35 @@ create table bookList(
 	isbn number(20) not null
 );
 
+alter table bookList add constraint pk_bookList
+primary key(bookno);
+
+create sequence seq_bookno
+start with 0
+minvalue 0
+maxvalue 100;
+
 select * from bookList order by bookno;
 drop table bookList;
 delete from booklist where bookno=2;
 
-create sequence seq_bookno;
 drop sequence seq_bookno;
+
+
+-- 페이지 나누기
+-- 1page
+select bookno, bookname, genre, writer, publisher, status from
+(select /*+INDEX_ASC(bookList pk_bookList)*/
+rownum rn, bookno, bookname, genre, writer, publisher, status from bookList where rownum<=5)
+where rn>0;
+
+-- 2page
+select bookno, bookname, genre, writer, publisher, status from
+(select /*+INDEX_ASC(bookList pk_bookList)*/
+rownum rn, bookno, bookname, genre, writer, publisher, status from bookList where rownum<=10)
+where rn>5;
+
+-------------------------------------------------------------------------------------------------------------
 
 -- 인기 도서 10개
 insert into BOOKLIST(bookno, bookname, genre, writer, publisher, status, isbn) 
