@@ -6,7 +6,17 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN) values(
 </insert>
 
 <select id="getList" resultType="com.spring.domain.BookVO">
-select * from bookList order by bookno
+	<![CDATA[
+		select * from
+		(select /*+INDEX_DESC(bookList pk_bookList)*/
+		rownum rn, bookno, bookname, genre, writer, publisher, status
+		from bookList where 
+	]]>
+		<include refid="criteria"/>
+	<![CDATA[	
+		rownum<=#{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
 </select>
 
 <select id="newbook" resultType="com.spring.domain.BookVO">
@@ -35,13 +45,13 @@ select * from bookList where bookno>=11 and bookno<=20
 
 <select id="book_search" resultType="com.spring.domain.BookVO">
 	select * from bookList where 
-		<if test="criteria=='bookname'.toString()">
+		<if test="type=='bookname'.toString()">
 			bookname like '%'||#{keyword}||'%'
 		</if>
-		<if test="criteria=='writer'.toString()">
+		<if test="type=='writer'.toString()">
 			writer like '%'||#{keyword}||'%'
 		</if>
-		<if test="criteria=='publisher'.toString()">
+		<if test="type=='publisher'.toString()">
 			publisher like '%'||#{keyword}||'%'
 		</if>
 </select>
@@ -49,5 +59,34 @@ select * from bookList where bookno>=11 and bookno<=20
 <select id="bookDetail" resultType="com.spring.domain.BookVO">
 	select * from bookList where bookno=#{bookno}
 </select>
+
+<!-- 페이지 나누기를 위한 전체 게시물 수 -->
+<select id="getTotalCount" resultType="int">
+	select count(*) from bookList
+	where 
+		<include refid="criteria"/>
+	bookno>0
+</select>
+
+<!-- 동적 sql 문 : 재사용 가능-->
+<sql id="criteria">
+	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item='type'>
+			<trim prefix="OR">
+				<choose>
+					<when test="criteria=='bookname'.toString">
+						bookname like '%'||#{keyword}||'%'
+					</when>
+					<when test="criteria=='writer'.toString">
+						writer like '%'||#{keyword}||'%'
+					</when>
+					<when test="criteria=='publisher'.toString">
+						publisher like '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+</sql>
 
 </mapper>
