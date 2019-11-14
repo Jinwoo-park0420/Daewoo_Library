@@ -116,7 +116,7 @@
                     <th width="auto">도서명</th>
                     <th width="110px">장 르</th>
                     <th width="175px">저 자</th>
-                    <th width="100px">출판사</th>
+                    <th width="110px">출판사</th>
                     <th width="110px">도서상태</th>
                 </tr>									
             </thead>
@@ -129,7 +129,14 @@
 					<td>${vo.genre }</td>
 					<td align="auto">${vo.writer }</td>
 					<td>${vo.publisher }</td>
-					<td>${vo.status}</td>
+					<td>
+						<c:if test="${vo.status==0}">
+						<span>대여가능</span>
+						</c:if>
+						<c:if test="${vo.status==1}">
+						<span>대여중</span>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>
