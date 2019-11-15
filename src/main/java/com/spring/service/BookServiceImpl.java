@@ -31,27 +31,27 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public List<BookVO> newbook() {
+	public List<BookVO> newbook(BookCriteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.newbook();
+		return mapper.newbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> recommandbook() {
+	public List<BookVO> recommandbook(BookCriteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.recommandbook();
+		return mapper.recommandbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> popularbook() {
+	public List<BookVO> popularbook(BookCriteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.popularbook();
+		return mapper.popularbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> loanbook() {
+	public List<BookVO> loanbook(BookCriteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.loanbook();
+		return mapper.loanbook(cri);
 	}
 	
 	@Override
@@ -70,6 +70,30 @@ public class BookServiceImpl implements BookService {
 	public BookVO bookDetail(int bookno) {
 		// TODO Auto-generated method stub
 		return mapper.bookDetail(bookno);
+	}
+
+	@Override
+	public int NewCnt(BookCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getNewCount(cri);
+	}
+
+	@Override
+	public int PopCnt(BookCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getPopCount(cri);
+	}
+
+	@Override
+	public int RecCnt(BookCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getRecCount(cri);
+	}
+
+	@Override
+	public int LoanCnt(BookCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getLoanCount(cri);
 	}
 
 }

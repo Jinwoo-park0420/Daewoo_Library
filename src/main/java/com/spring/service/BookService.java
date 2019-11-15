@@ -15,17 +15,25 @@ public interface BookService {
 	//도서 전체목록
 	public List<BookVO> getList(BookCriteria cri);
 	//신규 도서 목록
-	public List<BookVO> newbook();
+	public List<BookVO> newbook(BookCriteria cri);
 	//추천 도서 목록
-	public List<BookVO> recommandbook();
+	public List<BookVO> recommandbook(BookCriteria cri);
 	//인기 도서 목록
-	public List<BookVO> popularbook();
+	public List<BookVO> popularbook(BookCriteria cri);
 	//대출 급상승 도서 목록
-	public List<BookVO> loanbook();
+	public List<BookVO> loanbook(BookCriteria cri);
 	//도서 검색
 	public List<BookVO> book_search(String criteria, String keyword);
 	
 	public int totalCnt(BookCriteria cri);
+
+	public int NewCnt(BookCriteria cri);
+	
+	public int PopCnt(BookCriteria cri);
+	
+	public int RecCnt(BookCriteria cri);
+	
+	public int LoanCnt(BookCriteria cri);
 	
 	//도서 상세보기
 	public BookVO bookDetail(int bookno);

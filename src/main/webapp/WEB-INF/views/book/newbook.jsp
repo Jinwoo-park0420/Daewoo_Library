@@ -78,7 +78,7 @@
 					<div class="page-heading">
 						<h1>자료검색</h1>
 						<form action="newbook" id="searchForm" method="post">
-							<select name="criteria" id="">
+							<select name="type" id="">
 								<option value="">---</option>
 								<option value="bookname" <c:out value=""/>>도서명</option>
 								<option value="write" <c:out value=""/>>저 자</option>
@@ -116,7 +116,7 @@
                     <th width="auto">도서명</th>
                     <th width="110px">장 르</th>
                     <th width="175px">저 자</th>
-                    <th width="100px">출판사</th>
+                    <th width="110px">출판사</th>
                     <th width="110px">도서상태</th>
                 </tr>									
             </thead>
@@ -127,16 +127,49 @@
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
 					<td><a href="">${vo.bookname }</a></td>
 					<td>${vo.genre }</td>
-					<td align="auto">${vo.writer }</td>
+					<td align="justify">${vo.writer }</td>
 					<td>${vo.publisher }</td>
-					<td>${vo.status}</td>
+					<td>
+						<c:if test="${vo.status==0}">
+						<span style="color: #0000ff;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여가능</span>
+						</c:if>
+						<c:if test="${vo.status==1}">
+						<span style="color: #ff0000;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여중</span>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 	</div>
-</div>
+<!-- start Pagination -->
+	<div class="text-center">
+    	<ul class="pagination" style="margin-left: 665px;">
+        	<c:if test="${pageVO.prev }">
+            	<li class="paginate_button previous">
+                	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
+                </li>
+                </c:if>
+                <c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }" >
+	            	<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':'' }">
+	                	<a href="${idx }" class="btn btn-light">${idx }</a>
+	                </li>
+                    </c:forEach>
+                    <c:if test="${pageVO.next }">
+	                	<li class="paginate_button next">
+		                	<a href="${pageVO.nowPage+1 }" class="btn btn-light">다음</a>
+	                   	</li>
+                    </c:if>
+                </ul>
+			</div>
+            <!-- end Pagination -->
+            	</div>
 	</div>
+<!-- 페이지 번호를 클릭하면 보낼 폼 -->
+<form action="" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+</form>
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -191,6 +224,14 @@ $(".btn-outline-light").click(function(){
 	searchForm.find("input[name='pageNum']").val("1");
 	searchForm.submit();
 })
+
+//하단의 페이지 번호 클릭시 작동하는 스크립트
+	var actionForm=$("#actionForm");
+	$(".paginate_button a").click(function(e){
+		e.preventDefault(); //a 태그의 동작 막기
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	})
 
 //제목을 클릭하면 실행될 스크립트(미완성)
 $(".move").click(function(e){
