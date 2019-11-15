@@ -108,7 +108,7 @@
                     		<th width="auto">도서명</th>
                     		<th width="110px">장 르</th>
                     		<th width="175px">저 자</th>
-                    		<th width="100px">출판사</th>
+                    		<th width="110px">출판사</th>
                     		<th width="110px">도서상태</th>
                 		</tr>									
             		</thead>
@@ -116,20 +116,27 @@
 					<c:forEach var="vo" items="${list}">
 							<tr>
 								<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
-								<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
+								<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname}</a></td>
 								<td>${vo.genre }</td>
-								<td align="auto">${vo.writer }</td>
+								<td align="justify">${vo.writer }</td>
 								<td>${vo.publisher }</td>
-								<td>${vo.status}</td>
+								<td>
+									<c:if test="${vo.status==0}">
+									<span style="color: #0000ff;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여가능</span>
+									</c:if>
+									<c:if test="${vo.status==1}">
+									<span style="color: #ff0000;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여중</span>
+									</c:if>
+								</td>
 							</tr>
+							
 					</c:forEach>
 					</tbody>
 				</table>
 			</div>
-	
 	<!-- start Pagination -->
 	<div class="text-center">
-    	<ul class="pagination" style="margin-left: 320px;">
+    	<ul class="pagination" style="margin-left: 400px;">
         	<c:if test="${pageVO.prev }">
             	<li class="paginate_button previous">
                 	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>

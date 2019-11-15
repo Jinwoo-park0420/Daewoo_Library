@@ -8,9 +8,24 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN) values(
 <select id="getList" resultType="com.spring.domain.BookVO">
 	<![CDATA[
 		select * from
-		(select /*+INDEX_DESC(bookList pk_bookList)*/
+		(select /*+INDEX_ASC(bookList pk_bookList)*/
 		rownum rn, bookno, bookname, genre, writer, publisher, status
 		from bookList where 
+	]]>
+		<include refid="criteria"/>
+	<![CDATA[	
+		rownum<=#{pageNum} * #{amount} order by bookno)
+		where rn > (#{pageNum}-1) * #{amount} order by bookno
+	]]>
+</select>
+
+<select id="newbook" resultType="com.spring.domain.BookVO">
+<![CDATA[
+ 
+		select * from
+		(select /*+INDEX_ASC(bookList pk_bookList)*/
+		rownum rn, bookno, bookname, genre, writer, publisher, status
+		from (select * from bookList where bookno>=21 and bookno<=30) where 
 	]]>
 		<include refid="criteria"/>
 	<![CDATA[	
@@ -19,28 +34,49 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN) values(
 	]]>
 </select>
 
-<select id="newbook" resultType="com.spring.domain.BookVO">
-<![CDATA[
-select * from bookList where bookno>=21 and bookno<=30
-]]>
-</select>
-
 <select id="recommandbook" resultType="com.spring.domain.BookVO">
 <![CDATA[
-select * from bookList where bookno>=31 and bookno<=50
-]]>
+ 
+		select * from
+		(select /*+INDEX_ASC(bookList pk_bookList)*/
+		rownum rn, bookno, bookname, genre, writer, publisher, status
+		from (select * from bookList where bookno>=31 and bookno<=50) where 
+	]]>
+		<include refid="criteria"/>
+	<![CDATA[	
+		rownum<=#{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
 </select>
 
 <select id="popularbook" resultType="com.spring.domain.BookVO">
 <![CDATA[
-select * from bookList where bookno>=1 and bookno<=10
-]]>
+ 
+		select * from
+		(select /*+INDEX_ASC(bookList pk_bookList)*/
+		rownum rn, bookno, bookname, genre, writer, publisher, status
+		from (select * from bookList where bookno>=1 and bookno<=10) where 
+	]]>
+		<include refid="criteria"/>
+	<![CDATA[	
+		rownum<=#{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
 </select>
 
 <select id="loanbook" resultType="com.spring.domain.BookVO">
 <![CDATA[
-select * from bookList where bookno>=11 and bookno<=20
-]]>
+ 
+		select * from
+		(select /*+INDEX_ASC(bookList pk_bookList)*/
+		rownum rn, bookno, bookname, genre, writer, publisher, status
+		from (select * from bookList where bookno>=11 and bookno<=20) where 
+	]]>
+		<include refid="criteria"/>
+	<![CDATA[	
+		rownum<=#{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
 </select>
 
 <select id="book_search" resultType="com.spring.domain.BookVO">
@@ -60,12 +96,51 @@ select * from bookList where bookno>=11 and bookno<=20
 	select * from bookList where bookno=#{bookno}
 </select>
 
+
+
 <!-- 페이지 나누기를 위한 전체 게시물 수 -->
 <select id="getTotalCount" resultType="int">
 	select count(*) from bookList
 	where 
 		<include refid="criteria"/>
 	bookno>0
+</select>
+
+<!-- 페이지 나누기를 위한 신규 게시물 수 -->
+<select id="getNewCount" resultType="int">
+	select count(*) from bookList
+	where 
+		<include refid="criteria"/>
+		<![CDATA[
+	bookno>=21 and bookno<=30
+	]]>
+</select>
+<!-- 페이지 나누기를 위한 추천 게시물 수 -->
+<select id="getRecCount" resultType="int">
+	select count(*) from bookList
+	where 
+		<include refid="criteria"/>
+		<![CDATA[
+	bookno>=31 and bookno<=50
+	]]>
+</select>
+<!-- 페이지 나누기를 위한 인기 게시물 수 -->
+<select id="getPopCount" resultType="int">
+	select count(*) from bookList
+	where 
+		<include refid="criteria"/>
+		<![CDATA[
+	bookno>=1 and bookno<=10
+	]]>
+</select>
+<!-- 페이지 나누기를 위한 대출 게시물 수 -->
+<select id="getLoanCount" resultType="int">
+	select count(*) from bookList
+	where 
+		<include refid="criteria"/>
+		<![CDATA[
+	bookno>=11 and bookno<=20
+	]]>
 </select>
 
 <!-- 동적 sql 문 : 재사용 가능-->

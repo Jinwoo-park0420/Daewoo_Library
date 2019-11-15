@@ -1,6 +1,5 @@
 package com.spring.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import lombok.Setter;
@@ -8,7 +7,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
 public class BookCriteria {
 //페이지와 글 개수를 넘기기 위한 클래스 pageNum과 amount 같이 전달

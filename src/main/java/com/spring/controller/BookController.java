@@ -41,35 +41,51 @@ public class BookController {
 	}
 
 	@GetMapping("newbook")
-	public void newbook(Model model) {
-		log.info("신간 도서 페이지 요청");
-		List<BookVO> list=service.newbook();
+	public void newbook(Model model, BookCriteria cri) {
+		log.info("신간 도서 페이지 요청 "+cri);
+		List<BookVO> list=service.newbook(cri);
 		
-		model.addAttribute("list", list);
+
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO", new BookPageVO(cri, service.NewCnt(cri)));
+			}
 	}
 
 	@GetMapping("recommandbook")
-	public void recommandbook(Model model) {
+	public void recommandbook(Model model, BookCriteria cri) {
 		log.info("추천 도서 페이지 요청");
-		List<BookVO> list=service.recommandbook();
+		List<BookVO> list=service.recommandbook(cri);
 		
-		model.addAttribute("list", list);
+
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO", new BookPageVO(cri, service.RecCnt(cri)));
+			}
 	}
 
 	@GetMapping("popularbook")
-	public void popularbook(Model model) {
+	public void popularbook(Model model, BookCriteria cri) {
 		log.info("인기 도서 페이지 요청");
-		List<BookVO> list=service.popularbook();
+		List<BookVO> list=service.popularbook(cri);
 		
-		model.addAttribute("list", list);
+
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO", new BookPageVO(cri, service.PopCnt(cri)));
+			}
 	}
 
 	@GetMapping("loanbook")
-	public void loanbook(Model model) {
+	public void loanbook(Model model, BookCriteria cri) {
 		log.info("대출 급상승 도서 페이지 요청");
-		List<BookVO> list=service.loanbook();
+		List<BookVO> list=service.loanbook(cri);
 		
-		model.addAttribute("list", list);
+
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO", new BookPageVO(cri, service.LoanCnt(cri)));
+			}
 	}
 	
 	@PostMapping(value= {"booksearch","newbook","recommandbook","popularbook","loanbook"})
