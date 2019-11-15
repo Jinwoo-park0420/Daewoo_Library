@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -113,12 +114,9 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		log.info("로그아웃 처리 메세지");
 
-
-		// iscomplete는 미리 저장되어있는 session이 있는지 체크
-		// 세션이 있다면 삭제
-		 session.invalidate();
-	
-		return "redirect:/index";
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 	
 	@PostMapping(value = "/ck_userid")
