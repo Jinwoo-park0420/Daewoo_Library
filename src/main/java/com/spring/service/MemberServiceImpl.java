@@ -82,7 +82,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean pwdupdate(ChangeVO vo) {
-		// TODO Auto-generated method stub
+		//현재 db에 있는 암호화 된 비밀번호 추출
+		String password= mapper.changepassword(vo.getUserid());
+		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		//사용자가 입력한 현재 비밀번호가 암호화된 비밀번호와 일치한지 확인
+		boolean result=bcrypt.matches(vo.getCurrent_password(), password);
+	
+		if(result) {
+			//바꿀 비밀번호 암호화
+			vo.setConfirm_password(bcrypt.encode(vo.getConfirm_password()));
+		}
 		return mapper.pwdupdate(vo)==1?true:false;
 	}
+	
+	
+	
 }
