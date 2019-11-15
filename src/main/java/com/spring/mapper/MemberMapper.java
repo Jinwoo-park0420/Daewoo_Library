@@ -23,4 +23,6 @@ public interface MemberMapper {
 	
 	public String loginpassword(String userid);
 	
+	public String changepassword(String userid);
+	
 }

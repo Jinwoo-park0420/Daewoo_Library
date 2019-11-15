@@ -42,6 +42,10 @@
 	where userid=#{userid} 
 </update>
 
+<select id="changepassword" resultType="String">
+	select password from Library_member where userid=#{userid}
+</select>
+
 
 </mapper>
 

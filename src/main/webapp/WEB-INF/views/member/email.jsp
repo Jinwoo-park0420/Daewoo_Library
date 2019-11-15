@@ -78,25 +78,25 @@
 	   <div class="col-lg-12">
 	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">비밀번호 찾기</h3>
 	      <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="/member/email" id="Remail"  >
+	      <!--  <form method="post" action="/member/email" id="Remail" name="email" >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" value="${modelVO.userid}" class="form-control" name="userid" readonly="readonly"/></td>
+	              <td><input type="text" value="" class="form-control" name="" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" readonly="readonly"/>
+	              <td><input type="email" class="form-control" value="" name="" readonly="readonly"/>
 	              <small class="text-danger" id="email"></small></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="submit" class="btn btn-primary " style="width:260px; height:50px;" id="">이메일 인증하기</button>
+	                <button type="submit" class="btn btn-primary " style="width:260px; height:50px;">이메일 인증하기</button>
 	             	<button type="button" class="btn btn-primary" id="" onclick="location.href='/member/index'">처음으로</button>
 	              </td>
 	            </tr>
 	         </table>
-	     </form>
+	     </form> -->
 	   </div>
 	</div>
 </div>
