@@ -96,7 +96,10 @@ public class MemberController {
 		LoginVO vo1 = service.login(vo);
 		if(vo1!=null)
 			session.setAttribute("vo1", vo1);
-
+		else {
+			return "/member/login";
+		}
+		
 		int managergrade = vo1.getGrade();
 		
 		System.out.println("회원등급" + managergrade);

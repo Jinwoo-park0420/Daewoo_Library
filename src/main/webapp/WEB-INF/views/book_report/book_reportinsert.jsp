@@ -79,26 +79,25 @@ textarea{resize:none;}
 	<tbody>
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control"/></td>
+                <td><input type="text" placeholder="제목을 입력하세요. " name="title" class="form-control" required="required"/></td>
             </tr>
             <tr>
             	<th>작성자:</th>
-                <td><input type="text" placeholder="이름을 입력하세요" name="writer" class="form-control" value="${vo1.userid }" readonly="readonly"></td>
-                <td><input type="hidden"  name="userid" value="${vo1.userid }" class="form-control"/></td>
+                <td><input type="text" placeholder="이름을 입력하세요" name="writer" class="form-control" value="${vo1.userid}" readonly="readonly"/></td>
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+                <td><textarea cols="20" rows="25" placeholder="내용을 입력하세요. " name="content" class="form-control" required="required"></textarea></td>
             </tr>
             <tr>
             	<th>비밀번호:</th>
-                <td><input type="password" placeholder="비밀번호를 입력하세요" name="password" class="form-control"/></td>
+                <td><input type="password" placeholder="비밀번호를 입력하세요" name="password" class="form-control" required="required"/></td>
             </tr>
     
     <tr>        
          <th>파일첨부</th>   		
          <td>
-		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple"/>
+		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" required="required"/>
 		<div class="uploadResult">
 		<ul>
 		

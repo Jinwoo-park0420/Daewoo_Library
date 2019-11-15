@@ -147,9 +147,9 @@ textarea{resize:none;}
 	})
 </script>
 <script>
-var bno=${vo.bno};
-
-$.getJSON("/board/getAttachList",{bno:bno},function(list){
+var bno=${report_select.bno};
+console.log("bno가져오기"+bno);
+$.getJSON("/book_report/getAttachList",{bno:bno},function(list){
 	showFileUploadResult(list);
 })
 	
