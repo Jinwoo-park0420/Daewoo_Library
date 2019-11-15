@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -182,16 +183,18 @@ public class MemberController {
 	public String chPwdPost(ChangeVO change, HttpSession session) {
 		log.info("비밀번호 변경 ");
 		LoginVO vo =(LoginVO) session.getAttribute("vo1");
-		String password=vo.getPassword();
 		change.setUserid(vo.getUserid());
-		if(password.equals(change.getCurrent_password()))
-		{
-			if(change.getNew_password().equals(change.getConfirm_password())) {
-				service.pwdupdate(change);
-				session.invalidate();
-			}
+		if(change.getNew_password().equals(change.getConfirm_password()))
+			{				
+				boolean flag=service.pwdupdate(change);
+				if(flag) {
+					session.invalidate();
+					return "/index";
+				} else
+					return "/member/chPwd";
+		}else {
+			return "/member/chPwd";
 		}
-		return "/index";
 	}
 	
 	//비밀번호 분실
