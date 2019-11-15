@@ -33,7 +33,8 @@ primary key(bno,cno)
 
 alter table board_reply
 add constraint board_reply_bno foreign key(bno)
-references library_board(bno);
+references library_board(bno)
+on delete cascade;
 
 insert into BOARD_REPLY(bno,cno,reply,writer,regdate)
 values(21,seq_libcno.nextval,'댓글','이찬해',sysdate);
