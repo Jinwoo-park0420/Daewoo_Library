@@ -127,14 +127,14 @@
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
 					<td><a href="">${vo.bookname }</a></td>
 					<td>${vo.genre }</td>
-					<td align="auto">${vo.writer }</td>
+					<td align="justify">${vo.writer }</td>
 					<td>${vo.publisher }</td>
 					<td>
 						<c:if test="${vo.status==0}">
-						<span>대여가능</span>
+						<span style="color: #0000ff;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여가능</span>
 						</c:if>
 						<c:if test="${vo.status==1}">
-						<span>대여중</span>
+						<span style="color: #ff0000;font-weight: bold;display: table;margin-left: auto;margin-right: auto;">대여중</span>
 						</c:if>
 					</td>
 				</tr>
