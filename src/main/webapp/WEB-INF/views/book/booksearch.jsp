@@ -35,14 +35,27 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
-h2{
+.modal-title{
 	font-family: 'Nanum Pen Script', cursive;
+}
+.modal-content{
+	background-color: #e7e7e7;
 }
 .form-group{
 	font-family: 'Jeju Gothic', sans-serif;
+	padding:0px;
+	font-weight:bold;
+	margin-bottom:5px;
+	
 }
 .form-control{
 	font-family: 'Jeju Hallasan', cursive;
+	background-color: #e7e7e7;
+	font-size:14pt;
+	border:0px;
+	width:200px;
+	height:30px;
+	padding-left:8px;
 }
 
 </style>
@@ -186,7 +199,7 @@ h2{
   <div class="modal-dialog" style="width:900px" role="document">
     <div class="modal-content" style="width:900px; border-radius: 10px">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h2>
+        <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -198,29 +211,29 @@ h2{
       	</div>
       </div>    	
       <div class="" style="padding:20px; float: left; width: 60%">
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="bookname" style="margin-bottom:1px;">도서명 : </label>
-      		<input type="text" class="form-control" id="bookname" name="bookname" style="background-color: #fff; font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="bookname" name="bookname" style="font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="writer" style="margin-bottom:1px;">저 자 : </label>
-      		<input type="text" class="form-control" id="writer" name="writer" style="background-color: #fff; font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="writer" name="writer" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="publisher" style="margin-bottom:1px;">출판사 : </label>
-      		<input type="text" class="form-control" id="publisher" name="publisher" style="background-color: #fff; font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="publisher" name="publisher" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="genre" style="margin-bottom:1px;">장 르 : </label>
-      		<input type="text" class="form-control" id="genre" name="genre" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="genre" name="genre" readonly />
       	</div>
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="isbn" style="margin-bottom:1px;">isbn : </label>
-      		<input type="text" class="form-control" id="isbn" name="isbn" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="isbn" name="isbn" readonly />
       	</div>
-      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      	<div class="form-group">
       		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
-      		<input type="text" class="form-control" id="status" name="status" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="status" name="status" readonly />
       	</div>
       	</div>
 		</div>
