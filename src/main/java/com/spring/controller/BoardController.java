@@ -31,7 +31,12 @@ public class BoardController {
 	private BoardRepService repservice;
 	
 	@GetMapping("/boardinfo")
+<<<<<<< HEAD
 	public void boardinfo(Model model,Criteria cri) {
+=======
+	public void boardinfo() {
+		
+>>>>>>> refs/remotes/origin/master
 		log.info("소통참여 홈페이지 호출");
 		
 		List<BoardVO> list=service.getList(cri);

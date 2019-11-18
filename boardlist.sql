@@ -36,7 +36,8 @@ references library_board(bno)
 
 alter table board_reply
 add constraint board_reply_bno foreign key(bno)
-references library_board(bno);
+references library_board(bno)
+on delete cascade;
 
 create sequence seq_libcno;
 

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.AttachFileVO;
 import com.spring.domain.Book_reportVO;
+import com.spring.domain.Criteria;
 import com.spring.mapper.Book_AttachMapper;
 import com.spring.mapper.Book_reportMapper;
 
@@ -43,9 +44,9 @@ public class Book_reportServiceImpl implements Book_reportService {
 	}
 
 	@Override
-	public List<Book_reportVO> book_reportList() {
+	public List<Book_reportVO> book_reportList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.book_reportList();
+		return mapper.book_reportList(cri);
 	}
 
 	@Override
@@ -54,14 +55,18 @@ public class Book_reportServiceImpl implements Book_reportService {
 		return mapper.book_reportSelectList(bno);
 	}
 
+	
+	
 	@Override
 	public boolean book_reportupdate(Book_reportVO report) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("serviceimpl 내의 "+report);
 		attach.attach_delete(report.getBno());
 		if(report.getAttachList()==null||report.getAttachList().size()<=0) {
 			return false;
 		}
+		System.out.println("serviceimpl 내의 서비스 실행 후에 "+report);
+		
 		boolean modifyResult = mapper.book_reportupdate(report)==1;
 		if(modifyResult&&report.getAttachList().size()>0) {
 			for(AttachFileVO attachVO:report.getAttachList()) {
@@ -84,6 +89,12 @@ public class Book_reportServiceImpl implements Book_reportService {
 	public List<AttachFileVO> getAttachList(int bno) {
 		// TODO Auto-generated method stub
 		return attach.getAttachList(bno);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
 	}
 
 	

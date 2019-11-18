@@ -74,15 +74,11 @@
 		</div>
 		</div>
 </header>				
-					
 		<!-- Main Content -->
-	<div>
-	<h3 align="center">독후감 대회</h3>
-	</div>
 	<div class="container">
-<div align="center">
-	<label> 독후감 양식 </label>
-</div>
+	<h3 align="center">독후감 대회</h3>
+	<button data-oper='download' style="float: right;" class="btn btn-primary"> 독후감 양식 다운로드</button>
+
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -112,18 +108,25 @@
 			</tbody>
 		</table>
 			<a class="btn btn-dark pull-right" href="/book_report/book_reportinsert">글쓰기</a>
-				<div class="text-center">
-					<ul class="pagination">
-					
-						<li><a class="btn btn-default" href="#">이전</a></li>
-						<li><a class="btn btn-default" href="#">1</a></li>
-						<li><a class="btn btn-default" href="#">2</a></li>
-						<li><a class="btn btn-default" href="#">3</a></li>
-						<li><a class="btn btn-default" href="#">4</a></li>
-						<li><a class="btn btn-default" href="#">5</a></li>
-						<li><a class="btn btn-default" href="#">다음</a></li>
-					</ul>
-				</div>
+				  <div class="text-center">
+                            	<ul class="pagination">
+                            		<c:if test="${pageVO.prev}">
+                            			<li class="paginate_button previous">
+                            				<a href="${pageVO.startPage-1}">Previous</a>
+                            			</li>
+                            		</c:if>
+                            		<c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }">
+                            			<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}">
+                            				<a href="${idx}">${idx}</a>
+                            			</li>
+                            		</c:forEach>
+                            		<c:if test="${pageVO.next} ">
+                            			<li class="paginate_button next">
+                            			<a href="${pageVO.startPage+1}">Next</a>
+                            			</li>
+                            		</c:if>
+                            	</ul>
+                            </div>
 			</div>
 <footer>
 		<div class="container">
@@ -163,5 +166,24 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
+<script>
+$(function(){
+	$("button[data-oper='download']").on("click", function(e) {
+		e.preventDefault();
+		alert="파일다운로드";
+		 var filePath = "D:/upload/book_report/eula.1031.txt";
+		    var fileName = "eula.1031.txt";
+		                 
+		    location.href = "/AjaxUploadController/download?filePath="+filePath+"&fileName="+fileName;
+			
+	})
+	
+	
+})
+
+
+</script>
+
+
 </body>
 </html>

@@ -93,8 +93,13 @@ textarea{resize:none;}
             <tr>
                 <th>내용: </th>
                 <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${report_select.content}</textarea></td>
+            	<input type="hidden" name="bno" value="${report_select.bno}" />
+				<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+				<input type="hidden" name="amount" value="${cri.amount}" />
             </tr>
-            <tr>        
+            
+            <tr> 
+                   
          <th>파일첨부</th>   		
          <td>
 		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" readonly="readonly"/>
@@ -147,9 +152,9 @@ textarea{resize:none;}
 	})
 </script>
 <script>
-var bno=${vo.bno};
-
-$.getJSON("/board/getAttachList",{bno:bno},function(list){
+var bno=${report_select.bno};
+console.log("bno가져오기"+bno);
+$.getJSON("/book_report/getAttachList",{bno:bno},function(list){
 	showFileUploadResult(list);
 })
 	

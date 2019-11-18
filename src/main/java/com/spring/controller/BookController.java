@@ -3,7 +3,9 @@ package com.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,21 +105,20 @@ public class BookController {
 		}
 	}
 	
-	@GetMapping("bookDetail")
-	public void bookDetail(int bookno, Model model) {
+	@GetMapping(value="bookDetail",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<BookVO> bookDetail(int bookno) {
 		log.info("도서 상세보기... "+bookno);
 		BookVO vo=service.bookDetail(bookno);
-		model.addAttribute("vo", vo);
-		//아직 미완성
-		
+
+		return new ResponseEntity<>(vo, HttpStatus.OK);		
 	}
+	
 	@PostMapping("bookDetail")
 	public String bookDetailPost(int bookno, Model model) {
 		log.info("도서 상세보기... "+bookno);
 		BookVO vo=service.bookDetail(bookno);
 		model.addAttribute("vo", vo);
 		return "/book/bookDetail";
-		//아직 미완성
 		
 	}
 
