@@ -39,6 +39,7 @@
 	<exclude-mapping path="/manager/managerread"/>
 	<exclude-mapping path="/assets/**"/>
 	<exclude-mapping path="/resources/**"/>
+	<exclude-mapping path="/book/bookDetail"/>
 		<beans:ref bean="Interceptor"/>
 	</interceptor>
 </interceptors>
