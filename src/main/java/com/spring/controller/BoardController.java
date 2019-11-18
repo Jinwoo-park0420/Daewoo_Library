@@ -32,6 +32,7 @@ public class BoardController {
 	
 	@GetMapping("/boardinfo")
 	public void boardinfo() {
+		
 		log.info("소통참여 홈페이지 호출");
 	}
 	

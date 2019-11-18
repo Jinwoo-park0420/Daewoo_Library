@@ -108,18 +108,25 @@
 			</tbody>
 		</table>
 			<a class="btn btn-dark pull-right" href="/book_report/book_reportinsert">글쓰기</a>
-				<div class="text-center">
-					<ul class="pagination">
-					
-						<li><a class="btn btn-default" href="#">이전</a></li>
-						<li><a class="btn btn-default" href="#">1</a></li>
-						<li><a class="btn btn-default" href="#">2</a></li>
-						<li><a class="btn btn-default" href="#">3</a></li>
-						<li><a class="btn btn-default" href="#">4</a></li>
-						<li><a class="btn btn-default" href="#">5</a></li>
-						<li><a class="btn btn-default" href="#">다음</a></li>
-					</ul>
-				</div>
+				  <div class="text-center">
+                            	<ul class="pagination">
+                            		<c:if test="${pageVO.prev}">
+                            			<li class="paginate_button previous">
+                            				<a href="${pageVO.startPage-1}">Previous</a>
+                            			</li>
+                            		</c:if>
+                            		<c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }">
+                            			<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}">
+                            				<a href="${idx}">${idx}</a>
+                            			</li>
+                            		</c:forEach>
+                            		<c:if test="${pageVO.next} ">
+                            			<li class="paginate_button next">
+                            			<a href="${pageVO.startPage+1}">Next</a>
+                            			</li>
+                            		</c:if>
+                            	</ul>
+                            </div>
 			</div>
 <footer>
 		<div class="container">
