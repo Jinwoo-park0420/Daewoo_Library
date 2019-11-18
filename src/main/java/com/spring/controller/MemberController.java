@@ -98,6 +98,8 @@ public class MemberController {
 		if(vo1!=null)
 			session.setAttribute("vo1", vo1);
 		else {
+			
+			rttr.addFlashAttribute("message","아이디 혹은 비밀번호가 틀렸습니다.");
 			return "/member/login";
 		}
 		
@@ -108,18 +110,20 @@ public class MemberController {
 		
 		if (managergrade == 1) {
 			log.info("관리자페이지요청");
+			rttr.addFlashAttribute("message","관리자 페이지입니다.");
 			return "redirect:/manager/managermain";
 		} else {
+			rttr.addFlashAttribute("message",vo.getUserid()+" 님 환영합니다.");
 				return "redirect:/";
 		}
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, RedirectAttributes rttr) {
 		log.info("로그아웃 처리 메세지");
 
 		session.invalidate();
-		
+		rttr.addFlashAttribute("message","로그아웃이 되었습니다.");
 		return "redirect:/";
 	}
 	
