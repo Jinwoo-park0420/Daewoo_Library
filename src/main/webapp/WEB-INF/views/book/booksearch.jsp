@@ -30,28 +30,22 @@
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <!-- Modal 창 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 <style>
-.modal.modal-center {
-        text-align: center;
-}
- 
-@media screen and (min-width: 768px) { 
-        .modal.modal-center:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
-}
- 
-.modal-dialog.modal-center {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
-}
-</style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
+h2{
+	font-family: 'Nanum Pen Script', cursive;
+}
+.form-group{
+	font-family: 'Jeju Gothic', sans-serif;
+}
+.form-control{
+	font-family: 'Jeju Hallasan', cursive;
+}
+
+</style>
 </head>
 <body>
 
@@ -190,9 +184,9 @@
 <!-- Modal -->
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog" style="width:900px" role="document">
-    <div class="modal-content" style="width:900px">
+    <div class="modal-content" style="width:900px; border-radius: 10px">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h3>
+        <h2 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -200,33 +194,33 @@
       <div class="modal-body">
       <div class="row" style="float: left; padding:15px">
       	<div>
-      		<img class="imgModal" src="" width="300" height="400">
+      		<img class="imgModal" src="" width="300" height="400" style="border: 1px solid green; border-radius: 10px">
       	</div>
       </div>    	
-      <div class="" style="float: left; width: 60%">
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="bookname">도서명 : </label>
-      		<span><input type="text" class="form-control" id="bookname" name="bookname" style="background-color: #fff; font-size:12pt; border:0px; width:600; height:20px" readonly /></span>
+      <div class="" style="padding:20px; float: left; width: 60%">
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="bookname" style="margin-bottom:1px;">도서명 : </label>
+      		<input type="text" class="form-control" id="bookname" name="bookname" style="background-color: #fff; font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="writer">저 자 : </label>
-      		<input type="text" class="form-control" id="writer" name="writer" style="background-color: #fff; font-size:12pt; border:0px; width:500; height:20px" readonly />
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="writer" style="margin-bottom:1px;">저 자 : </label>
+      		<input type="text" class="form-control" id="writer" name="writer" style="background-color: #fff; font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="publisher">출판사 : </label>
-      		<input type="text" class="form-control" id="publisher" name="publisher" style="background-color: #fff; font-size:12pt; border:0px; width:200px; height:20px" readonly />
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="publisher" style="margin-bottom:1px;">출판사 : </label>
+      		<input type="text" class="form-control" id="publisher" name="publisher" style="background-color: #fff; font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="genre">장 르 : </label>
-      		<input type="text" class="form-control" id="genre" name="genre" style="background-color: #fff; font-size:12pt; border:0px; width:200px; height:20px" readonly />
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="genre" style="margin-bottom:1px;">장 르 : </label>
+      		<input type="text" class="form-control" id="genre" name="genre" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="isbn">isbn : </label>
-      		<input type="text" class="form-control" id="isbn" name="isbn" style="background-color: #fff; font-size:12pt; border:0px; width:200px; height:20px" readonly />
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="isbn" style="margin-bottom:1px;">isbn : </label>
+      		<input type="text" class="form-control" id="isbn" name="isbn" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
       	</div>
-      	<div class="form-group" style="padding:10px; font-weight:bold">
-      		<label for="status">도서상태 : </label>
-      		<input type="text" class="form-control" id="status" name="status" style="background-color: #fff; font-size:12pt; border:0px; width:200px; height:20px" readonly />
+      	<div class="form-group" style="padding:0px; font-weight:bold; margin-bottom:5px;">
+      		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
+      		<input type="text" class="form-control" id="status" name="status" style="background-color: #fff; font-size:14pt; border:0px; width:200px; height:30px; padding-left:8px;" readonly />
       	</div>
       	</div>
 		</div>
@@ -235,7 +229,6 @@
     </div>
   </div>
 </div>
-
 
 	<footer>
 		<div class="container">
@@ -317,6 +310,7 @@ $(".btn-outline-light").click(function(){
 				console.log(result);
 				//result 값을 모달 안에 넣어주기
 						
+				var exampleModalCenterTitle=result.bookname+" 상세 정보";
 				var bookno = result.bookno;
 				var bookname=result.bookname;
 				var writer = result.writer;
@@ -324,7 +318,8 @@ $(".btn-outline-light").click(function(){
 				var publisher = result.publisher;
 				var status = result.status;
 				var isbn = result.isbn;
-	
+					
+				$("#exampleModalCenterTitle").val(exampleModalCenterTitle)
 				$("#bookno").val(bookno)	
 				$("#bookname").val(bookname);
 				$("#writer").val(writer);
