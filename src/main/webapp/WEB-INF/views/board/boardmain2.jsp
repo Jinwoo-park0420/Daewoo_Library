@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%@include file="../board/header.jsp" %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
 <head>
+<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -25,13 +26,36 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>${vo.title}</title>
+<title>게시판</title>
+
 <style>
-textarea{resize:none;}
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 
 </style>
 </head>
-
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
@@ -63,7 +87,7 @@ textarea{resize:none;}
 			</div>
 		</div>
 	</nav>
-<header class="masthead" style="background-image: url('/resources/img/libraryy.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -77,69 +101,60 @@ textarea{resize:none;}
 		</div>
 		</div>
 </header>
+			
+						
+					
+		<!-- Main Content -->
+	<div>
+	<h3 align="center">건의사항</h3>
+	</div>
+	<div class="container">
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>번 호</th>
+					<th>제 목</th>
+					<th>작 성 자</th>
+					<th>작 성 일</th>
+					<th>조 회 수</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<tr>
+					<td colspan="5" align="center">게시글이 없습니다.</td>														
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
+		</div>
+			
+				<div class="text-center container">
+					<ul class="pagination">
+						
+					</ul>
+				</div>
+				<div>
+				<form action="" method="get" id="search">
+				<select name="" id="">
+				<option value="n" >---</option>
+				<option value="t" >제목</option>
+				<option value="w" >작성자</option>
+				</select>
+				<input type="text" name="keyword" />
+				<input type="button" class="btn btn-light" value="검색"/>
+				</form>
+				</div>				
+			</div>
+		
 
 
-<div class="container">
-<form action="boardmodify" role="form" id="operForm">
-<table class="table table-striped">
-	<%-- <thead>${vo.bno}번째 글</thead> --%>
-	<tbody>
-	<input type="hidden" value="${vo.bno}" name="bno" />
-			<tr>
-                <th>제목: </th>
-                <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>       
-            </tr>
-            <tr>
-            	<th>작성자:</th>
-                <td><input type="text" value="${vo.writer}" name="writer" class="form-control" readonly="readonly"/></td>
-            </tr>
-            <tr>
-                <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control" readonly="readonly">${vo.content}</textarea></td>
-            </tr>
-                        <tr>
-                <td colspan="2">
-                    <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
-                    <button type='reset' class="btn btn-dark pull-left ">목록으로</button>
-                </td>
-            </tr>    
-	</tbody>
-</table>
-</form>
-<%@ include file="../board/boardrep.jsp" %>
-
-<script>
-$(function() {
-	var operForm = $("#operForm");
-	
-	$(".btn-dark").on("click", function() {
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/board/boardmain")
-			operForm.submit();
-		})
-
-	})
-</script>
 <!-- Bootstrap core JavaScript -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Custom scripts for this template -->
-<script src="/resources/js/clean-blog.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
+	<!-- Custom scripts for this template -->
+	<script src="/resources/js/clean-blog.min.js"></script>
+</body>
+</html>
