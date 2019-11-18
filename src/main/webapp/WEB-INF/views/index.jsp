@@ -123,12 +123,12 @@
 						</div>
 						<div class="row justify-content-center">
 							<div class="col-12 col-md-10 col-lg-8">
-								<form action="/book/booksearch" id="searchForm" method="post">
-							<select name="criteria" id="">
+								<form action="/book/booksearch" id="searchForm" method="get">
+							<select name="type" id="">
 								<option value="">---</option>
-								<option value="bookname" <c:out value=""/>>도서명</option>
-								<option value="writer" <c:out value=""/>>저 자</option>
-								<option value="publisher" <c:out value=""/>>출판사</option>
+								<option value="bookname" <c:out value="${pageVO.cri.type eq 'bookname'?'selected':'' }"/>>도서명</option>
+								<option value="writer" <c:out value="${pageVO.cri.type eq 'writer'?'selected':'' }"/>>저 자</option>
+								<option value="publisher" <c:out value="${pageVO.cri.type eq 'publisher'?'selected':'' }"/>>출판사</option>
 							</select> 
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
 							<button class="btn btn-outline-light" type="submit">Search</button>

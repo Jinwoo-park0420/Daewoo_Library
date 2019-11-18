@@ -27,7 +27,6 @@
 
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -73,16 +72,16 @@
 				<div class="col-lg-10 col-md-10 mx-auto">
 					<div class="page-heading">
 						<h1>자료검색</h1>
-						<form action="booksearch" id="searchForm" method="post">
+						<form action="booksearch" id="searchForm" method="get">
 							<select name="type" id="">
 								<option value="">---</option>
 								<option value="bookname" <c:out value="${pageVO.cri.type eq 'bookname'?'selected':'' }"/>>도서명</option>
 								<option value="writer" <c:out value="${pageVO.cri.type eq 'writer'?'selected':'' }"/>>저 자</option>
 								<option value="publisher" <c:out value="${pageVO.cri.type eq 'publisher'?'selected':'' }"/>>출판사</option>
-							</select> 
+							</select> 	
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
-                            <input type="hidden" name="type" value="${pageVO.cri.type}" />
-							<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
+							<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
+							<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
 							<button class="btn btn-outline-light" type="submit">Search</button>
 						</form>
 					</div>
@@ -133,13 +132,12 @@
 					</c:forEach>
 					</tbody>
 				</table>
-			</div>
 	<!-- start Pagination -->
-	<div class="text-center">
-    	<ul class="pagination" style="margin-left: 400px;">
-        	<c:if test="${pageVO.prev }">
+	<div class="text-center col-lg-8.5" style="margin-left: auto;width: 1000px">
+    	<ul class="pagination" style="display: -webkit-inline-box;">
+        	<c:if test="${pageVO.prev }">	
             	<li class="paginate_button previous">
-                	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
+                	<a href="${pageVO.startPage-1}" class="btn btn-light">이전</a>
                 </li>
                 </c:if>
                 <c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }" >
@@ -149,18 +147,21 @@
                     </c:forEach>
                     <c:if test="${pageVO.next }">
 	                	<li class="paginate_button next">
-		                	<a href="${pageVO.nowPage+1 }" class="btn btn-light">다음</a>
+		                	<a href="${pageVO.endPage+1 }" class="btn btn-light">다음</a>
 	                   	</li>
                     </c:if>
                 </ul>
 			</div>
             <!-- end Pagination -->
+			</div>
             	</div>
 	</div>
 <!-- 페이지 번호를 클릭하면 보낼 폼 -->
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${pageVO.cri.type}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
 	<footer>
 		<div class="container">
@@ -197,7 +198,8 @@
 <script>
 $(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
-$(".btn-outline-light").click(function(){
+$(".btn-outline-light").click(function(e){
+	e.preventDefault();
 	var searchForm=$("#searchForm");
 	//검색조건이나 검색어가 비어있는지 확인하고
 	//알림창 띄우고
