@@ -25,7 +25,7 @@ select * from library_board;
 
 create table board_reply(
 bno number(10) not null,
-cno number(10) constraint pk_library primary key,
+rno number(10) constraint pk_library primary key,
 reply nvarchar2(2000) not null,
 replyer varchar2(50) not null,
 regdate date default sysdate,
@@ -39,7 +39,7 @@ add constraint board_reply_bno foreign key(bno)
 references library_board(bno)
 on delete cascade;
 
-create sequence seq_libcno;
+create sequence seq_librno;
 
 select * from board_reply;
 
@@ -47,7 +47,7 @@ select * from board_reply;
 drop table board_reply cascade constraints;
 drop table library_board cascade constraints;
 drop sequence seq_libbno;
-drop sequence seq_libcno;
+drop sequence seq_librno;
 alter table library_board drop constraint board_reply_bno;
 
 drop constraint board_reply_bno

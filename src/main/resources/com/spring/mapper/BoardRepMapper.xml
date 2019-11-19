@@ -3,11 +3,11 @@
 <mapper namespace="com.spring.mapper.BoardRepMapper">
 
 <insert id="insertReply">
-insert into board_reply(bno,cno,replyer,regdate,reply) values(#{bno},seq_libcno.nextval,#{replyer},sysdate,#{reply})
+insert into board_reply(bno,rno,replyer,regdate,reply) values(#{bno},seq_librno.nextval,#{replyer},sysdate,#{reply})
 </insert>
 
 <select id="readReply" resultType="com.spring.domain.BoardRepVO">
-select cno,reply,replyer,regdate
+select rno,reply,replyer,regdate
 from board_reply where bno=#{bno}
 </select>
 
@@ -15,10 +15,10 @@ from board_reply where bno=#{bno}
 	<![CDATA[
 		select * from
 		(select /*+INDEX(spring_reply idx_reply)*/
-		rownum rn,cno,bno,reply,replyer,regdate,updatedate
-		from board_reply where bno=#{bno} and cno > 0 and 	
+		rownum rn,rno,bno,reply,replyer,regdate,updatedate
+		from board_reply where bno=#{bno} and rno > 0 and 	
 		rownum<= #{cri.pageNum} * #{cri.amount})
-		where rn> (#{cri.pageNum}-1)*#{cri.amount}
+		where rn> (#{cri.pageNum}-1)*#{cri.amount} order by regdate desc
 	]]>
 </select>
 
@@ -27,15 +27,15 @@ from board_reply where bno=#{bno}
 	</select>
 <!-- 댓글 하나 가져오기 -->	
 <select id="read" resultType="com.spring.domain.BoardRepVO">
-select * from board_reply where cno=#{cno}
+select * from board_reply where rno=#{rno}
 </select>
 
 <delete id="del">
-delete from board_reply where cno=#{cno}
+delete from board_reply where rno=#{rno}
 </delete>
 
-<update id="updateReply">
-update board_reply set reply=#{reply}, updatedate=sysdate where cno=#{cno}
+<update id="update">
+update board_reply set reply=#{reply}, regdate=sysdate where rno=#{rno}
 </update>
 
 </mapper>
