@@ -44,24 +44,24 @@ public class BoardRepServiceImpl implements BoardRepService {
 	}
 	
 	@Override
-	public BoardRepVO read(int cno) {
+	public BoardRepVO read(int rno) {
 		log.info("댓글 가져오기");
-		return repmapper.read(cno);
+		return repmapper.read(rno);
 	}
 	
 	@Transactional
 	@Override
-	public boolean del(int cno) {
+	public boolean del(int rno) {
 		log.info("댓글 삭제하기");
-		BoardRepVO repvo=repmapper.read(cno);
+		BoardRepVO repvo=repmapper.read(rno);
 		mapper.updateReplyCnt(-1, repvo.getBno()); //댓글수 -1
-		return repmapper.del(cno)==1?true:false;
+		return repmapper.del(rno)==1?true:false;
 	}
 	
 	@Override
-	public boolean update(BoardRepVO repvo) {
+	public boolean update(BoardRepVO vo) {
 		log.info("댓글 수정하기");
-		return repmapper.update(repvo)==1?true:false;
+		return repmapper.update(vo)==1?true:false;
 	}
 	
 }

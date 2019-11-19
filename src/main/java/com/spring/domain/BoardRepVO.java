@@ -8,7 +8,7 @@ import lombok.Data;
 public class BoardRepVO {
 	
 	private int bno;
-	private int cno;
+	private int rno;
 	private String reply;
 	private String replyer;
 	private Date regdate;

@@ -52,20 +52,20 @@ public class BoardRepController {
 		return new ResponseEntity<>(service.read(rno), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/{cno}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> del(@PathVariable("cno") int cno) {
+	
+	@DeleteMapping(value="/{rno}")
+	public ResponseEntity<String> del(@PathVariable("rno")int rno){
 		log.info("댓글 삭제");
-
-		return service.del(cno) ? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+		
+		return service.del(rno)?new ResponseEntity<>("success",HttpStatus.OK):
+		new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 	@RequestMapping(value="/{rno}",method= {RequestMethod.PATCH,RequestMethod.PUT})
-	public ResponseEntity<String> modify(@PathVariable("cno")int cno,@RequestBody BoardRepVO vo){
+	public ResponseEntity<String> modify(@PathVariable("rno")int rno,@RequestBody BoardRepVO vo){
 		
 		log.info("댓글 수정");
-		vo.setCno(cno);
+		vo.setRno(rno);
 		return service.update(vo) ? new ResponseEntity<>("success",HttpStatus.OK)
 				:new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		

@@ -36,18 +36,12 @@
 	<exclude-mapping path="/member/login"/>
 	<exclude-mapping path="/member/join"/>
 	<exclude-mapping path="/member/ck_userid"/>
-<<<<<<< HEAD
 	<exclude-mapping path="/board/**"/>
-=======
 	<exclude-mapping path="/manager/managerread"/>
->>>>>>> refs/remotes/origin/master
 	<exclude-mapping path="/assets/**"/>
 	<exclude-mapping path="/resources/**"/>
-<<<<<<< HEAD
-	
-=======
 	<exclude-mapping path="/book/bookDetail"/>
->>>>>>> refs/remotes/origin/master
+
 		<beans:ref bean="Interceptor"/>
 	</interceptor>
 </interceptors>
