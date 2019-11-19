@@ -121,7 +121,7 @@
 		
 				<!-- Pager -->
 				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#">도서목록 보기
+					<a class="btn btn-primary float-right" href="/book/booksearch">도서목록 보기
 						&rarr;</a>
 				</div>
 			</div>
