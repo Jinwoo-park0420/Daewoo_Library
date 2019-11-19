@@ -112,8 +112,6 @@
 								<option value="publisher" <c:out value="${pageVO.cri.type eq 'publisher'?'selected':'' }"/>>출판사</option>
 							</select> 	
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
-							<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
-							<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
 							<button class="btn btn-outline-light" type="submit">Search</button>
 						</form>
 					</div>

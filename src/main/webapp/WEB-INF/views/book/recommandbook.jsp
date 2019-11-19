@@ -87,12 +87,6 @@
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요." />
 							<button class="btn  btn-outline-light" type="submit">Search</button>
 						</form>
-						<!-- <div class="box">
-								<div class="container-1">
-									<input type="search" id="search" placeholder="검색어를 입력하세요." />
-									<i class="fa fa-search"><span class="icon"></span></i>
-								</div>
-							</div> -->
 					</div>
 				</div>
 			</div>
