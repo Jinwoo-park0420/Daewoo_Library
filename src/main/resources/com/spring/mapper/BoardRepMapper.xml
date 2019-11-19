@@ -3,13 +3,39 @@
 <mapper namespace="com.spring.mapper.BoardRepMapper">
 
 <insert id="insertReply">
-insert into board_reply(bno,cno,writer,regdate,reply) values(#{bno},seq_libcno.nextval,#{writer},sysdate,#{reply})
+insert into board_reply(bno,cno,replyer,regdate,reply) values(#{bno},seq_libcno.nextval,#{replyer},sysdate,#{reply})
 </insert>
 
 <select id="readReply" resultType="com.spring.domain.BoardRepVO">
-select cno,reply,writer,regdate
+select cno,reply,replyer,regdate
 from board_reply where bno=#{bno}
 </select>
 
+<select id="getlist" resultType="com.spring.domain.BoardRepVO">
+	<![CDATA[
+		select * from
+		(select /*+INDEX(spring_reply idx_reply)*/
+		rownum rn,cno,bno,reply,replyer,regdate,updatedate
+		from board_reply where bno=#{bno} and cno > 0 and 	
+		rownum<= #{cri.pageNum} * #{cri.amount})
+		where rn> (#{cri.pageNum}-1)*#{cri.amount}
+	]]>
+</select>
+
+	<select id="getCountBno" resultType="int">
+	select count(*) from board_reply where bno=#{bno}
+	</select>
+<!-- 댓글 하나 가져오기 -->	
+<select id="read" resultType="com.spring.domain.BoardRepVO">
+select * from board_reply where cno=#{cno}
+</select>
+
+<delete id="del">
+delete from board_reply where cno=#{cno}
+</delete>
+
+<update id="updateReply">
+update board_reply set reply=#{reply}, updatedate=sysdate where cno=#{cno}
+</update>
 
 </mapper>

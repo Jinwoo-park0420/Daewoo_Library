@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%@include file="../board/header.jsp" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
+<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <head>
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
@@ -30,7 +31,6 @@
 textarea{resize:none;}
 </style>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
@@ -77,17 +77,15 @@ textarea{resize:none;}
 		</div>
 		</div>
 </header>
-
-
 <div class="container">
-<form action="boardmodify" role="form" id="operForm">
+<form action="boardmodify" role="form">
 <table class="table table-striped">
 	<%-- <thead>${vo.bno}번째 글</thead> --%>
 	<tbody>
-	<input type="hidden" value="${vo.bno}" name="bno" />
 			<tr>
                 <th>제목: </th>
-                <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>       
+                <td><input type="text" value="${vo.title}" name="title" class="form-control" readonly="readonly"/></td>
+                <input type="hidden" value="${vo.bno}" name="bno" />   
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -100,14 +98,18 @@ textarea{resize:none;}
                         <tr>
                 <td colspan="2">
                     <button data-oper='modify' class="btn btn-light pull-right ">수정하기</button>
+</form>
+<form action="" id="operForm">
                     <button type='reset' class="btn btn-dark pull-left ">목록으로</button>
+                    </form>
                 </td>
-            </tr>    
-	</tbody>
+            </tr>     
+</tbody>
 </table>
 </form>
-<%@ include file="../board/boardrep.jsp" %>
 
+<!-- 댓글넣기  -->
+<%@ include file="../board/boardreply.jsp" %>
 <script>
 $(function() {
 	var operForm = $("#operForm");
@@ -120,26 +122,5 @@ $(function() {
 
 	})
 </script>
-<!-- Bootstrap core JavaScript -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="/resources/js/clean-blog.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
+</body>
+</html>

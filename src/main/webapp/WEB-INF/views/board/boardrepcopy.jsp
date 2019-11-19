@@ -10,33 +10,30 @@
 </head>
 <body>
        <!-- 댓글 영역 -->
-       <table class="chat table table-striped table-hover">
-       <tr>
-       <td>
-       </tr>
-       <tr>       
-       <ul class="left clearfix" data-rno='12' style="padding-left: 0">
-       <i class="fa fa-anchor fa-spin"></i>댓글</td>
-       </tr>
-       <tr>
-       <td class="header">
-    		<strong class="primary-font"></strong>
-           	<small class="pull-right text-muted"></small>
-      	</td>
-           	<td></td>
-        </tr>           		     	
-      	</ul>
-      	</table> 							
             <div class="row">
             	<div class="col-lg-12">
             		<div class="panel panel-default">
-            			<div class="panel-heading">	            			
+            			<div class="panel-heading">
+	            			<i class="fa fa-anchor fa-spin"></i>      				
+	            			댓글
 	            			<button id='addReplyBtn' class='btn btn-light btn-xs pull-right'>댓글 쓰기</button>
             			</div><!-- ./ end panel-heading  --> 
-            			<div class="panel-body">            				    			
+            			<div class="panel-body">
+            				<ul class="chat">
+            					<!--  start reply -->
+            					<li class="left clearfix" data-rno='12'>
+            						<div>
+            							<div class="header">
+	            							<strong class="primary-font"></strong>
+	            							<small class="pull-right text-muted"></small>
+            							</div>
+            							<p></p>
+            						</div>            						
+            					</li>
+            				</ul>            			
             			</div><!-- ./ end panel-body  -->
             			<div class="panel-footer"><!-- 댓글 페이지 영역 -->
-       
+       </table> 			
             			</div> 
             		</div><!-- ./ end panel panel-default  -->            	
             	</div><!-- ./ end col-lg-12  -->            
@@ -145,10 +142,10 @@ $(function(){
 		
 		var str="";
 		for(var i=0,len=list.length||0;i<len;i++){
-			str+="<ul class='left clearfix' data-rno='"+list[i].rno+"'>";			
-			str+="<td class='header'><strong class='primary-font'><i class='fa fa-cog fa-spin fa-fw'></i>"+list[i].replyer+"</strong>";
+			str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+			str+="<div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
 			str+="<small class='pull-right text-muted'>"+replyService.displayTime(list[i].regdate)+"</small>";
-			str+="</td><tr><td>"+list[i].reply+"</td></tr></ul>";
+			str+="</div><p>"+list[i].reply+"</p></div></li>";
 		}
 		replyUL.html(str);
 		showReplyPage(total);	//댓글 총 갯수		
@@ -174,7 +171,7 @@ $(function(){
 			next=true;
 		}
 		
-		var str="<ul class='pagination pull-left'>";
+		var str="<ul class='pagination pull-right'>";
 		if(prev){
 			str+="<li class='page-item'><a class='page-link'";
 			str+=" href='"+(startPage-1)+"'>Previoues</a></li>";

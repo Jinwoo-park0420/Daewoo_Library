@@ -9,9 +9,9 @@ public class BoardRepVO {
 	
 	private int bno;
 	private int cno;
-	private String writer;
+	private String reply;
+	private String replyer;
 	private Date regdate;
 	private Date updatedate;
-	private String reply;
 	
 }

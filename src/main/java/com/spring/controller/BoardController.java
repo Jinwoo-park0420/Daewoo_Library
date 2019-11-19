@@ -31,9 +31,10 @@ public class BoardController {
 	private BoardRepService repservice;
 	
 	@GetMapping("/boardinfo")
-	public void boardinfo() {
-		
-		log.info("소통참여 홈페이지 호출");
+	public void boardinfo(Model model,Criteria cri) {
+		log.info("소통참여 홈페이지 호출");		
+		List<BoardVO> list=service.getList(cri);
+		model.addAttribute("list",list);
 	}
 	
 	@GetMapping("/boardmain")
@@ -43,11 +44,16 @@ public class BoardController {
 		List<BoardVO> list=service.getList(cri);
 		
 		if(!list.isEmpty()) {
-		model.addAttribute("list",list);
-		model.addAttribute("pageVO",new PageVO(cri,service.totalCnt(cri)));
+			model.addAttribute("list",list);
+			model.addAttribute("pageVO",new PageVO(cri,service.totalCnt(cri)));
 		}
-			
 		return "/board/boardmain";
+	}
+	
+	@GetMapping("/boardmain2")
+	public String getlist2() {
+		log.info("게시판이 비어있음");
+		return "/board/boardmain2";
 	}
 	
 	
@@ -64,15 +70,17 @@ public class BoardController {
 		return "redirect:/board/boardmain";
 	}
 	
-	@GetMapping(value= {"/boardread","/modify"})
+	@GetMapping(value= {"/modify","/boardread"})
 	public void read(@RequestParam("bno") int bno,Model model) {
 		log.info("글 읽기 페이지 이동"+bno+"번 글");
 		model.addAttribute("vo", service.selectboard(bno));
 		model.addAttribute("rep",service.readCountupdate(bno));
 		
 		//게시물 댓글
-		List<BoardRepVO> repList=repservice.readReply(bno);
-		model.addAttribute("repList",repList);
+		/*
+		 * List<BoardRepVO> repList=repservice.readReply(bno);
+		 * model.addAttribute("repList",repList);
+		 */
 	}
 	
 	@GetMapping("/boardmodify")
@@ -118,7 +126,7 @@ public class BoardController {
 		public String replyInsert(BoardRepVO repvo,RedirectAttributes rttr) {
 
 			log.info("댓글작성"+repvo);
-			repservice.insertReply(repvo);
+			//repservice.insertReply(repvo);
 
 			rttr.addAttribute("bno",repvo.getBno());
 

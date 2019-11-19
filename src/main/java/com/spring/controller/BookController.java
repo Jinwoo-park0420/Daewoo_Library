@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,11 +17,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ApplyBookVO;
+
 import com.spring.domain.BoardVO;
-import com.spring.domain.BookCriteria;
-import com.spring.domain.BookPageVO;
+
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
+
+import com.spring.domain.PageVO;
+
 import com.spring.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,78 +38,61 @@ public class BookController {
 	private BookService service;
 
 	@GetMapping("booksearch")
-	public void booksearch(Model model, BookCriteria cri) {
+	public void booksearch(Model model, Criteria cri) {
 		log.info("전체 목록 페이지 요청");
+		cri.setAmount(5);
 		List<BookVO> list=service.getList(cri);
-		
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageVO", new BookPageVO(cri, service.totalCnt(cri)));
+			PageVO page=new PageVO(cri, service.totalCnt(cri));
+			log.info("pageVO controller "+page);
+			model.addAttribute("pageVO", page);
 			}
 		
 	}
 
 	@GetMapping("newbook")
-	public void newbook(Model model, BookCriteria cri) {
+	public void newbook(Model model, Criteria cri) {
 		log.info("신간 도서 페이지 요청 "+cri);
+		cri.setAmount(5);
 		List<BookVO> list=service.newbook(cri);
-		
-
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageVO", new BookPageVO(cri, service.NewCnt(cri)));
+			model.addAttribute("pageVO", new PageVO(cri, service.NewCnt(cri)));
 			}
 	}
 
 	@GetMapping("recommandbook")
-	public void recommandbook(Model model, BookCriteria cri) {
+	public void recommandbook(Model model, Criteria cri) {
 		log.info("추천 도서 페이지 요청");
+		cri.setAmount(5);
 		List<BookVO> list=service.recommandbook(cri);
-		
-
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageVO", new BookPageVO(cri, service.RecCnt(cri)));
+			model.addAttribute("pageVO", new PageVO(cri, service.RecCnt(cri)));
 			}
 	}
 
 	@GetMapping("popularbook")
-	public void popularbook(Model model, BookCriteria cri) {
+	public void popularbook(Model model, Criteria cri) {
 		log.info("인기 도서 페이지 요청");
+		cri.setAmount(5);
 		List<BookVO> list=service.popularbook(cri);
-		
-
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageVO", new BookPageVO(cri, service.PopCnt(cri)));
+			model.addAttribute("pageVO", new PageVO(cri, service.PopCnt(cri)));
 			}
 	}
 
 	@GetMapping("loanbook")
-	public void loanbook(Model model, BookCriteria cri) {
+	public void loanbook(Model model, Criteria cri) {
 		log.info("대출 급상승 도서 페이지 요청");
+		cri.setAmount(5);
 		List<BookVO> list=service.loanbook(cri);
-		
-
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageVO", new BookPageVO(cri, service.LoanCnt(cri)));
+			model.addAttribute("pageVO", new PageVO(cri, service.LoanCnt(cri)));
 			}
-	}
-	
-	@PostMapping(value= {"booksearch","newbook","recommandbook","popularbook","loanbook"})
-	public String book_search(String criteria, String keyword, RedirectAttributes rttr, Model model) {
-		log.info("도서 검색 실행");
-		
-		List<BookVO> list=service.book_search(criteria, keyword);
-		if(list.isEmpty()) {
-			//index 페이지를 띄울 때 보여줄 탭을 선택
-			rttr.addFlashAttribute("tab", "search");
-			return "redirect:/";
-		}else {
-			model.addAttribute("list", list);
-			return "/book/booksearch";
-		}
 	}
 	
 	@GetMapping(value= {"bookDetail","bookRental"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
