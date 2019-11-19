@@ -117,14 +117,6 @@
 						<h2 class="post-title"> <a	href="/book_report/book_reportmain">독후감 대회</a></h2></a>
 				</div>
 				<hr>
-				<div class="post-preview">
-					<a href="/board/calendar">
-						<h2 class="post-title">도서관 일정
-						</h2>
-					</a>
-					
-				</div>
-				<hr>
 				
 		
 				<!-- Pager -->
