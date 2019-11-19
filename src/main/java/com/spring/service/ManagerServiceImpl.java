@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.domain.ApplyBookVO;
 import com.spring.domain.MemberVO;
 import com.spring.mapper.ManagerMapper;
 
@@ -33,6 +34,12 @@ public class ManagerServiceImpl implements ManagerService {
 	public int ManagerDelete(MemberVO member) {
 		// TODO Auto-generated method stub
 		return mapper.ManagerDelete(member);
+	}
+
+	@Override
+	public List<ApplyBookVO> ManagerApplyList() {
+		// TODO Auto-generated method stub
+		return mapper.ManagerApplyList();
 	}
 
 }

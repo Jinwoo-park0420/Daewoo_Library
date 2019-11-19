@@ -10,4 +10,10 @@ select * from Library_member where userid=#{userid}
 <delete id="ManagerDelete">
 delete from Library_member where userid=#{userid}
 </delete>
+<select id="ManagerApplyList" resultType="com.spring.domain.ApplyBookVO">
+select bookname, writer, publisher, substr(publish_year, 1, 4) as publish_year_yy,
+substr(publish_year,5) as publish_year_mm,  price, ISBN
+ from applybook
+</select>
+
 </mapper>

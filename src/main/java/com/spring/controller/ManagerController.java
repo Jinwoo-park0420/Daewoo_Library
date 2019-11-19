@@ -52,4 +52,9 @@ public class ManagerController {
 			
 		
 		}
+	@GetMapping("managerapplyList")
+	public void managerapplyList(Model model) {
+		log.info("도서신청페이지 요청");
+		model.addAttribute("applyList",service.ManagerApplyList());
+	}
 }
