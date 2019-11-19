@@ -30,32 +30,33 @@
 	<context:component-scan
 		base-package="com.spring.controller" />
 
-	<!-- interceptor 설정 -->
-	<beans:bean id="Interceptor"
-		class="com.spring.interceptor.security.AuthInterceptor" />
-	<interceptors>
-		<interceptor>
-			<mapping path="/**" />
-			<exclude-mapping path="/member/index" />
-			<exclude-mapping path="/index" />
-			<exclude-mapping path="/" />
-			<exclude-mapping path="/member/login" />
-			<exclude-mapping path="/member/join" />
-			<exclude-mapping path="/member/ck_userid" />
-			<exclude-mapping path="/board/**" />
-			<exclude-mapping path="/manager/managerread" />
-			<exclude-mapping path="/assets/**" />
-			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/book/bookDetail" />
-			<beans:ref bean="Interceptor" />
-		</interceptor>
-	</interceptors>
 
 
-	<!-- commons fileupload담당 클래스 생성 -->
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800" />
+<beans:bean id="Interceptor" class="com.spring.interceptor.security.AuthInterceptor"/>
+<interceptors>
+	<interceptor>
+		<mapping path="/**"/> 
+	<exclude-mapping path="/member/index"/>
+	<exclude-mapping path="/index"/>
+	<exclude-mapping path="/"/>
+	<exclude-mapping path="/member/login"/>
+	<exclude-mapping path="/member/join"/>
+	<exclude-mapping path="/member/ck_userid"/>
+	<exclude-mapping path="/board/**"/>
+	<exclude-mapping path="/manager/managerread"/>
+	<exclude-mapping path="/assets/**"/>
+	<exclude-mapping path="/resources/**"/>
+	<exclude-mapping path="/book/bookDetail"/>
+	<exclude-mapping path="/book/bookRental"/>
+		<beans:ref bean="Interceptor"/>
+	</interceptor>
+</interceptors>
+	 
+	
+		<!-- commons fileupload담당 클래스 생성 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"/>
+
 	</beans:bean>
 
 

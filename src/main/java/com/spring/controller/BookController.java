@@ -10,15 +10,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ApplyBookVO;
+
+import com.spring.domain.BoardVO;
+
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
+
 import com.spring.domain.PageVO;
+
 import com.spring.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -89,21 +95,34 @@ public class BookController {
 			}
 	}
 	
-	@GetMapping(value="bookDetail",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value= {"bookDetail","bookRental"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<BookVO> bookDetail(int bookno) {
-		log.info("도서 상세보기... "+bookno);
+		log.info("도서 상세보기(get)... "+bookno);
 		BookVO vo=service.bookDetail(bookno);
 
 		return new ResponseEntity<>(vo, HttpStatus.OK);		
 	}
 	
 	@PostMapping("bookDetail")
-	public String bookDetailPost(int bookno, Model model) {
-		log.info("도서 상세보기... "+bookno);
+	public void bookDetail(int bookno, Model model) {
+		log.info("도서 대여신청... "+bookno);
 		BookVO vo=service.bookDetail(bookno);
 		model.addAttribute("vo", vo);
-		return "/book/bookDetail";
-		
+	}
+	
+	@GetMapping("bookRental")
+	public void bookRentalGet(int bookno, Model model) {
+		log.info("도서 대여신청(get)... "+bookno);
+		BookVO vo=service.bookRental(bookno);
+		model.addAttribute("vo", vo);
+	}
+	
+	@PostMapping("bookRental")
+	public String bookRentalPost(int bookno, Model model) {
+		log.info("도서 대여신청(post)... "+bookno);
+		BookVO vo=service.bookRental(bookno);
+		model.addAttribute("vo", vo);
+		return "/book/bookRental";
 	}
 
 

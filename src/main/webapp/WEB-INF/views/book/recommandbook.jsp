@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<%@include file="../board/header.jsp" %> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<%-- <%@include file="../board/header.jsp" %> --%> <!-- 제이쿼리사용을 위해 header에 몰아둠 -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
 <meta charset="UTF-8">
@@ -27,7 +28,41 @@
 
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
+<!-- Modal 창 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
+.modal-header{
+	background-color: #dee2e6;
+}
+.modal-footer{
+	background-color: #dee2e6;
+}
+.modal-title{
+	font-family: 'Nanum Pen Script', cursive;
+}
+.modal-content{
+	background-color: #e9ecef;
+}
+.form-group{
+	font-family: 'Jeju Gothic', sans-serif;
+	padding:0px;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+.form-control{
+	font-family: 'Jeju Hallasan', cursive;
+	background-color: #e9ecef;
+	font-size:14pt;
+	border:0px;
+	width:200px;
+	height:30px;
+	padding-left:8px;
+}
+</style>
 </head>
 <body>
 
@@ -48,8 +83,6 @@
 						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
 					</ul>
 				</c:if>
 
@@ -60,7 +93,6 @@
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 			
 					</ul>
 				</c:if>
@@ -119,7 +151,7 @@
 			<c:forEach var="vo" items="${list}">
 				<tr>
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
-					<td><a href="">${vo.bookname }</a></td>
+					<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
 					<td>${vo.genre }</td>
 					<td align="justify">${vo.writer }</td>
 					<td>${vo.publisher }</td>
@@ -163,8 +195,63 @@
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${pageVO.cri.type}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
-	<!-- Footer -->
+<!-- Modal -->
+<div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" style="width:900px" role="document">
+    <div class="modal-content" style="width:900px; border-radius: 10px">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row" style="float: left; padding:15px">
+      	<div>
+      		<img class="imgModal" src="" width="300" height="400" style="border: 1px solid green; border-radius: 10px">
+      	</div>
+      </div>    	
+      <div class="" style="padding:20px; float: left; width: 60%">
+      	<div class="form-group">
+      		<label for="bookname" style="margin-bottom:1px;">도서명 : </label>
+      		<input type="text" class="form-control" id="bookname" name="bookname" style="font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="writer" style="margin-bottom:1px;">저 자 : </label>
+      		<input type="text" class="form-control" id="writer" name="writer" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="publisher" style="margin-bottom:1px;">출판사 : </label>
+      		<input type="text" class="form-control" id="publisher" name="publisher" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="genre" style="margin-bottom:1px;">장 르 : </label>
+      		<input type="text" class="form-control" id="genre" name="genre" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="isbn" style="margin-bottom:1px;">isbn : </label>
+      		<input type="text" class="form-control" id="isbn" name="isbn" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
+      		<input type="text" class="form-control" id="status" name="status" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="bookno" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="bookno" name="bookno"/>
+      	</div>
+      	</div>
+		</div>
+      <div class="modal-footer">
+      	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
+      	<button class="btn btn-dark btn-sm" id="closeBtn" type="submit">목록으로</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -200,7 +287,8 @@
 <script>
 $(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
-$(".btn-outline-light").click(function(){
+$(".btn-outline-light").click(function(e){
+	e.preventDefault();
 	var searchForm=$("#searchForm");
 	//검색조건이나 검색어가 비어있는지 확인하고
 	//알림창 띄우고
@@ -219,7 +307,7 @@ $(".btn-outline-light").click(function(){
 	searchForm.submit();
 })
 
-//하단의 페이지 번호 클릭시 작동하는 스크립트
+	//하단의 페이지 번호 클릭시 작동하는 스크립트
 	var actionForm=$("#actionForm");
 	$(".paginate_button a").click(function(e){
 		e.preventDefault(); //a 태그의 동작 막기
@@ -227,15 +315,74 @@ $(".btn-outline-light").click(function(){
 		actionForm.submit();
 	})
 
-//제목을 클릭하면 실행될 스크립트(미완성)
-$(".move").click(function(e){
-	e.preventDefault(); //a 태그 막기
-	//제목 클릭시 글 번호, pageNum, amount, 검색정보를 보내야 함
-	actionForm.append("<input type='hidden' name='bookno' value='"+$(this).attr("href")+"'>");
-	actionForm.attr("action","bookDetail");
-	actionForm.submit();
+ 	//제목을 클릭하면 실행될 스크립트
+	var modal=$("#bookDetailModal");
+	$(".move").click(function(e){
+		e.preventDefault(); //a 태그 막기
+		console.log("도서 상세정보 클릭");		
+		var bookno=$(this).attr("href");
+		
+		//bno를 보내서 해당 책 정보 가져오기
+		$.getJSON({
+			url:'/book/bookDetail',
+			data:{
+				bookno:bookno
+			},
+			success:function(result){
+				console.log(result);
+				//result 값을 모달 안에 넣어주기
+						
+				var bookno = result.bookno;
+				var bookname=result.bookname;
+				var writer = result.writer;
+				var genre = result.genre;
+				var publisher = result.publisher;
+				var status = result.status;
+				var isbn = result.isbn;
+					
+				$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
+				$("#bookno").val(bookno);	
+				$("#bookname").val(bookname);
+				$("#writer").val(writer);
+				$("#genre").val(genre);
+				$("#publisher").val(publisher);
+				$("#status").val(status);
+				if(status==0){
+					var colorChange=document.getElementById("status");
+					colorChange.style.color="#0000ff";
+					$("#status").val("대여 가능");
+				}else{
+					colorChange.style.color="#ff0000";
+					$("#status").val("대여 중")
+				}
+				$("#isbn").val(isbn);
+								
+				modal.find(".imgModal").attr("src","/resources/thumb/"+bookno+".jpg");
+															
+				modal.modal("show");
 
+			}			
+		
+		})
+
+		
+	//대여하기 버튼 클릭시 실행될 스크립트
+	$("#moveBtn").click(function(e){
+		e.preventDefault();
+		console.log("도서 대여페이지 이동");
+		var bookno=$("#bookno").val();
+		
+		location.href="/book/bookRental?bookno="+bookno;
+		
+		modal.modal("hide");
 	})
+	
+	$("#closeBtn").click(function(e){
+		e.preventDefault();
+		modal.modal("hide");
+	})
+	}) 
+
 })
 </script>
 </html>
