@@ -150,7 +150,7 @@
 			<c:forEach var="vo" items="${list}">
 				<tr>
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
-					<td><a href="">${vo.bookname }</a></td>
+					<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
 					<td>${vo.genre }</td>
 					<td align="justify">${vo.writer }</td>
 					<td>${vo.publisher }</td>
@@ -194,6 +194,8 @@
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${pageVO.cri.type}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
 <!-- Modal -->
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -279,6 +281,7 @@
 $(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
 $(".btn-outline-light").click(function(){
+	e.preventDefault();
 	var searchForm=$("#searchForm");
 	//검색조건이나 검색어가 비어있는지 확인하고
 	//알림창 띄우고
@@ -304,6 +307,8 @@ $(".btn-outline-light").click(function(){
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	})
+	
+	var modal=$("#bookDetailModal");
 
 //제목을 클릭하면 실행될 스크립트
 	$(".move").click(function(e){

@@ -13,11 +13,10 @@
        <table class="chat table table-striped table-hover">
        <tr>
        <td>
-       <i class="fa fa-anchor fa-spin"></i>댓글</td>
        </tr>
        <tr>       
-       <ul class="left clearfix" data-rno='12'>
-       <td>
+       <ul class="left clearfix" data-rno='12' style="padding-left: 0">
+       <i class="fa fa-anchor fa-spin"></i>댓글</td>
        </tr>
        <tr>
        <td class="header">
