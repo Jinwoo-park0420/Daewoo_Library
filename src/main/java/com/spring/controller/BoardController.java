@@ -31,10 +31,8 @@ public class BoardController {
 	private BoardRepService repservice;
 	
 	@GetMapping("/boardinfo")
-
-	public void boardinfo(Model model,Criteria cri) {
+    public void boardinfo(Model model,Criteria cri) {
 		log.info("소통참여 홈페이지 호출");
-		
 		List<BoardVO> list=service.getList(cri);
 		model.addAttribute("list",list);
 	}

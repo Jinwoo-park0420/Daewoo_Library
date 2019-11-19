@@ -2,15 +2,19 @@ package com.spring.service;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ApplyBookVO;
-import com.spring.domain.BookCriteria;
 import com.spring.domain.BookVO;
+import com.spring.domain.Criteria;
 import com.spring.mapper.BookMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service("book")
 public class BookServiceImpl implements BookService {
 
@@ -24,44 +28,45 @@ public class BookServiceImpl implements BookService {
 		return mapper.ApplyBook(Apply);
 	}
 	
+	
 	@Override
-	public List<BookVO> getList(BookCriteria cri) {
-		// TODO Auto-generated method stub
+	public List<BookVO> getList(Criteria cri) {
+		log.info("cri.getType "+cri.getType());
 		return mapper.getList(cri);
 	}
 	
 	@Override
-	public List<BookVO> newbook(BookCriteria cri) {
+	public List<BookVO> newbook(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.newbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> recommandbook(BookCriteria cri) {
+	public List<BookVO> recommandbook(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.recommandbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> popularbook(BookCriteria cri) {
+	public List<BookVO> popularbook(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.popularbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> loanbook(BookCriteria cri) {
+	public List<BookVO> loanbook(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.loanbook(cri);
 	}
 	
 	@Override
-	public List<BookVO> book_search(String criteria, String keyword) {
+	public List<BookVO> book_search(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.book_search(criteria, keyword);
+		return mapper.book_search(cri);
 	}
 	
 	@Override
-	public int totalCnt(BookCriteria cri) {
+	public int totalCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.getTotalCount(cri);
 	}
@@ -73,25 +78,25 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public int NewCnt(BookCriteria cri) {
+	public int NewCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.getNewCount(cri);
 	}
 
 	@Override
-	public int PopCnt(BookCriteria cri) {
+	public int PopCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.getPopCount(cri);
 	}
 
 	@Override
-	public int RecCnt(BookCriteria cri) {
+	public int RecCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.getRecCount(cri);
 	}
 
 	@Override
-	public int LoanCnt(BookCriteria cri) {
+	public int LoanCnt(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.getLoanCount(cri);
 	}

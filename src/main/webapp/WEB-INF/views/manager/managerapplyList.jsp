@@ -80,24 +80,36 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
+					<th>신청자</th>
 					<th>책 이름</th>
 					<th>글쓴이</th>
 					<th>출판사</th>
 					<th>발행년도</th>
 					<th>가격</th>
-					<th>ISBM</th>
+					<th>장르</th>
+					<th>ISBN</th>
+					<th>도서신청</th>
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${applyList}">
 			<tbody>
 				<tr>
+					<td>${vo.userid}</td>
 					<td>${vo.bookname}</td>
-					<td><a href="/manager/managerread?userid=<c:out value='${vo.writer}'/>" class="move">${vo.writer}</a></td>
+					<td>${vo.writer}</td>
 					<td>${vo.publisher}</td>
 					<td>${vo.publish_year_yy } 년 ${vo.publish_year_mm } 월</td>
 					<td>${vo.price}</td>
-					<td>${vo.ISBN}</td>
-	
+					<td>${vo.genre}</td>
+					<td>${vo.isbn}</td>
+				<c:if test="${vo.applystatus==0 }">
+					<td><button><a href="/manager/managerapply?isbn=<c:out value='${vo.isbn}'/>">도서신청처리</a></button></td>
+				</c:if>
+				<c:if test="${vo.applystatus!=0}">
+					<td>도서신청이 완료되었습니다.</td>
+				</c:if>
+				
+			
 				</tr>
 			</c:forEach>
 			</tbody>

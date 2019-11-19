@@ -77,22 +77,16 @@
 				<div class="col-lg-10 col-md-10 mx-auto">
 					<div class="page-heading">
 						<h1>자료검색</h1>
-						<form action="recommandbook" id="searchForm" method="post">
+						<form action="recommandbook" id="searchForm" method="get">
 							<select name="type" id="">
 								<option value="">---</option>
-								<option value="bookname" <c:out value=""/>>도서명</option>
-								<option value="writer" <c:out value=""/>>저 자</option>
-								<option value="publisher" <c:out value=""/>>출판사</option>
+								<option value="bookname" <c:out value="${pageVO.cri.type eq 'bookname'?'selected':'' }"/>>도서명</option>
+								<option value="writer" <c:out value="${pageVO.cri.type eq 'writer'?'selected':'' }"/>>저 자</option>
+								<option value="publisher" <c:out value="${pageVO.cri.type eq 'publisher'?'selected':'' }"/>>출판사</option>
 							</select>
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요." />
 							<button class="btn  btn-outline-light" type="submit">Search</button>
 						</form>
-						<!-- <div class="box">
-								<div class="container-1">
-									<input type="search" id="search" placeholder="검색어를 입력하세요." />
-									<i class="fa fa-search"><span class="icon"></span></i>
-								</div>
-							</div> -->
 					</div>
 				</div>
 			</div>
@@ -141,10 +135,9 @@
 			</c:forEach>
 			</tbody>
 		</table>
-	</div>
 <!-- start Pagination -->
-	<div class="text-center">
-    	<ul class="pagination" style="margin-left: 580px;">
+	<div class="text-center col-lg-8.5" style="margin-left: auto;width: 1000px">
+    	<ul class="pagination" style="display: -webkit-inline-box;">
         	<c:if test="${pageVO.prev }">
             	<li class="paginate_button previous">
                 	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
@@ -163,6 +156,7 @@
                 </ul>
 			</div>
             <!-- end Pagination -->
+			</div>
             	</div>
 	</div>
 <!-- 페이지 번호를 클릭하면 보낼 폼 -->

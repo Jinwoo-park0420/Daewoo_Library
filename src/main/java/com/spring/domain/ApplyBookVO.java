@@ -11,7 +11,9 @@ private String publisher;
 private String publish_year;
 private String publish_year_yy;
 private String publish_year_mm;
+private String genre;
 private int price;
-private int ISBN;
+private int isbn;
 private String userid;
+private int applystatus;
 }

@@ -94,7 +94,7 @@ $(function(){
 						<div class="navbar">
 
 						<br>
-							<li class="menu"><a href="/library/libraryinfo">게시판</a>
+							<li class="menu"><a href="/manager/managerinfo">게시판</a>
 								</li>
 							<li class="menu"><a href="/book/booksearch">도서 관리</a>
 								</li>

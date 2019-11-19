@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.ApplyBookVO;
+import com.spring.domain.BookVO;
 import com.spring.domain.MemberVO;
 import com.spring.service.ManagerService;
 
@@ -54,7 +56,28 @@ public class ManagerController {
 		}
 	@GetMapping("managerapplyList")
 	public void managerapplyList(Model model) {
-		log.info("도서신청페이지 요청");
+		log.info("도서신청목록페이지 요청");
 		model.addAttribute("applyList",service.ManagerApplyList());
+	}
+	
+	@GetMapping("managerapply")
+	public void managerapply(Model model,ApplyBookVO apply) {
+		log.info("도서신청 페이지");
+		
+		model.addAttribute("apply",service.apply(apply));
+		
+	}
+	
+	@PostMapping("managerapply")
+	public String managerapply(Model model,BookVO book,ApplyBookVO apply) {
+		log.info("책 신청"+ book);
+			int result=	service.book_insert(book);
+			if(result >0) {
+				log.info("apply확인"+apply);
+				service.statusChange(apply);
+				return "redirect:/manager/managerapplyList";
+			}
+				
+			return "";
 	}
 }
