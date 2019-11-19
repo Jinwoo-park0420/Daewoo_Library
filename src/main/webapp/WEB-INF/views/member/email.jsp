@@ -72,35 +72,35 @@
 	<!-- Post Content -->
   <hr>
   
-  
-<div class="rows">
-	<div class="container">
-	   <div class="col-lg-12">
-	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">비밀번호 찾기</h3>
-	      <div class="col-xs-3 col-sm-3"></div>
-	      <!--  <form method="post" action="/member/email" id="Remail" name="email" >
-	         <table class="table table-striped" >
-	            <tr>
-	              <th>user ID</th>
-	              <td><input type="text" value="" class="form-control" name="" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" value="" name="" readonly="readonly"/>
-	              <small class="text-danger" id="email"></small></td>
-	            </tr>
-	            <tr class="text-center">
-	              <td colspan="2">
-	                <button type="submit" class="btn btn-primary " style="width:260px; height:50px;">이메일 인증하기</button>
-	             	<button type="button" class="btn btn-primary" id="" onclick="location.href='/member/index'">처음으로</button>
-	              </td>
-	            </tr>
-	         </table>
-	     </form> -->
-	   </div>
-	</div>
-</div>
-  
+
+<body>
+    <div class="contact-clean">
+        <form action="/member/email" method="post">
+            <h2 class="text-center">비밀번호 찾기</h2>
+            <p class="text-center">
+               	 아래 이메일주소를 입력하시면,<br> 
+               	 입력하신 이메일로 새암호를 보내드립니다<br>
+                <br>
+            <div class="form-group has-success has-feedback">
+                <input type="text" name="username" placeholder="username"
+                    class="form-control" /><i aria-hidden="true"
+                    class="form-control-feedback glyphicon glyphicon-ok"></i>
+            </div>
+            <div class="form-group has-error has-feedback">
+                <input type="email" name="email" placeholder="email"
+                    class="form-control" /><i aria-hidden="true"
+                    class="form-control-feedback glyphicon glyphicon-remove"></i>
+                <p class="help-block">'@'포함한 이메일주소를 정확히 입력해주세요.</p>
+            </div>
+ 
+            <div class="form-group">
+                <button style=" ddalign:center;" class="btn btn-primary" type="submit">비밀번호찾기</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
   
 	<hr>
   <!-- Footer -->
