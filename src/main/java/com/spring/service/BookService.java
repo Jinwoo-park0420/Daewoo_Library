@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import com.spring.domain.ApplyBookVO;
+import com.spring.domain.BoardVO;
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
 
@@ -38,4 +39,7 @@ public interface BookService {
 	
 	//도서 상세보기
 	public BookVO bookDetail(int bookno);
+	
+	//도서 대여 페이지
+	public BookVO bookRental(int bookno);
 }

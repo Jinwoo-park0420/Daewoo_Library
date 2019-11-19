@@ -83,6 +83,10 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) 
 	select * from bookList where bookno=#{bookno}
 </select>
 
+<select id="bookRental" resultType="com.spring.domain.BookVO">
+	select * from bookList where bookno=#{bookno}
+</select>
+
 
 
 <!-- 페이지 나누기를 위한 전체 게시물 수 -->
