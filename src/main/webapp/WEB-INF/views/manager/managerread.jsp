@@ -23,25 +23,6 @@
   <!-- Custom styles for this template -->
   <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 
-<!-- 	<style>
-  	div#myinfo_left{
-  		width:13%;
-  		height:98%;
-  		background-color: white;
-  		float:left;
-  	}
-  	#myinfo_right{
-  		width:13%;
-  		height:98%;
-  		background-color: white;
-  		float:right;
-  	}
-  	#myinfo_btn{
-  		width:230px;
-  		height:50px;
-  		margin: center;
-  	}
-	</style> -->
 
 </head>
 
@@ -50,7 +31,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-    		<a class="navbar-brand" href="/member/index">대우 도서관</a>
+    		<a class="navbar-brand" href="/manager/managermain">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -60,7 +41,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 				</ul>
@@ -68,9 +49,8 @@
 				
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 				</ul>
 				</c:if>
 			</div>
@@ -98,40 +78,51 @@
 		<div class="col-lg-12">
 			 <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#8099af; ">회원 정보</h3>
 			 <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="" name="form_mypage" >
+	       <form method="#" action="" name="form_mypage" id="operForm"   >
 	         <table class="table table-striped" >
 	            <tr>
 	              <th>user ID</th>
-	              <td><input type="text" class="form-control" name="name" value="${modelVO.userid}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="userid" value="${ManagerRead.userid}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value="${modelVO.name}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="username" value="${ManagerRead.name}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="${modelVO.email}" readonly="readonly"/></td>
+	              <td><input type="email" class="form-control" name="email" value="${ManagerRead.email}" readonly="readonly"/></td>
 	            </tr>
-	            <tr>
-	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" name="tel" value="${modelVO.phone_number}" readonly="readonly" /></td>
-	            </tr>
+	            
 	            <tr>
 	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${modelVO.address}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control" name="address" value="${ManagerRead.address}" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>핸드폰번호</th>
+	              <td><input type="number" class="form-control"  name=phone_number  value="${ManagerRead.phone_number}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" class="form-control"  name="birthYear"  value="${modelVO.birthYear}" readonly="readonly"/></td>
+	              <td><input type="number" class="form-control"  name="birthYear"  value="${ManagerRead.birthYear}" readonly="readonly"/></td>
 	            </tr>
-			
+	            <tr>
+	              <th>가입날짜</th>
+	              <td><input type="number" class="form-control"  name="joindate"  value="${ManagerRead.joindate}" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>대여상태</th>
+	              <td><input type="number" class="form-control"  name="lease_status"  value="${ManagerRead.lease_status}" readonly="readonly"/></td>
+	            </tr>
+	            <tr>
+	              <th>회원등급</th>
+	              <td><input type="number" class="form-control"  name="grade"  value="${ManagerRead.grade}" readonly="readonly"/></td>
+	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
- 			<button type="button" class="btn btn-primary" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
-  			<button type="button" class="btn btn-primary" onclick="location.href=''" style="width:260px; height:50px;" id="">이메일 인증하기</button>
-	              </td>
+			<button type="button" class="btn btn-info"  style="width:260px; height:50px;" id="">회원목록으로</button>
+			<button type="button" class="btn btn-primary"  onclick="location.href='/manager/managerread'"style="width:260px; height:50px;" id="">회원탈퇴시키기</button>
+  			 
+  			     </td>
 	            </tr>
 	         </table>
 	         </form>
@@ -185,12 +176,32 @@
 
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
-    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
   <script>
-  
-  
-  </script>
 
+var operForm = $("#operForm");
+
+$(function(){
+	$(".btn-info").click(function(){
+		console.log(operForm);
+		/* bno값을 삭제하고 폼 보내기!! */
+		operForm.find("input[name='userid']").remove();
+		operForm.attr("action", "/manager/managerList");
+		operForm.submit();
+	})
+	
+	$(".btn-primary").click(function(){
+		console.log(operForm);
+		operForm.attr("method","post");
+		operForm.attr("action", "/manager/managerdelete");
+		operForm.submit();
+	})
+	
+
+})
+</script>
+  
 </body>
 
 </html>
