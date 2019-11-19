@@ -35,29 +35,33 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
+.modal-header{
+	background-color: #dee2e6;
+}
+.modal-footer{
+	background-color: #dee2e6;
+}
 .modal-title{
 	font-family: 'Nanum Pen Script', cursive;
 }
 .modal-content{
-	background-color: #e7e7e7;
+	background-color: #e9ecef;
 }
 .form-group{
 	font-family: 'Jeju Gothic', sans-serif;
 	padding:0px;
 	font-weight:bold;
 	margin-bottom:5px;
-	
 }
 .form-control{
 	font-family: 'Jeju Hallasan', cursive;
-	background-color: #e7e7e7;
+	background-color: #e9ecef;
 	font-size:14pt;
 	border:0px;
 	width:200px;
 	height:30px;
 	padding-left:8px;
 }
-
 </style>
 </head>
 <body>
@@ -104,16 +108,14 @@
 				<div class="col-lg-10 col-md-10 mx-auto">
 					<div class="page-heading">
 						<h1>자료검색</h1>
-						<form action="booksearch" id="searchForm" method="post">
+						<form action="booksearch" id="searchForm" method="get">
 							<select name="type" id="">
 								<option value="">---</option>
 								<option value="bookname" <c:out value="${pageVO.cri.type eq 'bookname'?'selected':'' }"/>>도서명</option>
 								<option value="writer" <c:out value="${pageVO.cri.type eq 'writer'?'selected':'' }"/>>저 자</option>
 								<option value="publisher" <c:out value="${pageVO.cri.type eq 'publisher'?'selected':'' }"/>>출판사</option>
-							</select> 
+							</select> 	
 							<input type="text" name="keyword" value="" placeholder="검색어를 입력하세요" />
-                            <input type="hidden" name="type" value="${pageVO.cri.type}" />
-							<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 							<button class="btn btn-outline-light" type="submit">Search</button>
 						</form>
 					</div>
@@ -164,13 +166,12 @@
 					</c:forEach>
 					</tbody>
 				</table>
-			</div>
 	<!-- start Pagination -->
-	<div class="text-center">
-    	<ul class="pagination" style="margin-left: 400px;">
-        	<c:if test="${pageVO.prev }">
+	<div class="text-center col-lg-8.5" style="margin-left: auto;width: 1000px">
+    	<ul class="pagination" style="display: -webkit-inline-box;">
+        	<c:if test="${pageVO.prev }">	
             	<li class="paginate_button previous">
-                	<a href="${pageVO.nowPage-1}" class="btn btn-light">이전</a>
+                	<a href="${pageVO.startPage-1}" class="btn btn-light">이전</a>
                 </li>
                 </c:if>
                 <c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }" >
@@ -180,18 +181,21 @@
                     </c:forEach>
                     <c:if test="${pageVO.next }">
 	                	<li class="paginate_button next">
-		                	<a href="${pageVO.nowPage+1 }" class="btn btn-light">다음</a>
+		                	<a href="${pageVO.endPage+1 }" class="btn btn-light">다음</a>
 	                   	</li>
                     </c:if>
                 </ul>
 			</div>
             <!-- end Pagination -->
-        </div>
+			</div>
+            	</div>
 	</div>
 <!-- 페이지 번호를 클릭하면 보낼 폼 -->
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${pageVO.cri.type}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
 
 <!-- Modal -->
@@ -213,36 +217,41 @@
       <div class="" style="padding:20px; float: left; width: 60%">
       	<div class="form-group">
       		<label for="bookname" style="margin-bottom:1px;">도서명 : </label>
-      		<input type="text" class="form-control" id="bookname" name="bookname" style="font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="bookname" name="bookname" style="font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly/>
       	</div>
       	<div class="form-group">
       		<label for="writer" style="margin-bottom:1px;">저 자 : </label>
-      		<input type="text" class="form-control" id="writer" name="writer" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="writer" name="writer" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly/>
       	</div>
       	<div class="form-group">
       		<label for="publisher" style="margin-bottom:1px;">출판사 : </label>
-      		<input type="text" class="form-control" id="publisher" name="publisher" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      		<input type="text" class="form-control" id="publisher" name="publisher" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly/>
       	</div>
       	<div class="form-group">
       		<label for="genre" style="margin-bottom:1px;">장 르 : </label>
-      		<input type="text" class="form-control" id="genre" name="genre" readonly />
+      		<input type="text" class="form-control" id="genre" name="genre" readonly/>
       	</div>
       	<div class="form-group">
       		<label for="isbn" style="margin-bottom:1px;">isbn : </label>
-      		<input type="text" class="form-control" id="isbn" name="isbn" readonly />
+      		<input type="text" class="form-control" id="isbn" name="isbn" readonly/>
       	</div>
       	<div class="form-group">
       		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
-      		<input type="text" class="form-control" id="status" name="status" readonly />
+      		<input type="text" class="form-control" id="status" name="status" readonly/>
+      	</div>
+      	<div class="form-group">
+      		<label for="bookno" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="bookno" name="bookno"/>
       	</div>
       	</div>
 		</div>
       <div class="modal-footer">
+      	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">목록으로</button>
       </div>
     </div>
   </div>
 </div>
-
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -278,7 +287,8 @@
 <script>
 $(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
-$(".btn-outline-light").click(function(){
+$(".btn-outline-light").click(function(e){
+	e.preventDefault();
 	var searchForm=$("#searchForm");
 	//검색조건이나 검색어가 비어있는지 확인하고
 	//알림창 띄우고
@@ -297,7 +307,7 @@ $(".btn-outline-light").click(function(){
 	searchForm.submit();
 })
 
-//하단의 페이지 번호 클릭시 작동하는 스크립트
+	//하단의 페이지 번호 클릭시 작동하는 스크립트
 	var actionForm=$("#actionForm");
 	$(".paginate_button a").click(function(e){
 		e.preventDefault(); //a 태그의 동작 막기
@@ -305,9 +315,8 @@ $(".btn-outline-light").click(function(){
 		actionForm.submit();
 	})
 
-	 var modal=$("#bookDetailModal");
-	
-	//제목을 클릭하면 실행될 스크립트
+ 	//제목을 클릭하면 실행될 스크립트
+	var modal=$("#bookDetailModal");
 	$(".move").click(function(e){
 		e.preventDefault(); //a 태그 막기
 		console.log("도서 상세정보 클릭");		
@@ -323,7 +332,6 @@ $(".btn-outline-light").click(function(){
 				console.log(result);
 				//result 값을 모달 안에 넣어주기
 						
-				var exampleModalCenterTitle=result.bookname+" 상세 정보";
 				var bookno = result.bookno;
 				var bookname=result.bookname;
 				var writer = result.writer;
@@ -332,16 +340,19 @@ $(".btn-outline-light").click(function(){
 				var status = result.status;
 				var isbn = result.isbn;
 					
-				$("#exampleModalCenterTitle").val(exampleModalCenterTitle)
-				$("#bookno").val(bookno)	
+				$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
+				$("#bookno").val(bookno);	
 				$("#bookname").val(bookname);
 				$("#writer").val(writer);
 				$("#genre").val(genre);
 				$("#publisher").val(publisher);
+				$("#status").val(status);
 				if(status==0){
+					var colorChange=document.getElementById("status");
+					colorChange.style.color="#0000ff";
 					$("#status").val("대여 가능");
-					
 				}else{
+					colorChange.style.color="#ff0000";
 					$("#status").val("대여 중")
 				}
 				$("#isbn").val(isbn);
@@ -349,9 +360,29 @@ $(".btn-outline-light").click(function(){
 				modal.find(".imgModal").attr("src","/resources/thumb/"+bookno+".jpg");
 															
 				modal.modal("show");
+
 			}			
+		
 		})
+
+		
+	//대여하기 버튼 클릭시 실행될 스크립트
+	$("#moveBtn").click(function(e){
+		e.preventDefault();
+		console.log("도서 대여페이지 이동");
+		var bookno=$("#bookno").val();
+		
+		location.href="/book/bookRental?bookno="+bookno;
+		
+		modal.modal("hide");
+	})
+	
+	$("#closeBtn").click(function(e){
+		e.preventDefault();
+		modal.modal("hide");
+	})
 	}) 
+
 })
 </script>
 </html>

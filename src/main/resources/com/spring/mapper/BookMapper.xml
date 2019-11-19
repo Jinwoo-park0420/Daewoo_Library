@@ -79,20 +79,11 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) 
 	]]>
 </select>
 
-<select id="book_search" resultType="com.spring.domain.BookVO">
-	select * from bookList where 
-		<if test="type=='bookname'.toString()">
-			bookname like '%'||#{keyword}||'%'
-		</if>
-		<if test="type=='writer'.toString()">
-			writer like '%'||#{keyword}||'%'
-		</if>
-		<if test="type=='publisher'.toString()">
-			publisher like '%'||#{keyword}||'%'
-		</if>
+<select id="bookDetail" resultType="com.spring.domain.BookVO">
+	select * from bookList where bookno=#{bookno}
 </select>
 
-<select id="bookDetail" resultType="com.spring.domain.BookVO">
+<select id="bookRental" resultType="com.spring.domain.BookVO">
 	select * from bookList where bookno=#{bookno}
 </select>
 
@@ -143,25 +134,16 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) 
 	]]>
 </select>
 
-<!-- 동적 sql 문 : 재사용 가능-->
-<sql id="criteria">
-	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-		<foreach collection="typeArr" item='type'>
-			<trim prefix="OR">
-				<choose>
-					<when test="criteria=='bookname'.toString">
-						bookname like '%'||#{keyword}||'%'
-					</when>
-					<when test="criteria=='writer'.toString">
-						writer like '%'||#{keyword}||'%'
-					</when>
-					<when test="criteria=='publisher'.toString">
-						publisher like '%'||#{keyword}||'%'
-					</when>
-				</choose>
-			</trim>
-		</foreach>
-	</trim>
+<sql id="criteria">	
+	<if test="type=='bookname'.toString()">
+		(bookname like '%'||#{keyword}||'%') AND
+	</if>
+	<if test="type=='writer'.toString()">
+		(writer like '%'||#{keyword}||'%') AND
+	</if>
+	<if test="type=='publisher'.toString()">
+		(publisher like '%'||#{keyword}||'%') AND
+	</if>	
 </sql>
 
 </mapper>
