@@ -15,7 +15,7 @@
 <table class="table table-striped table-hover">
 <tr> 
 <td><i class="fa fa-anchor fa-spin"></i> 
-댓글 달기(작성자:  <input type="text" name="writer"/>)</td>
+댓글 달기(작성자:  <input type="text" value="${vo1.userid}" name="writer" readonly="readonly"/>)</td>
 	</tr>
 	<input type="hidden" value="${vo.bno}" name="bno"/>
 	<tr>
@@ -25,7 +25,7 @@
 </td>
 </tr>
 <tr>
-<td><i class="fa fa-cog fa-spin fa-fw"></i>댓글</td>
+<td><i class="fa fa-cog fa-spin fa-fw"></i><strong>댓글</strong>[${vo.replycnt}]</td>
 </tr>
 	<c:forEach items="${repList}" var="repList">
 	<tr>
@@ -38,14 +38,16 @@
     	</c:forEach>          						
 </table>
 </form>
-	<script>
+	<script>	
 	var formObj=$(".replyForm form[role='form']");
-	
+		
 	$(".btn-light").click(function(){
 		formObj.attr("action","replyWrite");
-		formObj.submit();
-	});
+		formObj.submit();		
+	});	
 	</script>
+	
+	
 </section>
 
 </body>

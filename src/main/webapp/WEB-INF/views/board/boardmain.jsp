@@ -140,7 +140,6 @@
 					start=start+1;
 				%>
 				</c:forEach>	
-					
 			</tbody>
 		</table>
 		<div><p>총 게시글 수: ${pageVO.total}</p></div>

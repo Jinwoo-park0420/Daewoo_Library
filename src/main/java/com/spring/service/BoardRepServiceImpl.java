@@ -1,31 +1,67 @@
 package com.spring.service;
 
-import java.util.List;
+import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.BoardRepVO;
+import com.spring.domain.Criteria;
+import com.spring.domain.ReplyPageDTO;
+import com.spring.mapper.BoardMapper;
 import com.spring.mapper.BoardRepMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
+@Service("board")
 public class BoardRepServiceImpl implements BoardRepService {
 
 	@Autowired
 	private BoardRepMapper repmapper;
-
+	@Inject
+	private BoardMapper mapper;
+	
 	@Override
-	public List<BoardRepVO> readReply(int bno) {
-		log.info("댓글불러오기!");
-		return repmapper.readReply(bno);
+	public ReplyPageDTO list(Criteria cri, int bno) {
+		log.info("댓글 리스트 불러오기");
+		return new ReplyPageDTO(repmapper.getCountBno(bno),repmapper.getlist(cri, bno));
 	}
-
+	
+	@Transactional
 	@Override
-	public void insertReply(BoardRepVO repvo) {
-		log.info("댓글 작성하기");
-		repmapper.insertReply(repvo);
+	public boolean insert(BoardRepVO vo) {
+		log.info("댓글 작성");
+		mapper.updateReplyCnt(1, vo.getBno()); //댓글갯수
+		return repmapper.insertReply(vo)==1?true:false;
 	}
+	
+	@Override
+	public int getCountBno(int bno) {
+		log.info("bno값 가져오기");
+		return repmapper.getCountBno(bno);
+	}
+	
+	@Override
+	public BoardRepVO read(int cno) {
+		log.info("댓글 가져오기");
+		return repmapper.read(cno);
+	}
+	
+	@Transactional
+	@Override
+	public boolean del(int cno) {
+		log.info("댓글 삭제하기");
+		BoardRepVO repvo=repmapper.read(cno);
+		mapper.updateReplyCnt(-1, repvo.getBno()); //댓글수 -1
+		return repmapper.del(cno)==1?true:false;
+	}
+	
+	@Override
+	public boolean update(BoardRepVO repvo) {
+		log.info("댓글 수정하기");
+		return repmapper.update(repvo)==1?true:false;
+	}
+	
 }

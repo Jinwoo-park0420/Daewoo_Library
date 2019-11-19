@@ -102,9 +102,14 @@
 			<div class="col-lg-8 col-md-10 mx-auto">
 					<hr>
 				<div class="post-preview">
+				<c:if test="${empty list}">
+					<a href="/board/boardmain2"> <!-- 게시판에 글이 없을 시에 게시물이 없다는 페이지로 이동 -->
+						<h2 class="post-title">건의사항</a></h2>
+				</c:if>
+				<c:if test="${!empty list}">
 					<a href="/board/boardmain">
-						<h2 class="post-title">건의사항</h2>
-						
+						<h2 class="post-title">건의사항</a></h2>
+				</c:if>												
 				</div>
 				<hr>
 				<div class="post-preview">
