@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.domain.ApplyBookVO;
+import com.spring.domain.BoardVO;
 import com.spring.domain.BookCriteria;
 import com.spring.domain.BookVO;
 
@@ -37,4 +38,7 @@ public interface BookMapper {
 	
 	//도서 상세보기
 	public BookVO bookDetail(int bookno);
+	
+	//도서 대여 페이지
+	public BookVO bookRental(int bookno);
 }
