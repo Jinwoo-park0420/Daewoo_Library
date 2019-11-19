@@ -35,29 +35,33 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
+.modal-header{
+	background-color: #dee2e6;
+}
+.modal-footer{
+	background-color: #dee2e6;
+}
 .modal-title{
 	font-family: 'Nanum Pen Script', cursive;
 }
 .modal-content{
-	background-color: #e7e7e7;
+	background-color: #e9ecef;
 }
 .form-group{
 	font-family: 'Jeju Gothic', sans-serif;
 	padding:0px;
 	font-weight:bold;
 	margin-bottom:5px;
-	
 }
 .form-control{
 	font-family: 'Jeju Hallasan', cursive;
-	background-color: #e7e7e7;
+	background-color: #e9ecef;
 	font-size:14pt;
 	border:0px;
 	width:200px;
 	height:30px;
 	padding-left:8px;
 }
-
 </style>
 </head>
 <body>
@@ -235,9 +239,15 @@
       		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
       		<input type="text" class="form-control" id="status" name="status" readonly />
       	</div>
+      	<div class="form-group">
+      		<label for="bookno" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="bookno" name="bookno"/>
+      	</div>
       	</div>
 		</div>
       <div class="modal-footer">
+      	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
+      	<button class="btn btn-dark btn-sm" id="closeBtn" type="submit">목록으로</button>
       </div>
     </div>
   </div>
@@ -277,7 +287,7 @@
 <script>
 $(function(){
 //검색 버튼이 눌러지면 작동할 스크립트
-$(".btn-outline-light").click(function(){
+$(".btn-outline-light").click(function(e){
 	e.preventDefault();
 	var searchForm=$("#searchForm");
 	//검색조건이나 검색어가 비어있는지 확인하고
@@ -297,17 +307,16 @@ $(".btn-outline-light").click(function(){
 	searchForm.submit();
 })
 
-//하단의 페이지 번호 클릭시 작동하는 스크립트
+	//하단의 페이지 번호 클릭시 작동하는 스크립트
 	var actionForm=$("#actionForm");
 	$(".paginate_button a").click(function(e){
 		e.preventDefault(); //a 태그의 동작 막기
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	})
-	
-	var modal=$("#bookDetailModal");
 
-//제목을 클릭하면 실행될 스크립트
+ 	//제목을 클릭하면 실행될 스크립트
+	var modal=$("#bookDetailModal");
 	$(".move").click(function(e){
 		e.preventDefault(); //a 태그 막기
 		console.log("도서 상세정보 클릭");		
@@ -323,7 +332,6 @@ $(".btn-outline-light").click(function(){
 				console.log(result);
 				//result 값을 모달 안에 넣어주기
 						
-				var exampleModalCenterTitle=result.bookname+" 상세 정보";
 				var bookno = result.bookno;
 				var bookname=result.bookname;
 				var writer = result.writer;
@@ -332,16 +340,19 @@ $(".btn-outline-light").click(function(){
 				var status = result.status;
 				var isbn = result.isbn;
 					
-				$("#exampleModalCenterTitle").val(exampleModalCenterTitle)
-				$("#bookno").val(bookno)	
+				$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
+				$("#bookno").val(bookno);	
 				$("#bookname").val(bookname);
 				$("#writer").val(writer);
 				$("#genre").val(genre);
 				$("#publisher").val(publisher);
+				$("#status").val(status);
 				if(status==0){
+					var colorChange=document.getElementById("status");
+					colorChange.style.color="#0000ff";
 					$("#status").val("대여 가능");
-					
 				}else{
+					colorChange.style.color="#ff0000";
 					$("#status").val("대여 중")
 				}
 				$("#isbn").val(isbn);
@@ -349,9 +360,29 @@ $(".btn-outline-light").click(function(){
 				modal.find(".imgModal").attr("src","/resources/thumb/"+bookno+".jpg");
 															
 				modal.modal("show");
+
 			}			
+		
 		})
+
+		
+	//대여하기 버튼 클릭시 실행될 스크립트
+	$("#moveBtn").click(function(e){
+		e.preventDefault();
+		console.log("도서 대여페이지 이동");
+		var bookno=$("#bookno").val();
+		
+		location.href="/book/bookRental?bookno="+bookno;
+		
+		modal.modal("hide");
 	})
+	
+	$("#closeBtn").click(function(e){
+		e.preventDefault();
+		modal.modal("hide");
+	})
+	}) 
+
 })
 </script>
 </html>

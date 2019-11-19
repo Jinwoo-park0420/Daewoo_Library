@@ -193,13 +193,9 @@
 <!-- 페이지 번호를 클릭하면 보낼 폼 -->
 <form action="" id="actionForm">
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }" />
-<<<<<<< HEAD
-	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
-=======
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
 	<input type="hidden" name="type" value="${pageVO.cri.type}" />
 	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
->>>>>>> refs/remotes/origin/master
 </form>
 
 <!-- Modal -->
@@ -251,7 +247,7 @@
 		</div>
       <div class="modal-footer">
       	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
-      	<button class="btn btn-dark btn-sm" id="closeBtn" type="submit">목록으로</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">목록으로</button>
       </div>
     </div>
   </div>
@@ -386,8 +382,6 @@ $(".btn-outline-light").click(function(e){
 		modal.modal("hide");
 	})
 	}) 
-
-	})
 
 })
 </script>

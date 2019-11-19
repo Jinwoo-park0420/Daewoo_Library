@@ -41,9 +41,10 @@
 	font-weight:bold;
 	margin-bottom:5px;
 }
+
 .form-control{
 	font-family: 'Jeju Hallasan', cursive;
-	background-color: #e9ecef;
+	background-color: #fff;
 	font-size:14pt;
 	border:0px;
 	width:200px;
@@ -143,7 +144,7 @@
 	</div>
 	 <div class="contents-footer">
       	<button class="btn btn-dark" id="moveBtn2" role="button" style="margin-left:125px;">대여신청</button>
-      	<button class="btn btn-dark" id="closeBtn" type="submit">전체목록으로</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">이전페이지로</button>
      </div>
 	
 	
@@ -192,6 +193,8 @@ $(function(){
 		
 		console.log("도서 대여신청 완료");
 		var bookno=$("#bookno").val();
+		var status=$("#status").val();
+
 		alert("대여 신청 완료");
 		location.href="/book/booksearch";
 		
@@ -199,7 +202,7 @@ $(function(){
 	
 	$("#closeBtn").click(function(){
 		
-		location.href="/book/booksearch";
+		history.back();
 	})
 })
 </script>
