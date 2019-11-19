@@ -1,14 +1,15 @@
 package com.spring.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.spring.domain.BoardRepVO;
+import com.spring.domain.Criteria;
+import com.spring.domain.ReplyPageDTO;
 
 public interface BoardRepService {
 	
-	public void insertReply(BoardRepVO repvo);
-	//댓글 조회
-	public List<BoardRepVO> readReply(int bno);
+	public boolean insert(BoardRepVO vo);
+	public ReplyPageDTO list(Criteria cri,int bno);
+	public int getCountBno(int bno);
+	public BoardRepVO read(int rno);
+	public boolean del(int rno);
+	public boolean update(BoardRepVO vo);
 }

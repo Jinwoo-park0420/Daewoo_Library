@@ -1,30 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.Book_reportMapper">
-<insert id="book_reportinsert">
-		<!-- insert SQL문이 실행하기 전에(order="BEFORE") resultType="int"타입의 keyProperty="bno"의 변수 이름으로 해당 값을 저장!!! -->
+	<insert id="book_reportinsert">
+		<!-- insert SQL문이 실행하기 전에(order="BEFORE") resultType="int"타입의 keyProperty="bno"의 
+			변수 이름으로 해당 값을 저장!!! -->
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
 
 			select seq_reportbno.nextVal from dual
 		</selectKey>
-insert into book_report(bno,title,writer,content,password) values(#{bno},#{title},#{writer},#{content},#{password})
-</insert>
+
+		insert into book_report(bno,title,writer,content,password)
+		values(#{bno},#{title},#{writer},#{content},#{password})
+	</insert>
 
 
 
-<select id="book_reportList" resultType="com.spring.domain.Book_reportVO">
-select * from book_report order by bno
+	<select id="book_reportList"
+		resultType="com.spring.domain.Book_reportVO">
+
+
+<![CDATA[
+		select *
+		from ( select rownum rn,bno,title,content,writer,regdate,updatedate from 
+		          (select rownum,bno,title,content,writer,regdate,updatedate
+		          from book_report order by bno desc) 
+		where 
+		]]>
+	
+		<![CDATA[
+		rownum<=#{pageNum}*#{amount} ) where rn>(#{pageNum}-1)*#{amount} 
+		]]>
+
+
+	</select>
+
+<select id="getTotalCount" resultType="int">
+		select count(*) from book_report where 
+		bno>0
 </select>
 
-<select id="book_reportSelectList" resultType="com.spring.domain.Book_reportVO">
-select * from book_report where bno=#{bno}
-</select>
+	<select id="book_reportSelectList"
+		resultType="com.spring.domain.Book_reportVO">
+		select * from book_report where bno=#{bno}
+	</select>
 
-<update id="book_reportupdate">
-update book_report set title=#{title} ,  content=#{content} , updatedate=sysdate where bno=#{bno} and password=#{password} 
-</update>
-<delete id="book_reportdelete">
-delete from book_report where  bno=#{bno} and password=#{password} 
-</delete>
+	<update id="book_reportupdate">
+		update book_report set title=#{title} , content=#{content} ,
+		updatedate=sysdate where bno=#{bno} and password=#{password}
+	</update>
+	<delete id="book_reportdelete">
+		delete from book_report where bno=#{bno} and password=#{password}
+	</delete>
 
 </mapper>

@@ -5,6 +5,15 @@
 <html lang="ko">
 <head>
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="/resources/js/clean-blog.min.js"></script>
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,6 +40,18 @@
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 
 </head>
+<script>
+$(function(){
+	var message='${message}';
+	if(message!="" && message.length !=0){
+		alert(message);
+		
+	}
+	
+	
+})
+
+</script>
 
 <body>
 
@@ -126,16 +147,6 @@
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="/resources/js/clean-blog.min.js"></script>
-<script>
-
-
-</script>
 
 </body>
 

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.AttachFileVO;
 import com.spring.domain.BoardVO;
 import com.spring.domain.Book_reportVO;
+import com.spring.domain.Criteria;
+import com.spring.domain.PageVO;
 import com.spring.service.Book_reportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,10 +35,12 @@ public class Book_reportController{
 	private Book_reportService service;
 		
 	@GetMapping("book_reportmain")
-	public void book_reportMain(Model model) {
+	public void book_reportMain(Model model,Criteria cri) {
 		log.info("독후감 메인페이지 요청");
 		
-		model.addAttribute("list",service.book_reportList());		
+		model.addAttribute("list",service.book_reportList(cri));
+		model.addAttribute("pageVO",new PageVO(cri,service.getTotalCount(cri)));
+		System.out.println(service.getTotalCount(cri));
 	}
 	
 	@GetMapping("book_reportinsert")
@@ -66,17 +71,19 @@ public class Book_reportController{
 		}
 	}	
 	@GetMapping("book_reportread")
-	public String book_reportreadGet(@RequestParam(value="bno")int bno,Model model) {
+	public String book_reportreadGet(@RequestParam(value="bno")int bno,Model model,@ModelAttribute("cri") Criteria cri) {
 		Book_reportVO report_select=service.book_reportSelectList(bno);
 		model.addAttribute("report_select",report_select);
+		model.addAttribute("cri",cri);
 		return "book_report/book_reportread";
 	}
 	@GetMapping("book_reportmodify")
-	public String book_reportmodifyGet(Book_reportVO report,Model model) {
+	public String book_reportmodifyGet(Book_reportVO report,Model model,@ModelAttribute("cri") Criteria cri) {
 		log.info("수정페이지요청");
 		int bno=report.getBno();
 		Book_reportVO report_select=service.book_reportSelectList(bno);
 		model.addAttribute("report_select",report_select);
+		model.addAttribute("cri",cri);
 		return "book_report/book_reportmodify";
 	}
 	
