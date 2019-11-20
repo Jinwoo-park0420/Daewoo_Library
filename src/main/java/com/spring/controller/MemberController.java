@@ -30,6 +30,8 @@ import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
 import com.spring.domain.PageVO;
 import com.spring.service.BoardService;
+import com.spring.service.BookService;
+import com.spring.service.Book_reportService;
 import com.spring.service.EmailSender;
 import com.spring.service.MemberService;
 
@@ -46,6 +48,12 @@ public class MemberController {
 	
 	@Autowired
 	private BoardService boardservice;
+	
+	@Autowired
+	private Book_reportService reportservice;
+	
+	@Autowired
+	private BookService bookservice;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -239,18 +247,31 @@ public class MemberController {
 	}
 	
 	@GetMapping("/lendlist")
-	public String lendlist(Criteria cri,Model model, RedirectAttributes rttr) {
+	public String lendlist(Model model,BoardVO boardvo,Criteria cri,MemberVO vo) {
 		
-		log.info("게시판글 목록 불러오기");
+		
+		log.info("내 활동 불러오기");
 			
-		List<BoardVO> list=boardservice.getList(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list",list);
-		}
-		else {
-			return "/board/boardmain2";
-		}
-		return "redirect:/board/boardmain";
+		 List<BoardVO> list = boardservice.getList(cri);
+		 List<Book_reportVO> reportlist=reportservice.book_reportList(cri);
+		 System.out.println("이찬해씨꺼"+list);
+		 System.out.println("박진우씨꺼"+reportlist);
+		 
+		 if(!list.isEmpty()) {
+			 log.info("여기까진 돔1");
+				model.addAttribute("list",list);
+				model.addAttribute("pageVO",new PageVO(cri,boardservice.totalCnt(cri)));
+			}
+		
+		  if(!reportservice.book_reportList(cri).isEmpty()) { log.info("여기까진 돔2");
+		  model.addAttribute("reportlist",reportlist); }
+		 
+		 
+			//model.addAttribute("booklist",bookservice.getList(cri));
+			
+			
+//			return "redirect:/member/memberactive?type='W'&keyword="+vo.getUserid();
+			return "/member/memberactive?type='w'keyword="+vo.getUserid();
 	}
 
 	@GetMapping("mypageinfo")

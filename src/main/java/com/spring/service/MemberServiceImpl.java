@@ -22,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMapper mapper;
+
 	
 	
 	@Override
@@ -103,5 +104,6 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.boardinfo(board);
 	}
+	
 	
 }

@@ -53,5 +53,6 @@ select * from book_report where writer=#{userid}
 <select id="boardinfo" resultType="com.spring.domain.BoardVO">
 select * from library_board where writer=#{userid}
 </select>
+
 </mapper>
 

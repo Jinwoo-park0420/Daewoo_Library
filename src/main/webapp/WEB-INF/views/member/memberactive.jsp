@@ -140,23 +140,21 @@
 				<%
 					start=start+1;
 				%>
-				</c:forEach>	
 			</tbody>
+			</c:forEach>	
 			
-			<c:forEach var="report" items="${list}">
+			<%-- <%-- <c:forEach var="reportlist" items="${reportlist}">
 			<tbody>
 				<tr>
-					<td><%=start%></td>				
-					<td>${report.title}</td>
-					<td>${vo.writer}</td>
-					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
-					<td>${vo.readcnt}</td>
+							
+					<td>${reportlist.title}</td>
+					<td>${reportlist.writer}</td>
+					<td><fmt:formatDate value="${reportlist.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 				</tr>
-				<%
-					start=start+1;
-				%>
-				</c:forEach>	
+				
 			</tbody>
+			</c:forEach> --%> --%>
+			
 		</table>
 		<div>
 		</div>
