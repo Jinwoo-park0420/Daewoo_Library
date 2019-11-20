@@ -82,6 +82,7 @@
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link">${vo1.userid}님</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -166,17 +167,20 @@
 					</ul>
 				</div>
 				<div>
-				<form action="" method="get" id="search">
-				<select name="" id="">
-				<option value="n" <c:out value="${pageVO.cri.type == null?'selected':''}"/>>---</option>
-				<option value="t" <c:out value="${pageVO.cri.type == 't'?'selected':''}"/>>제목</option>
-				<option value="w" <c:out value="${pageVO.cri.type == 'w'?'selected':''}"/>>작성자</option>
-				</select>
-				<input type="text" name="keyword" />
-				<input type="button" class="btn btn-light" value="검색"/>
-				</form>
-				</div>				
-			</div>
+				<form action="" id="searchForm" method="get">
+				<select name="type" id="">
+				<option value="">---</option>
+   				<option value="T" <c:out value="${pageVO.cri.type eq 'T'?'selected':''}"/>>제목</option>
+                <option value="C" <c:out value="${pageVO.cri.type eq 'C'?'selected':''}"/>>내용</option>
+                <option value="W" <c:out value="${pageVO.cri.type eq 'W'?'selected':''}"/>>작성자</option>
+                </select>
+				<input type="text" name="keyword" value="${pageVO.cri.keyword}"/>
+                <input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}"/>
+                <input type="hidden" name="amount" value="${pageVO.cri.amount}"/>
+                <button class="btn btn-default">검색</button>
+			</form><!-- 검색종료 -->
+		</div>				
+	</div>
 			
 
 <%-- 페이지 번호를 클릭하면 보낼 폼 --%>
@@ -195,6 +199,29 @@ $(".paginate_button a").click(function(e){
 	actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 	actionForm.submit();
 })
+
+
+//검색 버튼이 눌러지면 작동할 스크립트
+	$(".btn-default").click(function(){
+		var searchForm=$("#searchForm");
+		//검색조건이나 검색어가 비어 있는지 확인하고
+		//알림창 띄우고
+		//비어 있으면 searchForm으로 되돌려 보내기
+		if(!searchForm.find("option:selected").val()){
+			alert("검색 종류를 선택하세요");
+			return false;
+		}
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert("검색어를 선택하세요");
+			searchForm.find("input[name='keyword']").focus();
+			return false;
+		}
+		//검색폼을 보내기 전에 pageNum값을 1로 변경 후 보내기
+		searchForm.find("input[name='pageNum']").val("1");
+		
+		searchForm.submit();
+	})
+
 </script>
 
 
