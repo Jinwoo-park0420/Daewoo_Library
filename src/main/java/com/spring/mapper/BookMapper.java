@@ -49,4 +49,6 @@ public interface BookMapper {
 	public int rentalUpdate(BookVO vo);
 	//반납
 	public int returnUpdate(BookVO vo);
+	
+	public int returnstatusUpdate();
 }

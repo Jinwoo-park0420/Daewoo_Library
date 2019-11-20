@@ -119,4 +119,11 @@ public class BookServiceImpl implements BookService {
 		return mapper.getLoanCount(cri);
 	}
 
+
+	@Override
+	public int returnstatusUpdate() {
+		// TODO Auto-generated method stub
+		return mapper.returnstatusUpdate();
+	}
+
 }

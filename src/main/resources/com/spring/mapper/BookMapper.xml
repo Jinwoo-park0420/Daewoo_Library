@@ -173,4 +173,8 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,isbn,genre,us
 	</if>	
 </sql>
 
+  <update id="returnstatusUpdate">
+update library_member SET lease_status  =(select status from booklist where booklist.userid=library_member.userid);
+    </update> 
+
 </mapper>

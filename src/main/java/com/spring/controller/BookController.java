@@ -113,7 +113,12 @@ public class BookController {
 		if(status==0) {
 			return "true";
 		}else {
+			/*
+			 * int result=service.returnstatusUpdate();//멤버에서의 상태변경
+			 * System.out.println("값"+result);
+			 */
 			return "false";
+			
 		}
 	}
 	
@@ -126,6 +131,11 @@ public class BookController {
 		if(status==0) {
 			return "true";
 		}else {
+			
+			/*
+			 * int result=service.returnstatusUpdate();//멤버에서의 상태변경
+			 * System.out.println("값"+result);
+			 */
 			return "false";
 		}
 	}

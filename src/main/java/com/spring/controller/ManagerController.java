@@ -124,5 +124,11 @@ public class ManagerController {
 		
 		return "redirect:/manager/managerreport";
 	}
+	@GetMapping("managerbooklist")
+	public void booklist(Model model) {
+		log.info("도서리스트");
+		
+	model.addAttribute("booklist",service.bookUserList());
 	
+	}
 }

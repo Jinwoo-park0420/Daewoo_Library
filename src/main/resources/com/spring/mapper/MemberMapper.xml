@@ -6,7 +6,7 @@
 
 <insert id="memberJoin" >
 
-	insert into Library_member(name,birthYear,userid,password,email,address,phone_number) values(#{name},#{birthYear},#{userid},#{password},#{email},#{address},#{phone_number})
+	insert into Library_member(name,birthYear,userid,password,email,address,phone_number,lease_status) values(#{name},#{birthYear},#{userid},#{password},#{email},#{address},#{phone_number},0)
 
 </insert>
 

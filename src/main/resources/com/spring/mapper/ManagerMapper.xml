@@ -31,5 +31,8 @@ update applybook set applystatus=2 where isbn=#{isbn}
 <update id="applyChange">
 update book_report set apply=1 where bno=#{bno}
 </update>
+<select id="bookUserList" resultType="com.spring.domain.BookVO">
+select * from booklist where userid is not null
+</select>
 
 </mapper>

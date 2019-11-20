@@ -26,4 +26,7 @@ public interface ManagerMapper {
 	public int statusChange2(ApplyBookVO apply);
 	
 	public int applyChange(Book_reportVO report);
+	
+	public List<BookVO> bookUserList();
+	
 }

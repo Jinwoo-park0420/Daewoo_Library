@@ -79,4 +79,10 @@ public class ManagerServiceImpl implements ManagerService {
 		return mapper.statusChange2(apply);
 	}
 
+	@Override
+	public List<BookVO> bookUserList() {
+		// TODO Auto-generated method stub
+		return mapper.bookUserList();
+	}
+
 }
