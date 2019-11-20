@@ -143,11 +143,6 @@ $(function(){
 
 						<div class="navbar">
 							<br>
-							<li class="menu"><a href="/library/libraryinfo">도서관 안내</a>
-								<ul class="hide">
-									<li><a href="#">이용 안내</a></li>
-									<li><a href="#">찾아오시는 길</a></li>
-								</ul></li>
 							<li class="menu"><a href="/book/booksearch">자료 검색</a>
 								<ul class="hide">
 									<li><a href="#">신간 자료</a></li>
