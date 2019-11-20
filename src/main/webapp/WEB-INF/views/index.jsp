@@ -91,6 +91,7 @@ $(function(){
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
+						<li class="nav-item"><a class="nav-link">${vo1.userid}님</a></li>
 					</ul>
 				</c:if>
 			</div>

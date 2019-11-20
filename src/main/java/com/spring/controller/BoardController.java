@@ -31,15 +31,8 @@ public class BoardController {
 	private BoardRepService repservice;
 	
 	@GetMapping("/boardinfo")
-<<<<<<< HEAD
-
 	public void boardinfo(Model model,Criteria cri) {	
 		log.info("소통참여 홈페이지 호출");
-		
-=======
-	public void boardinfo(Model model,Criteria cri) {
-		log.info("소통참여 홈페이지 호출");		
->>>>>>> refs/remotes/origin/master
 		List<BoardVO> list=service.getList(cri);
 		model.addAttribute("list",list);
 	}
@@ -49,10 +42,12 @@ public class BoardController {
 		log.info("게시판글 목록 불러오기");
 		
 		List<BoardVO> list=service.getList(cri);
-		
 		if(!list.isEmpty()) {
 			model.addAttribute("list",list);
 			model.addAttribute("pageVO",new PageVO(cri,service.totalCnt(cri)));
+		}
+		else {
+			return "/board/boardmain2";
 		}
 		return "/board/boardmain";
 	}
@@ -82,12 +77,6 @@ public class BoardController {
 		log.info("글 읽기 페이지 이동"+bno+"번 글");
 		model.addAttribute("vo", service.selectboard(bno));
 		model.addAttribute("rep",service.readCountupdate(bno));
-		
-		//게시물 댓글
-		/*
-		 * List<BoardRepVO> repList=repservice.readReply(bno);
-		 * model.addAttribute("repList",repList);
-		 */
 	}
 	
 	@GetMapping("/boardmodify")

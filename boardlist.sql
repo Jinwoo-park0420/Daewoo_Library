@@ -8,11 +8,16 @@ writer nvarchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,
 readcnt number(10),--조회수
-replycnt number(10) default 0 --댓글수
+replycnt number(10) default 0, --댓글수
+constraint fk_library_user foreign key(writer)
+references Library_member(userid)
+on delete cascade
 );
 
-<!--댓글수에 대한 정보를 담을 칼럼추가하 -->
-alter table library_board add(replycnt number default 0);
+<!-- 트리거 만드는중 -->
+create or replace trigger 
+
+
 
 <!--spring_board 추가된 컬럼에 기존 값 업데이트하기  -->
 update library_board set replycnt=(
@@ -32,6 +37,7 @@ regdate date default sysdate,
 updatedate date default sysdate,
 constraint fk_reply_library foreign key(bno)
 references library_board(bno)
+on delete cascade
 );
 
 alter table board_reply
