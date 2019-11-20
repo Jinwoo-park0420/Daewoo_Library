@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.ChangeVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.EmailVO;
@@ -252,5 +253,12 @@ public class MemberController {
 		return "redirect:/board/boardmain";
 	}
 
-
+	@GetMapping("mypageinfo")
+	public void mypageinfo(Model model,Book_reportVO report,BoardVO board) {
+		log.info("mypageinfo요청"+report);
+		List<Book_reportVO> reportlist=service.reportinfo(report);
+		List<BoardVO> boardlist =service.boardinfo(board);
+		model.addAttribute("boardlist",boardlist);
+		model.addAttribute("reportlist",reportlist);
+	}
 }

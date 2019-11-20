@@ -16,4 +16,5 @@ public class BoardVO {
 	private Date updatedate;
 	private int readcnt; //게시물 조회수
 	private int replycnt; //게시물 댓글수
+	private String userid;
 }

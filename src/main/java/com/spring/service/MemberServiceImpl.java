@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
@@ -87,6 +88,20 @@ public class MemberServiceImpl implements MemberService {
 			vo.setConfirm_password(bcrypt.encode(vo.getConfirm_password()));
 		}
 		return mapper.pwdupdate(vo)==1?true:false;
+	}
+
+
+	@Override
+	public List<Book_reportVO> reportinfo(Book_reportVO report) {
+		// TODO Auto-generated method stub
+		return mapper.reportinfo(report);
+	}
+
+
+	@Override
+	public List<BoardVO> boardinfo(BoardVO board) {
+		// TODO Auto-generated method stub
+		return mapper.boardinfo(board);
 	}
 	
 }
