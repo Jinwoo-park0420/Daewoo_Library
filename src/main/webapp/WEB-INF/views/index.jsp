@@ -320,8 +320,9 @@ $(function(){
       	</div>
 		</div>
       <div class="modal-footer">
-      	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
-      	<button class="btn btn-dark btn-sm" id="closeBtn" type="submit">목록으로</button>
+      	<button class="btn btn-primary" id="rentalBtn" role="button">대여신청</button>
+      	<button class="btn btn-danger" id="returnBtn" role="button">반납</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">목록으로</button>
       </div>
     </div>
   </div>
@@ -450,7 +451,64 @@ $(function(){
  
 </body>
 <script>
-//제목을 클릭하면 실행될 스크립트
+//대여하기 버튼 클릭시 실행될 스크립트
+$("#rentalBtn").click(function(e){
+	e.preventDefault();
+	console.log("도서 대여~~");
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	$.ajax({
+		url:"/book/bookRental",
+		method:"GET",
+		data:{"bookno":bookno,
+			"bookname":bookname
+		},
+		success:function(data){
+			if(data=="false"){
+				alert(bookname+"\n 도서대여가 완료되었습니다.");
+			}else{
+				alert("도서대여 실패!");
+			}
+		}
+	})
+	modal.modal("hide");
+	location.href="/";
+})
+
+//반납하기 버튼 클릭시 실행될 스크립트
+$("#returnBtn").click(function(e){
+	e.preventDefault();
+	console.log("도서 반납~~");
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	$.ajax({
+		url:"/book/bookDetail",
+		method:"POST",
+		data:{"bookno":bookno,
+			"bookname":bookname
+		},
+		success:function(data){
+			if(data=="false"){
+				alert(bookname+"\n 도서반납이 완료되었습니다.");
+				
+			}else{
+				alert("도서반납 실패!");
+			}
+		
+		}
+		
+	})
+	modal.modal("hide");
+	location.href="/";
+})
+
+$("#closeBtn").click(function(e){
+	e.preventDefault();
+	modal.modal("hide");
+})
+
+
+//썸네일을 클릭하면 실행될 스크립트
 var modal=$("#bookDetailModal");
 $(".move").click(function(e){
 	e.preventDefault(); //a 태그 막기
@@ -482,13 +540,17 @@ $(".move").click(function(e){
 			$("#genre").val(genre);
 			$("#publisher").val(publisher);
 			$("#status").val(status);
+			var colorChange=$("#status");
 			if(status==0){
-				var colorChange=document.getElementById("status");
-				colorChange.style.color="#0000ff";
 				$("#status").val("대여 가능");
+				$(colorChange).css("color","#0000ff");
+				$("#rentalBtn").show();
+				$("#returnBtn").hide();
 			}else{
-				colorChange.style.color="#ff0000";
 				$("#status").val("대여 중")
+				$(colorChange).css("color","#ff0000");
+				$("#rentalBtn").hide();
+				$("#returnBtn").show();
 			}
 			$("#isbn").val(isbn);
 							

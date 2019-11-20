@@ -147,7 +147,7 @@
             </thead>
 			<!-- 게시판 리스트 반복문 -->
 			<tbody>
-			<c:forEach var="vo" items="${list}">
+			<c:forEach var="vo" items="${bList}">
 				<tr>
 					<td><img src="/resources/thumb/${vo.bookno}.jpg" width="100" height="150"></td>
 					<td><a href="<c:out value='${vo.bookno }'/>" class="move">${vo.bookname }</a></td>
