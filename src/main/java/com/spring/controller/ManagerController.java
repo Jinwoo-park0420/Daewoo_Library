@@ -31,6 +31,7 @@ public class ManagerController {
 	@Autowired
 	private Book_reportService reportservice;
 	
+	
 	@Autowired
 	private ManagerService service;
 	

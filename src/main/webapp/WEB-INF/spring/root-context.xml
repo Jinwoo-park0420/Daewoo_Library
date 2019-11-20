@@ -19,6 +19,7 @@
 		<property name="username" value="javaDB"/>
 		<property name="password" value="12345"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localHost:1521:orcl"/>	
+
 	</bean>
 	<!-- DataSource -->
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">

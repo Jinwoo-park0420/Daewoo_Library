@@ -5,7 +5,6 @@
 <link rel="icon" type="image/png" href="http://example.com/myicon.png">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -49,6 +48,41 @@
 	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
 	integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
 	crossorigin="anonymous">
+<!-- Modal 창 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+.modal-header{
+	background-color: #dee2e6;
+}
+.modal-footer{
+	background-color: #dee2e6;
+}
+.modal-title{
+	font-family: 'Nanum Pen Script', cursive;
+}
+.modal-content{
+	background-color: #e9ecef;
+}
+.form-group{
+	font-family: 'Jeju Gothic', sans-serif;
+	padding:0px;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+.form-control{
+	font-family: 'Jeju Hallasan', cursive;
+	background-color: #e9ecef;
+	font-size:14pt;
+	border:0px;
+	width:200px;
+	height:30px;
+	padding-left:8px;
+}
+</style>
 </head>
 <script>
 $(function(){
@@ -163,40 +197,136 @@ $(function(){
 
 
 
-	<div class="container">
-
+	<div class="container" style="margin-left: 15%">
 		<div class="row">
-
-
 			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-preview" style="width: 1000px">
 				<hr>
-				<div class="post-preview">
 					<a href="/book/newbook">
 						<h2 class="post-title">신규도서</h2>
+					</a>
+					<a href="<c:out value='21'/>" class="move">
+						<img src="/resources/thumb/21.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='22'/>" class="move">
+						<img src="/resources/thumb/22.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='23'/>" class="move">	
+						<img src="/resources/thumb/23.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='24'/>" class="move">
+						<img src="/resources/thumb/24.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='25'/>" class="move">
+						<img src="/resources/thumb/25.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
 				</div>
 				<hr>
-				<div class="post-preview">
+				<div class="post-preview" style="width: 1000px">
 					<a href="/book/popularbook">
 						<h2 class="post-title">인기도서</h2>
 					</a>
+					<a href="<c:out value='1'/>" class="move">
+						<img src="/resources/thumb/1.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='2'/>" class="move">
+						<img src="/resources/thumb/2.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='3'/>" class="move">
+						<img src="/resources/thumb/3.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='4'/>" class="move">
+						<img src="/resources/thumb/4.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='5'/>" class="move">	
+						<img src="/resources/thumb/5.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
 				</div>
 				<hr>
-				<div class="post-preview">
+				<div class="post-preview" style="width: 1000px">
 					<a href="/book/recommandbook">
 						<h2 class="post-title">추천도서</h2>
 					</a>
-
+					<a href="<c:out value='31'/>" class="move">
+						<img src="/resources/thumb/31.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='32'/>" class="move">
+						<img src="/resources/thumb/32.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='33'/>" class="move">
+						<img src="/resources/thumb/33.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='34'/>" class="move">
+						<img src="/resources/thumb/34.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
+					<a href="<c:out value='35'/>" class="move">
+						<img src="/resources/thumb/35.jpg" width="150px" height="210px" style="margin-left: 20px">
+					</a>
 				</div>
 				<hr>
 
-
 				<!-- Pager -->
-				<div class="clearfix">
+				<div class="clearfix" style="margin-left: 119.5%">
 					<a class="btn btn-primary float-right" href="/book/booksearch">도서목록 보기 &rarr;</a>
 				</div>
 			</div>
 		</div>
 	</div>
+<!-- Modal -->
+<div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" style="width:900px;display: table;" role="document">
+    <div class="modal-content" style="width:900px; border-radius: 10px">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row" style="float: left; padding:15px">
+      	<div>
+      		<img class="imgModal" src="" width="300" height="400" style="border: 1px solid green; border-radius: 10px">
+      	</div>
+      </div>    	
+      <div class="" style="padding:20px; float: left; width: 60%">
+      	<div class="form-group">
+      		<label for="bookname" style="margin-bottom:1px;">도서명 : </label>
+      		<input type="text" class="form-control" id="bookname" name="bookname" style="font-size:14pt; border:0px; width:550px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="writer" style="margin-bottom:1px;">저 자 : </label>
+      		<input type="text" class="form-control" id="writer" name="writer" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="publisher" style="margin-bottom:1px;">출판사 : </label>
+      		<input type="text" class="form-control" id="publisher" name="publisher" style="font-size:14pt; border:0px; width:500px; height:30px; padding-left:8px;" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="genre" style="margin-bottom:1px;">장 르 : </label>
+      		<input type="text" class="form-control" id="genre" name="genre" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="isbn" style="margin-bottom:1px;">isbn : </label>
+      		<input type="text" class="form-control" id="isbn" name="isbn" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="status" style="margin-bottom:1px;">도서상태 : </label>
+      		<input type="text" class="form-control" id="status" name="status" readonly />
+      	</div>
+      	<div class="form-group">
+      		<label for="bookno" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="bookno" name="bookno"/>
+      	</div>
+      	</div>
+		</div>
+      <div class="modal-footer">
+      	<button class="btn btn-primary" id="rentalBtn" role="button">대여신청</button>
+      	<button class="btn btn-danger" id="returnBtn" role="button">반납</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">목록으로</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<hr>
 
@@ -291,6 +421,7 @@ $(function(){
 
 		}
 		
+		
 		$(function(){
 		//검색 버튼이 눌러지면 작동할 스크립트
 		$(".btn-outline-light").click(function(){
@@ -319,10 +450,130 @@ $(function(){
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzDGpcVk6NFENgr5AwQdXCxu2o9vauvY4&callback=initMap"></script>
  
 </body>
+<script>
+//대여하기 버튼 클릭시 실행될 스크립트
+$("#rentalBtn").click(function(e){
+	var session="${vo1.userid}";
+	e.preventDefault();
+	console.log("도서 대여~~");
+	if(session!="" && session.length !=0){
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	$.ajax({
+		url:"/book/bookRental",
+		method:"GET",
+		data:{"bookno":bookno,
+			"bookname":bookname
+		},
+		success:function(data){
+			if(data=="false"){
+				alert(bookname+"\n 도서대여가 완료되었습니다.");
+			}else{
+				alert("도서대여 실패!");
+			}
+		}
+	})
+	
+	modal.modal("hide");
+	location.href="/";
+	}
+	else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
+})
 
-</html>
+//반납하기 버튼 클릭시 실행될 스크립트
+$("#returnBtn").click(function(e){
+	var session="${vo1.userid}";
+	e.preventDefault();
+	console.log("도서 반납~~");
+	if(session!="" && session.length !=0){
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	$.ajax({
+		url:"/book/bookDetail",
+		method:"POST",
+		data:{"bookno":bookno,
+			"bookname":bookname
+		},
+		success:function(data){
+			if(data=="false"){
+				alert(bookname+"\n 도서반납이 완료되었습니다.");
+				
+			}else{
+				alert("도서반납 실패!");
+			}
+		
+		}
+		
+	})
+	modal.modal("hide");
+	location.href="/";
+	}else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
+})
+
+$("#closeBtn").click(function(e){
+	e.preventDefault();
+	modal.modal("hide");
+})
 
 
+//썸네일을 클릭하면 실행될 스크립트
+var modal=$("#bookDetailModal");
+$(".move").click(function(e){
+	e.preventDefault(); //a 태그 막기
+	console.log("도서 상세정보 클릭");		
+	var bookno=$(this).attr("href");
+	
+	//bno를 보내서 해당 책 정보 가져오기
+	$.getJSON({
+		url:'/book/bookDetail',
+		data:{
+			bookno:bookno
+		},
+		success:function(result){
+			console.log(result);
+			//result 값을 모달 안에 넣어주기
+					
+			var bookno = result.bookno;
+			var bookname=result.bookname;
+			var writer = result.writer;
+			var genre = result.genre;
+			var publisher = result.publisher;
+			var status = result.status;
+			var isbn = result.isbn;
+				
+			$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
+			$("#bookno").val(bookno);	
+			$("#bookname").val(bookname);
+			$("#writer").val(writer);
+			$("#genre").val(genre);
+			$("#publisher").val(publisher);
+			$("#status").val(status);
+			var colorChange=$("#status");
+			if(status==0){
+				$("#status").val("대여 가능");
+				$(colorChange).css("color","#0000ff");
+				$("#rentalBtn").show();
+				$("#returnBtn").hide();
+			}else{
+				$("#status").val("대여 중")
+				$(colorChange).css("color","#ff0000");
+				$("#rentalBtn").hide();
+				$("#returnBtn").show();
+			}
+			$("#isbn").val(isbn);
+							
+			modal.find(".imgModal").attr("src","/resources/thumb/"+bookno+".jpg");
+														
+			modal.modal("show");
 
-
+		}			
+	})
+	})
+</script>
 </html>
