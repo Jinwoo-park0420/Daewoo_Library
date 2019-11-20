@@ -134,8 +134,12 @@
       		<input type="text" class="form-control" id="isbn" name="isbn" value="${vo.isbn }" readonly/>
       	</div>
       	<div class="form-group">
+      		<label for="status" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="status" name="status" value="${vo.status}" readonly/>
+      	</div>
+      	<div class="form-group">
       		<label for="bookno" style="margin-bottom:1px;"></label>
-      		<input type="hidden" class="form-control" id="bookno" name="bookno" readinly />
+      		<input type="hidden" class="form-control" id="bookno" name="bookno" value="${vo.bookno }" readonly />
       	</div>
       	</div>
 		</div>
@@ -191,13 +195,28 @@ $(function(){
 //대여하기 버튼 클릭시 실행될 스크립트
 	$("#moveBtn2").click(function(){
 		
-		console.log("도서 대여신청 완료");
+		console.log("도서 대여신청");
 		var bookno=$("#bookno").val();
 		var status=$("#status").val();
+		$.ajax({
+			url:"/book/bookRental",
+			method:"GET",
+			data:{"bookno":bookno},
+			success:function(data){
+				if(data){
+					console.log("data : "+data);
+				}else{
+					console.log("No data");
+				}
+			
+			}
+			
+		})
 
-		alert("대여 신청 완료");
-		location.href="/book/booksearch";
 		
+		
+		alert("대여 신청 완료");
+		//location.href="/book/booksearch";
 	})
 	
 	$("#closeBtn").click(function(){

@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
 <meta charset="UTF-8">
-<title>대우 도서관 - 신간 도서 페이지</title>
+<title>대우 도서관 - 신규 도서 페이지</title>
 <!-- 검색박스용 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
@@ -83,8 +83,6 @@
 						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
 					</ul>
 				</c:if>
 
@@ -95,8 +93,6 @@
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-			
 					</ul>
 				</c:if>
 			</div>
@@ -203,7 +199,7 @@
 </form>
 <!-- Modal -->
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog" style="width:900px" role="document">
+  <div class="modal-dialog" style="width:900px;display: table;" role="document">
     <div class="modal-content" style="width:900px; border-radius: 10px">
       <div class="modal-header">
         <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>
@@ -249,8 +245,9 @@
       	</div>
 		</div>
       <div class="modal-footer">
-      	<button class="btn btn-dark" id="moveBtn" role="button">대여신청</button>
-      	<button class="btn btn-dark btn-sm" id="closeBtn" type="submit">목록으로</button>
+      	<button class="btn btn-primary" id="rentalBtn" role="button">대여신청</button>
+      	<button class="btn btn-danger" id="returnBtn" role="button">반납</button>
+      	<button class="btn btn-dark" id="closeBtn" type="submit">목록으로</button>
       </div>
     </div>
   </div>
@@ -350,13 +347,17 @@ $(".btn-outline-light").click(function(e){
 				$("#genre").val(genre);
 				$("#publisher").val(publisher);
 				$("#status").val(status);
+				var colorChange=$("#status");
 				if(status==0){
-					var colorChange=document.getElementById("status");
-					colorChange.style.color="#0000ff";
 					$("#status").val("대여 가능");
+					$(colorChange).css("color","#0000ff");
+					$("#rentalBtn").show();
+					$("#returnBtn").hide();
 				}else{
-					colorChange.style.color="#ff0000";
 					$("#status").val("대여 중")
+					$(colorChange).css("color","#ff0000");
+					$("#rentalBtn").hide();
+					$("#returnBtn").show();
 				}
 				$("#isbn").val(isbn);
 								
@@ -369,15 +370,62 @@ $(".btn-outline-light").click(function(e){
 		})
 
 		
-	//대여하기 버튼 클릭시 실행될 스크립트
-	$("#moveBtn").click(function(e){
+		//대여하기 버튼 클릭시 실행될 스크립트
+		$("#rentalBtn").click(function(e){
+			e.preventDefault();
+			console.log("도서 대여~~");
+			var bookno=$("#bookno").val();
+			var bookname=$("#bookname").val();
+			$.ajax({
+				url:"/book/bookRental",
+				method:"GET",
+				data:{"bookno":bookno,
+					"bookname":bookname
+				},
+				success:function(data){
+					if(data=="false"){
+						alert(bookname+"\n 도서대여가 완료되었습니다.");
+						
+					}else{
+						alert("도서대여 실패!");
+					}
+				
+				}
+				
+			})
+			modal.modal("hide");
+			location.href="/book/newbook";
+		})
+		
+		
+		
+		
+		
+	//반납하기 버튼 클릭시 실행될 스크립트
+	$("#returnBtn").click(function(e){
 		e.preventDefault();
-		console.log("도서 대여페이지 이동");
+		console.log("도서 반납~~");
 		var bookno=$("#bookno").val();
-		
-		location.href="/book/bookRental?bookno="+bookno;
-		
+		var bookname=$("#bookname").val();
+		$.ajax({
+			url:"/book/bookDetail",
+			method:"POST",
+			data:{"bookno":bookno,
+				"bookname":bookname
+			},
+			success:function(data){
+				if(data=="false"){
+					alert(bookname+"\n 도서반납이 완료되었습니다.");
+					
+				}else{
+					alert("도서반납 실패!");
+				}
+			
+			}
+			
+		})
 		modal.modal("hide");
+		location.href="/book/newbook";
 	})
 	
 	$("#closeBtn").click(function(e){
@@ -385,7 +433,6 @@ $(".btn-outline-light").click(function(e){
 		modal.modal("hide");
 	})
 	}) 
-
 })
 </script>
 </html>
