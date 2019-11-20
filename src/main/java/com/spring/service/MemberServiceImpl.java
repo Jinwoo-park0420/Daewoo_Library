@@ -21,7 +21,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-
 	public int memberJoin(MemberVO vo) {
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 		String password = bcrypt.encode(vo.getPassword());
@@ -32,19 +31,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public LoginVO login(LoginVO vo) {
-		//vo => userid, password, grade
-		
-		
-		//userid 값을 이용해서 비밀번호 받기
-		//MemberVO member;
-		//String userid = vo.getUserid();	
-		
 		//암호화 된 비밀번호 뽑아오기
 		String password= mapper.loginpassword(vo.getUserid());
 		//받아온 password 값을
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 		boolean result=bcrypt.matches(vo.getPassword(), password);			
-		
 		if(result) {
 			vo.setPassword(password);
 			return mapper.login(vo);

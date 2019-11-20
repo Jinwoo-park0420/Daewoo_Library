@@ -86,19 +86,18 @@
 	            </tr>
 	            <tr>
 	              <th>이름</th>
-	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name" />
+	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name"  id="name" />
 	              <small class="text-danger" id="name"></small></td>
-	            </tr>
 	 
 	            <tr>
 	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" />
+	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" id="email"/>
 	              <small class="text-danger" id="email"></small></td>
 	            </tr>
 	 
 	            <tr>
 	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" />
+	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" id="phone_number" />
 	              <small class="text-danger" id="phone_number"></small></td>
 	            </tr>
 	            <tr>
@@ -107,7 +106,7 @@
 	            </tr>
 	            <tr>
 	              <th>생일</th>
-	              <td><input type="number" max="8" min="8" class="form-control"  name="birthYear"  value="${modelVO.birthYear}"  readonly="readonly"/></td>
+	              <td><input type="number" class="form-control"  name="birthYear"  value="${modelVO.birthYear}"  readonly="readonly"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
@@ -166,7 +165,11 @@
 
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
-    
+   
+  <!-- validation 라이브러리 삽입 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+  <!-- validation 사용자 작성 코드 삽입-->
+  <script src="/resources/js/update.js"></script>
   
 
 </body>
