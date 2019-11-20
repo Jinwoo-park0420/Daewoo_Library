@@ -99,10 +99,8 @@ textarea{resize:none;}
             </tr>
             
             <tr> 
-                   
          <th>파일첨부</th>   		
          <td>
-		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" readonly="readonly"/>
 		<div class="uploadResult">
 		<ul>
 		
@@ -198,7 +196,13 @@ $(".uploadResult").on("click","li",function(){
 		showImage(path.replace(new RegExp(/\\/g),"/"));
 	}
 	else{
-		self.location="/download?fileName="+path;
+		var apply =${report_select.apply};
+		self.location="/download?fileName="+path+"&apply="+apply;
+		
+		
+		console.log("파일다운로드");
+		
+		
 	}
 	});
 

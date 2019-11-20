@@ -78,49 +78,32 @@
 		<div class="col-lg-12">
 			 <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#8099af; ">회원 정보</h3>
 			 <div class="col-xs-3 col-sm-3"></div>
-	       <form method="#" action="" name="form_mypage" id="operForm"   >
+	       <form action="#" name="form_mypage" id="operForm"   >
 	         <table class="table table-striped" >
 	            <tr>
-	              <th>user ID</th>
-	              <td><input type="text" class="form-control" name="userid" value="${ManagerRead.userid}" readonly="readonly"/></td>
+	              <th>책이름</th>
+	              <td><input type="text" class="form-control" name="bookname"  required="required" value="${apply.bookname }"/></td>
 	            </tr>
 	            <tr>
-	              <th>이름</th>
-	              <td><input type="text" class="form-control" name="username" value="${ManagerRead.name}" readonly="readonly"/></td>
+	              <th>저자</th>
+	              <td><input type="text" class="form-control" name="writer" required="required" value="${apply.writer}"/></td>
 	            </tr>
 	            <tr>
-	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" name="email" value="${ManagerRead.email}" readonly="readonly"/></td>
-	            </tr>
-	            
-	            <tr>
-	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${ManagerRead.address}" readonly="readonly"/></td>
+	              <th>출판사</th>
+	              <td><input type="text" class="form-control" name="publisher" required="required" value="${apply.publisher }"/></td>
 	            </tr>
 	            <tr>
-	              <th>핸드폰번호</th>
-	              <td><input type="number" class="form-control"  name=phone_number  value="${ManagerRead.phone_number}" readonly="readonly"/></td>
+	              <th>장르</th>
+	              <td><input type="text" class="form-control"  name="genre"  required="required" value="${apply.genre}"/></td>
 	            </tr>
 	            <tr>
-	              <th>생일</th>
-	              <td><input type="number" class="form-control"  name="birthYear"  value="${ManagerRead.birthYear}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>가입날짜</th>
-	              <td><input type="text" class="form-control"  name="joindate"  value="${ManagerRead.joindate}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>대여상태</th>
-	              <td><input type="number" class="form-control"  name="lease_status"  value="${ManagerRead.lease_status}" readonly="readonly"/></td>
-	            </tr>
-	            <tr>
-	              <th>회원등급</th>
-	              <td><input type="number" class="form-control"  name="grade"  value="${ManagerRead.grade}" readonly="readonly"/></td>
+	              <th>ISBN</th>
+	              <td><input type="text" class="form-control"  name="isbn"  required="required" value="${apply.isbn}"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-			<button type="button" class="btn btn-info"  style="width:260px; height:50px;" id="">회원목록으로</button>
-			<button type="button" class="btn btn-primary"  onclick="location.href='/manager/managerread'"style="width:260px; height:50px;" id="">회원탈퇴시키기</button>
+			<button type="button" class="btn btn-info"  style="width:260px; height:50px;" id="">도서목록</button>
+			<button type="button" class="btn btn-primary"style="width:260px; height:50px;" id="">책추가 확인</button>
   			 
   			     </td>
 	            </tr>
@@ -186,27 +169,15 @@ $(function(){
 	$(".btn-info").click(function(){
 		console.log(operForm);
 		/* bno값을 삭제하고 폼 보내기!! */
-		operForm.find("input[name='userid']").remove();
-		operForm.attr("action", "/manager/managerList");
+		operForm.find("input[name='isbn']").remove();
+		operForm.attr("action", "/manager/managerapplyList");
 		operForm.submit();
 	})
 	
 	$(".btn-primary").click(function(e){
-		var lease_status=  ${ManagerRead.lease_status};
-		if(lease_status==0){
-		console.log(operForm);
 		operForm.attr("method","post");
-		operForm.attr("action", "/manager/managerdelete");
+		operForm.attr("action", "/manager/managerapply");
 		operForm.submit();
-		}
-		else
-		{
-			alert("현재 대여중인 도서가 있으므로 불가능합니다.");	
-			operForm.find("input[name='userid']").remove();
-			operForm.attr("action", "/manager/managerList");
-			operForm.submit();
-		}
-	
 	})
 	
 
