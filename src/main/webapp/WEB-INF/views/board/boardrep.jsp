@@ -9,23 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+
        <!-- 댓글 영역 -->
-       <table class="chat table table-striped table-hover">
+       <ul>       
+       	<i class="fa fa-anchor fa-spin"></i>댓글       
+       </ul>
+       <table class="chat table table-striped table-hover">       
        <tr>
-       <td>
-       </tr>
-       <tr>       
-       <ul class="left clearfix" data-rno='12' style="padding-left: 0">
-       <i class="fa fa-anchor fa-spin"></i>댓글</td>
-       </tr>
-       <tr>
-       <td class="header">
-    		<strong class="primary-font"></strong>
-           	<small class="pull-right text-muted"></small>
-      	</td>
-           	<td></td>
+	       <td class="header">
+	    		<strong class="primary-font"></strong>
+	           	<small class="pull-right text-muted"></small>
+	      	</td>           	
         </tr>           		     	
-      	</ul>
+      	<tr><!-- 댓글 본문 내역 -->
+      		<td data-rno=""></td>
+      	</tr>
       	</table> 							
             <div class="row">
             	<div class="col-lg-12">
@@ -47,25 +45,25 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Reply Modal</h4>
+                            <h4 class="modal-title" id="myModalLabel">댓글 쓰기</h4>
                         </div>
                         <div class="modal-body">
+                          <div class="form-group">
+                            	<label>작성자</label>
+                            	<input class="form-control" name="replyer" value="replyer">
+                            </div>                        
                             <div class="form-group">
                             	<label>댓글</label>
                             	<input class="form-control" name="reply" value="New Reply">
-                            </div>
-                            <div class="form-group">
-                            	<label>작성자</label>
-                            	<input class="form-control" name="replyer" value="replyer">
-                            </div>
+                            </div>                          
                             <div class="form-group">
                             	<label>작성 날짜</label>
                             	<input class="form-control" name="replydate" value="">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" id="modalModBtn">Modify</button>
-                            <button type="button" class="btn btn-light" id="modalRemoveBtn">Remove</button>
+                            <button type="button" class="btn btn-light" id="modalModBtn">수정하기</button>
+                            <button type="button" class="btn btn-light" id="modalRemoveBtn">삭제하기</button>
                             <button type="button" class="btn btn-light" id="modalRegisterBtn">작성하기</button>
                             <button type="button" class="btn btn-light" id="modalCloseBtn">닫기</button>                            
                         </div>
@@ -98,14 +96,16 @@ $(function(){
 		operForm.submit();
 	})
 })
-</script>          
+</script>
+          
 <script src="/resources/js/reply.js"></script>
+
 <script>
 $(function(){
 	//bno 가져오기
 	var bno=${vo.bno};
 	
-	//댓글 목록을 보여줄 영역 가져오기
+	//댓글 목록을 보여줌
 	var replyUL = $(".chat");
 	//댓글을 보여줄 함수 호출하기
 	showList(1);
@@ -145,10 +145,10 @@ $(function(){
 		
 		var str="";
 		for(var i=0,len=list.length||0;i<len;i++){
-			str+="<ul class='left clearfix' data-rno='"+list[i].rno+"'>";			
-			str+="<td class='header'><strong class='primary-font'><i class='fa fa-cog fa-spin fa-fw'></i>"+list[i].replyer+"</strong>";
+			//str+="<ul class='left clearfix' data-rno='"+list[i].rno+"'>";			
+			str+="<tr><td class='header'><strong class='primary-font'><i class='fa fa-cog fa-spin fa-fw'></i>"+list[i].replyer+"</strong>";
 			str+="<small class='pull-right text-muted'>"+replyService.displayTime(list[i].regdate)+"</small>";
-			str+="</td><tr><td>"+list[i].reply+"</td></tr></ul>";
+			str+="</td></tr><tr><td data-rno='"+list[i].rno+"' id='rno'>"+list[i].reply+"</td></tr>";
 		}
 		replyUL.html(str);
 		showReplyPage(total);	//댓글 총 갯수		
@@ -205,36 +205,65 @@ $(function(){
 		showList(pageNum);
 	})
 	
+	//댓글삭제
 	$("#modalRemoveBtn").click(function(){
-	
-		replyService.del(modal.data("rno"),function(result){
-		if(result){
-			modal.modal("hide");
-			showList(-1);
-		}
-		});
+		
+		console.log("삭제버튼")
+		replyService.del(modal.data("rno"),function(result) {
+			if(result){
+				modal.modal("hide");
+				showList(pageNum);				
+			}
+		
+		})
 	})//del 종료 
 	
-	//modalModBtn.on("click",funtion())
-	$("#modalModBtn").on("click",function(){//이벤트 거는 정식 방법
+	
+	//댓글수정
+	$("#modalModBtn").on("click",function(){
 		
 		var replyupdate={
 			rno:modal.data("rno"),
 			reply:modalInputReply.val()
 	};
 	 	replyService.update(replyupdate,function(result){
-			if(result==='success'){ //===문자 타입까지 비교
+			if(result==='success'){
 				//alert("수정 성공");
 			modal.modal("hide"); //현재창 닫기
-			//showList(1);//1페이지 띄우기
 			showList(pageNum);
 			}
 		})
 	}) 
 	
 	//이벤트 위임
-	replyUL.on("click","li",function(){
+	replyUL.on("click","tr td",function(){
 		
+		//댓글 등록시 감췄던 replydate 요소 다시 보이게 만들기
+		modalInputReplyDate.closest("div").show();
+		var rno=$(this).data("rno");		
+		
+		replyService.get(rno,function(result){
+			//넘겨받은 데이터 modal 창에 보여주기
+			modalInputReply.val(result.reply);
+			modalInputReplyer.val(result.replyer);
+			modalInputReplyDate.val(replyService.displayTime(result.regdate)).attr("readonly","readonly");
+			//modalInputReplyDate.attr("readonly","readonly");
+			
+			modal.data("rno",result.rno);
+			//console.log(result);
+			
+			//버튼 숨기기
+			
+			modal.find("button[id!='modalCloseBtn']").hide();
+			modalModBtn.show();
+			modalRemoveBtn.show();
+			//modalInputReplyDate.closest("div").show();
+			modal.modal("show");
+		})
+	})	
+	
+	//replyUL.on("click","li",function(){
+	$("#rno").click(function(){	
 		//댓글 등록시 감췄던 replydate 요소 다시 보이게 만들기
 		modalInputReplyDate.closest("div").show();
 		var rno=$(this).data("rno");		
@@ -258,6 +287,11 @@ $(function(){
 			modal.modal("show");
 		})
 	})	
+	
+	
+	
+	
+	
 	
 	var modal=$(".modal");
 	//모달 창이 가지고 잇는 input 영역 가져오기

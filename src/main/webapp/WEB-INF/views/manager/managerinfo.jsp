@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>대우 도서관asdasd</title>
+<title>대우 도서관</title>
 <!-- 검색박스용 -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
@@ -38,18 +38,7 @@
 <link rel="stylesheet" href="/resources/css/button-select.css" type="text/css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
-<script>
-$(function(){
-	var message='${message}';
-	if(message!="" && message.length !=0){
-		alert(message);
-		
-	}
-	
-	
-})
 
-</script>
 <body>
 
 	<!-- Navigation -->
@@ -71,11 +60,13 @@ $(function(){
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					</ul>
 				</c:if>
+
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/<manage></manage>r/managermain">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
+				
 					</ul>
 				</c:if>
 			</div>
@@ -87,56 +78,56 @@ $(function(){
 		style="background-image: url('/resources/img/home-bg.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-md-10 mx-auto">
-					<div class="site-heading">
-						<div class="navbar">
-
-						<br>
-							<li class="menu"><a href="/manager/managerreport">독후감페이지관리</a>
-								</li>
-							<li class="menu"><a href="/book/booksearch">도서 관리</a>
-								</li>
-							<li class="menu"><a href="/manager/managerList">회원관리</a>
-								</li>
-							<li class="menu"><a href="/manager/managerapplyList" class="applyBook">도서
-									신청 현황</a></li>
-						</div>
-				<div class="container">
-    <br/>
-	<div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="navbar">
-                                <div class="navbar row no-gutters align-items-center">
-                                       <!--end of col-->
-                                </div>
-                            </form>
-                        </div>
-                        <!--end of col-->
-                    </div>
-</div>
-					</div>
-					<br>
-
-
-				</div>
-			</div>
-		</div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>소통 참여</h1>
+          </div>
+        </div>
+      </div>
+    </div>
 		
 	</header>
 
+	<!-- Main Content -->
+
 	
+		
+	<div class="container">
+
+		<div class="row">	
+	
+
+			<div class="col-lg-8 col-md-10 mx-auto">
+					<hr>
+				<div class="post-preview">
+				<c:if test="${empty list}">
+					<a href="/board/boardmain2"> <!-- 게시판에 글이 없을 시에 게시물이 없다는 페이지로 이동 -->
+						<h2 class="post-title">건의사항</a></h2>
+				</c:if>
+				<c:if test="${!empty list}">
+					<a href="#">
+						<h2 class="post-title">건의사항</a></h2>
+				</c:if>												
+				</div>
+				<hr>
+				<div class="post-preview">
+	
+						<h2 class="post-title"> <a	href="/manager/managerreport">독후감 대회</a></h2>
+				</div>
+				<hr>
+				
+		
+				<!-- Pager -->
+				<div class="clearfix">
+					<a class="btn btn-primary float-right" href="/book/booksearch">도서목록 보기
+						&rarr;</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<hr>
-
-
-<label> 
-주소: 서울특별시 노원구 공릉1동 동일로 1082
-</label>
-<br>
-
-<label>전화: 02-987-0012</label>
-<br>
-<br>
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -175,5 +166,13 @@ $(function(){
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
+	
+
 </body>
+
+</html>
+
+
+
+
 </html>

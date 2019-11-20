@@ -87,7 +87,6 @@
             <div class="form-group floating-label-form-group controls">
               <label>글쓴이</label>
               <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" required data-validation-required-message="글쓴이를 입력 바랍니다." >
-              <input type="hidden"  id="userid" name="userid" value="${vo1.userid}" >
               <p class="help-block text-danger"></p>
             </div>
             <div class="form-group floating-label-form-group controls">
@@ -98,7 +97,12 @@
             <div class="form-group floating-label-form-group controls">
             <tr>
             <td>
-                <input type="text" name="publish_year_yy" id="publish_year" size="5" placeholder="발행년도"  required data-validation-required-message="발행년도를 입력 바랍니다."/>
+                <select name ="publish_year_yy" class="inBorder">
+            	<c:forEach var="i" begin="0" end="${2016-1900 }">
+            	<c:set var="yearOption" value="${2016-i }"/>
+            	<option value="${yearOption}">${yearOption}</option>
+            	</c:forEach>
+            	</select>
                 <select name ="publish_year_mm" class="inBorder">
                     <option value="">월</option>
                     <option value="1">1</option>
@@ -123,10 +127,17 @@
               <p class="help-block text-danger"></p>
             </div>
             <div class="form-group floating-label-form-group controls">
-              <label>ISBN</label>
-              <input type="text" class="form-control" placeholder="ISBN" id="ISBN" name="ISBN" required data-validation-required-message="ISBN을 입력 바랍니다.">
+              <label>장르</label>
+              <input type="text" class="form-control" placeholder="장르" id="genre" name="genre" required data-validation-required-message="ISBN을 입력 바랍니다.">
               <p class="help-block text-danger"></p>
             </div>
+            <div class="form-group floating-label-form-group controls">
+              <label>ISBN</label>
+              <input type="text" class="form-control" placeholder="ISBN" id="isbn" name="isbn" required data-validation-required-message="ISBN을 입력 바랍니다.">
+              <p class="help-block text-danger"></p>
+            	<input type="hidden" value="${vo1.userid }" name="userid"  />
+            </div>
+            
           </div>
           <div id="success"></div>
           <div class="form-group">

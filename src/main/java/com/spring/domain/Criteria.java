@@ -25,6 +25,7 @@ public class Criteria {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
+	
 	// 검색조건을 배열로 만들기
 	public String[] getTypeArr() {
 	return type==null?new String[] {}:type.split("");
