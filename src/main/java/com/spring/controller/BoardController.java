@@ -30,15 +30,10 @@ public class BoardController {
 	@Autowired
 	private BoardRepService repservice;
 	
-<<<<<<< HEAD
-	@GetMapping("/boardinfo")
-	public void boardinfo(Model model,Criteria cri) {	
-		log.info("소통참여 홈페이지 호출");
-=======
+
 	@GetMapping("/boardinfo")		
 	public void boardinfo(Model model,Criteria cri) {
-		log.info("소통참여 홈페이지 호출");		
->>>>>>> refs/remotes/origin/master
+		log.info("소통참여 홈페이지 호출");	
 		List<BoardVO> list=service.getList(cri);
 		model.addAttribute("list",list);
 	}
