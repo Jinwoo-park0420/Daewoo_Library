@@ -83,8 +83,6 @@
 						<li class="nav-item"><a class="nav-link" href="/index">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
 					</ul>
 				</c:if>
 
@@ -95,8 +93,6 @@
 							href="/member/logout">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/mypage">My page</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-			
 					</ul>
 				</c:if>
 			</div>
@@ -202,7 +198,7 @@
 </form>
 <!-- Modal -->
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog" style="width:900px" role="document">
+  <div class="modal-dialog" style="width:900px;display: table;" role="document">
     <div class="modal-content" style="width:900px; border-radius: 10px">
       <div class="modal-header">
         <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>

@@ -200,7 +200,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog" style="width:900px" role="document">
+  <div class="modal-dialog" style="width:900px;display: table;" role="document">
     <div class="modal-content" style="width:900px; border-radius: 10px">
       <div class="modal-header">
         <h1 class="modal-title" id="exampleModalCenterTitle">도서 상세정보</h1>
