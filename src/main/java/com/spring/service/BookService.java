@@ -42,4 +42,9 @@ public interface BookService {
 	
 	//도서 대여 페이지
 	public BookVO bookRental(int bookno);
+	
+	//대여
+	public int rentalUpdate(int bookno);
+	//반납
+	public int returnUpdate(int bookno);
 }
