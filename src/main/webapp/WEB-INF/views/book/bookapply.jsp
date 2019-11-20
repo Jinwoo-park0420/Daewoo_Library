@@ -133,7 +133,7 @@
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>ISBN</label>
-              <input type="text" class="form-control" placeholder="ISBN" id="ISBN" name="ISBN" required data-validation-required-message="ISBN을 입력 바랍니다.">
+              <input type="text" class="form-control" placeholder="ISBN" id="isbn" name="isbn" required data-validation-required-message="ISBN을 입력 바랍니다.">
               <p class="help-block text-danger"></p>
             	<input type="hidden" value="${vo1.userid }" name="userid"  />
             </div>

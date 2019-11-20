@@ -164,7 +164,7 @@ $(function(){
 
 $("button").on("click",function(e){
 	e.preventDefault();
-	alert("전송시작");
+
 	//글 작성한 폼 데이터 갖고오기
 	var formObj = $("form[role='form']");
 	var str="";
@@ -187,6 +187,7 @@ $("button").on("click",function(e){
 			$("input[name='uploadFile']").on("change",function(e){
 				e.preventDefault();
 				console.log("업로드 버튼 클릭");
+				alert("파일명 ex) 홍길동_940420");
 				//ajax로 폼 전송 가능하게 해주는 객체
 				var formData = new FormData();
 			

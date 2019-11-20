@@ -85,23 +85,24 @@
 					
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>신청여부</th>
+					<th>신청여부</th>					
+					<th>내용확인</th>					
 				</tr>
 			</thead>
 			<c:forEach var="vo" items="${Managerreport}">
 				<tbody>
 				<tr>
 					<td>${vo.bno}</td>
-						<td><a href="/manager/managerreportread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
+						<td>${vo.title}</td>
 					<td>${vo.writer}</td>
 					<td>${vo.regdate}</td>
 					<c:if test="${vo.apply ==0 }">
 					<td>확인대기</td>
 					</c:if>
-					<c:if test="${vo.apply!=0 }">
+					<c:if test="${vo.apply !=0 }">
 					<td>확인완료</td>
 					</c:if>
-					
+					<td><a href="/manager/managerreportread?bno=<c:out value='${vo.bno}'/>" class="move">내용확인</a></td>
 				</tr>
 			</c:forEach>
 			</tbody>

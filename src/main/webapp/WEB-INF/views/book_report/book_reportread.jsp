@@ -102,7 +102,6 @@ textarea{resize:none;}
                    
          <th>파일첨부</th>   		
          <td>
-		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" readonly="readonly"/>
 		<div class="uploadResult">
 		<ul>
 		

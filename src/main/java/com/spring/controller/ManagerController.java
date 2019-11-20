@@ -105,5 +105,12 @@ public class ManagerController {
 		model.addAttribute("report_select",report_select);
 		model.addAttribute("cri",cri);
 	}
+	@GetMapping("managerconfirm")
+	public String confirm(Book_reportVO report) {
+		log.info("제출내용 확인");
+		service.applyChange(report);
+		
+		return "redirect:/manager/managerreport";
+	}
 	
 }

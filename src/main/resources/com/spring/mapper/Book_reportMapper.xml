@@ -21,8 +21,8 @@
 
 <![CDATA[
 		select *
-		from ( select rownum rn,bno,title,content,writer,regdate,updatedate from 
-		          (select rownum,bno,title,content,writer,regdate,updatedate
+		from ( select rownum rn,bno,title,content,writer,regdate,updatedate,apply from 
+		          (select rownum,bno,title,content,writer,regdate,updatedate,apply
 		          from book_report order by bno desc) 
 		where 
 		]]>

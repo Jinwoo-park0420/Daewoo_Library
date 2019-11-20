@@ -71,7 +71,6 @@ $(function(){
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					</ul>
 				</c:if>
-
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="/<manage></manage>r/managermain">처음으로</a></li>
@@ -94,7 +93,7 @@ $(function(){
 						<div class="navbar">
 
 						<br>
-							<li class="menu"><a href="/manager/managerinfo">게시판</a>
+							<li class="menu"><a href="/manager/managerreport">독후감페이지관리</a>
 								</li>
 							<li class="menu"><a href="/book/booksearch">도서 관리</a>
 								</li>
