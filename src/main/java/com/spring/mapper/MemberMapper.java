@@ -1,5 +1,8 @@
 package com.spring.mapper;
 
+import java.util.List;
+
+import com.spring.domain.BoardVO;
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;

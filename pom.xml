@@ -22,9 +22,9 @@
 	</dependency>
 	<!-- spring security taglibs 라이브러리  -->
 	<dependency>
-	<groupId>org.springframework.security</groupId>
-	<artifactId>spring-security-taglibs</artifactId>
-	<version>5.1.2.RELEASE</version>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>5.1.2.RELEASE</version>
 	</dependency>
 	<!-- spring security config 라이브러리 : security와 관련된 XML 설정 or 자바 설정을 위해 필요한 라이브러리  -->
 	<dependency>

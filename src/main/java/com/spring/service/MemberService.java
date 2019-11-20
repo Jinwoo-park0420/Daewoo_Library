@@ -1,5 +1,8 @@
 package com.spring.service;
 
+import java.util.List;
+
+import com.spring.domain.BoardVO;
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
@@ -21,7 +24,5 @@ public interface MemberService {
 	public boolean memberdelete(ChangeVO vo); //회원탈퇴
 	
 	public boolean pwdupdate(ChangeVO vo); //비밀번호 변경
-	
-	
 	
 }

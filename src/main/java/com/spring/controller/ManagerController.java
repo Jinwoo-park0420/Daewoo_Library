@@ -31,6 +31,7 @@ public class ManagerController {
 	@Autowired
 	private Book_reportService reportservice;
 	
+	
 	@Autowired
 	private ManagerService service;
 	
@@ -104,6 +105,13 @@ public class ManagerController {
 		Book_reportVO report_select=book_reportservice.book_reportSelectList(bno);
 		model.addAttribute("report_select",report_select);
 		model.addAttribute("cri",cri);
+	}
+	@GetMapping("managerconfirm")
+	public String confirm(Book_reportVO report) {
+		log.info("제출내용 확인");
+		service.applyChange(report);
+		
+		return "redirect:/manager/managerreport";
 	}
 	
 }

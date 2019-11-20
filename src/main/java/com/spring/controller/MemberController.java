@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -19,11 +20,15 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.BoardVO;
 import com.spring.domain.ChangeVO;
+import com.spring.domain.Criteria;
 import com.spring.domain.EmailVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
+import com.spring.domain.PageVO;
+import com.spring.service.BoardService;
 import com.spring.service.EmailSender;
 import com.spring.service.MemberService;
 
@@ -37,6 +42,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private BoardService boardservice;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -227,6 +235,21 @@ public class MemberController {
             mav=new ModelAndView("redirect:/");
             return mav;
         }
+	}
+	
+	@GetMapping("/lendlist")
+	public String lendlist(Criteria cri,Model model, RedirectAttributes rttr) {
+		
+		log.info("게시판글 목록 불러오기");
+			
+		List<BoardVO> list=boardservice.getList(cri);
+		if(!list.isEmpty()) {
+			model.addAttribute("list",list);
+		}
+		else {
+			return "/board/boardmain2";
+		}
+		return "redirect:/board/boardmain";
 	}
 
 

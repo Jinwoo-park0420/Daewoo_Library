@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.domain.ApplyBookVO;
 import com.spring.domain.BookVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.MemberVO;
 
 public interface ManagerMapper {
@@ -21,4 +22,6 @@ public interface ManagerMapper {
 	public int book_insert(BookVO book);
 	
 	public int statusChange(ApplyBookVO apply);
+	
+	public int applyChange(Book_reportVO report);
 }

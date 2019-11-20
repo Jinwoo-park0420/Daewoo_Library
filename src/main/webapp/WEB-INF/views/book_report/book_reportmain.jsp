@@ -108,25 +108,7 @@
 			</tbody>
 		</table>
 			<a class="btn btn-dark pull-right" href="/book_report/book_reportinsert">글쓰기</a>
-				  <div class="text-center">
-                            	<ul class="pagination">
-                            		<c:if test="${pageVO.prev}">
-                            			<li class="paginate_button previous">
-                            				<a href="${pageVO.startPage-1}">Previous</a>
-                            			</li>
-                            		</c:if>
-                            		<c:forEach var="idx" begin="${pageVO.startPage }" end="${pageVO.endPage }">
-                            			<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}">
-                            				<a href="${idx}">${idx}</a>
-                            			</li>
-                            		</c:forEach>
-                            		<c:if test="${pageVO.next} ">
-                            			<li class="paginate_button next">
-                            			<a href="${pageVO.startPage+1}">Next</a>
-                            			</li>
-                            		</c:if>
-                            	</ul>
-                            </div>
+				 
 			</div>
 <footer>
 		<div class="container">
@@ -167,6 +149,16 @@
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
 <script>
+$(function(){
+	var message='${message}';
+	if(message!="" && message.length !=0){
+		alert(message);	
+	}	
+})
+
+
+
+
 $(function(){
 	$("button[data-oper='download']").on("click", function(e) {
 		e.preventDefault();

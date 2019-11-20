@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.ApplyBookVO;
 import com.spring.domain.BookVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.MemberVO;
 import com.spring.mapper.ManagerMapper;
 
@@ -64,6 +65,12 @@ public class ManagerServiceImpl implements ManagerService {
 	public int statusChange(ApplyBookVO apply) {
 		// TODO Auto-generated method stub
 		return mapper.statusChange(apply);
+	}
+
+	@Override
+	public int applyChange(Book_reportVO report) {
+		// TODO Auto-generated method stub
+		return mapper.applyChange(report);
 	}
 
 }

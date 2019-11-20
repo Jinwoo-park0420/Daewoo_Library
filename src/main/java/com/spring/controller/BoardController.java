@@ -28,8 +28,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	@Autowired
-	private BoardRepService repservice;
-	
+	private BoardRepService repservice;	
 
 	@GetMapping("/boardinfo")		
 	public void boardinfo(Model model,Criteria cri) {
@@ -59,6 +58,20 @@ public class BoardController {
 		return "/board/boardmain2";
 	}
 	
+	@GetMapping("/boardsearch")
+	public String searchlist(Model model,Criteria cri) {
+		log.info("내가 쓴 글 불러오기");
+		
+		List<BoardVO> list=service.getList(cri);
+		if(!list.isEmpty()) {
+			model.addAttribute("list",list);
+			model.addAttribute("pageVO",new PageVO(cri,service.totalCnt(cri)));
+		}
+		else {
+			return "/board/boardsearchnone";
+		}
+		return "/board/boardsearch";
+	}
 	
 	@GetMapping("/boardinsert")
 	public void insertform() {

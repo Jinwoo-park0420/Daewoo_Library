@@ -24,4 +24,9 @@ insert into booklist(bookno,bookname,genre,writer,publisher,status,isbn) values(
 <update id="statusChange">
 update applybook set applystatus=1 where isbn=#{isbn}
 </update>
+
+<update id="applyChange">
+update book_report set apply=1 where bno=#{bno}
+</update>
+
 </mapper>
