@@ -101,8 +101,9 @@ create table bookList(
 	writer nvarchar2(50) not null,
 	publisher nvarchar2(20) not null,
 	status nvarchar2(10) not null ,
-	isbn number(20) not null
-);
+	isbn number(20) not null,
+	userid nvarchar2(20) 
+	);
 
 create sequence seq_bookno
 start with 0
