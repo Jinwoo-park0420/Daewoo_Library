@@ -485,8 +485,10 @@ $("#rentalBtn").click(function(e){
 
 //반납하기 버튼 클릭시 실행될 스크립트
 $("#returnBtn").click(function(e){
+	var session="${vo1.userid}";
 	e.preventDefault();
 	console.log("도서 반납~~");
+	if(session!="" && session.length !=0){
 	var bookno=$("#bookno").val();
 	var bookname=$("#bookname").val();
 	$.ajax({
@@ -508,6 +510,10 @@ $("#returnBtn").click(function(e){
 	})
 	modal.modal("hide");
 	location.href="/";
+	}else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
 })
 
 $("#closeBtn").click(function(e){
