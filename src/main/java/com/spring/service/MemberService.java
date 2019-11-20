@@ -25,4 +25,6 @@ public interface MemberService {
 	
 	public boolean pwdupdate(ChangeVO vo); //비밀번호 변경
 	
+	public BoardVO lendlist(BoardVO boardvo);
+	
 }

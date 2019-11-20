@@ -89,17 +89,17 @@
 					<th>신청 여부</th>
 				</tr>
 			</thead>
-			<c:forEach var="vo" items="${list}">
+			<c:forEach var="reportlist" items="${reportlist}">
 			<tbody>
 				<tr>
-					<td>${vo.bno}</td>
-					<td><a href="/book_report/book_reportread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
-					<td>${vo.writer}</td>
-					<td>${vo.regdate}</td>
-					<c:if test="${vo.apply ==0 }">
+					<td>${reportlist.bno}</td>
+					<td><a href="/book_report/book_reportread?bno=<c:out value='${reportlist.bno}'/>" class="move">${reportlist.title}</a></td>
+					<td>${reportlist.writer}</td>
+					<td>${reportlist.regdate}</td>
+					<c:if test="${reportlist.apply ==0 }">
 					<td>확인대기</td>
 					</c:if>
-					<c:if test="${vo.apply!=0 }">
+					<c:if test="${reportlist.apply!=0 }">
 					<td>확인완료</td>
 					</c:if>
 	

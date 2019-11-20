@@ -10,6 +10,7 @@ public class BoardVO {
 	private int bno;
 	private String title;
 	private String writer;
+	private String userid;
 	private String content;
 	private String password;
 	private Date regdate;

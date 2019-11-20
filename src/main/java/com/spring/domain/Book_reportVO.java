@@ -14,6 +14,7 @@ public class Book_reportVO {
 	private String updatedate;
 	private String password;
 	private int apply; //등록확인 유무
+	private String userid;
 	
 	private List<AttachFileVO> attachList;
 }

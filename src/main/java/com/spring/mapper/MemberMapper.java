@@ -28,4 +28,6 @@ public interface MemberMapper {
 	
 	public String changepassword(String userid);
 	
+	public BoardVO lendlist(BoardVO boardvo);
+	
 }

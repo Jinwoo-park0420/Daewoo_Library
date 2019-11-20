@@ -38,7 +38,7 @@ public class Book_reportController{
 	public void book_reportMain(Model model,Criteria cri) {
 		log.info("독후감 메인페이지 요청");
 		
-		model.addAttribute("list",service.book_reportList(cri));
+		model.addAttribute("reportlist",service.book_reportList(cri));
 		model.addAttribute("pageVO",new PageVO(cri,service.getTotalCount(cri)));
 		System.out.println(service.getTotalCount(cri));
 	}

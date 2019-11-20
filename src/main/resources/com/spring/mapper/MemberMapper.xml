@@ -45,5 +45,10 @@
 <select id="changepassword" resultType="String">
 	select password from Library_member where userid=#{userid}
 </select>
+
+<select id="lendlist" resultType="com.spring.domain.BoardVO">
+select * from library_board where writer=#{writer} and select * from BOOK_REPORT where writer=#{writer}
+</select>
+
 </mapper>
 

@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMapper mapper;
+
 	
 	
 	@Override
@@ -89,4 +90,10 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.pwdupdate(vo)==1?true:false;
 	}
 	
+	@Override
+	public BoardVO lendlist(BoardVO boardvo) {
+		log.info("내활동");
+		
+		return mapper.lendlist(boardvo);
+	}
 }

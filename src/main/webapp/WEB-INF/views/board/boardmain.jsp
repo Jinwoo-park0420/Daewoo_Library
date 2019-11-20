@@ -132,8 +132,9 @@
 			<tbody>
 				<tr>
 					<td><%=start%></td>				
-					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]</td>
-					<td>${vo.writer}</td>
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]<c:if test="${vo.replycnt >= 10}"><img src="<%=request.getContextPath()%>/resources/img/hit.jpg" /></c:if></td>
+					<!--  <td>${vo.writer}</td>-->
+					<td><c:choose><c:when test="${vo1.userid == vo.writer}"><strong>${vo.writer}</strong></c:when><c:otherwise>${vo.writer}</c:otherwise></c:choose></td>
 					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${vo.readcnt}</td>
 				</tr>

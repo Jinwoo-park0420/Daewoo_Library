@@ -130,7 +130,7 @@
 			<button type="button" class="btn btn-primary" onclick="location.href='/member/update'" style="width:260px; height:50px;" id="">회원수정페이지</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='/member/chPwd'" style="width:260px; height:50px;" id="">비밀번호변경</button>
  			<button type="button" class="btn btn-primary" onclick="location.href='/member/leave'" style="width:260px; height:50px;" id="">회원탈퇴페이지</button>
-  			<button type="button" class="btn btn-primary" onclick="location.href='/board/boardsearch?type=W&keyword=${vo1.userid}'" style="width:260px; height:50px;" id="">내 활동 조회</button>
+  			<button type="button" class="btn btn-primary" onclick="location.href='/member/lendlist?userid=${vo1.userid}'" style="width:260px; height:50px;" id="">내 활동 조회</button>
 	              </td>
 	            </tr>
 	         </table>
