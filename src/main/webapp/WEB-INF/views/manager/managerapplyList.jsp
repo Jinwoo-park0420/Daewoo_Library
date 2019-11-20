@@ -105,8 +105,12 @@
 				<c:if test="${vo.applystatus==0 }">
 					<td><button><a href="/manager/managerapply?isbn=<c:out value='${vo.isbn}'/>">도서신청처리</a></button></td>
 				</c:if>
-				<c:if test="${vo.applystatus!=0}">
+				<c:if test="${vo.applystatus==1}">
 					<td>도서신청이 완료되었습니다.</td>
+				</c:if>
+				
+				<c:if test="${vo.applystatus==2}">
+					<td>도서신청이 거절되었습니다.</td>
 				</c:if>
 				
 			

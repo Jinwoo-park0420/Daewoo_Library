@@ -103,8 +103,9 @@
 	            <tr class="text-center">
 	              <td colspan="2">
 			<button type="button" class="btn btn-info"  style="width:260px; height:50px;" id="">도서목록</button>
-			<button type="button" class="btn btn-primary"style="width:260px; height:50px;" id="">책추가 확인</button>
-  			 
+			<button type="button" class="btn btn-primary"style="width:260px; height:50px;" id="">책추가</button>
+			<button type="button" class="btn btn-dark"style="width:260px; height:50px;" id="">책거절</button>
+
   			     </td>
 	            </tr>
 	         </table>
@@ -177,6 +178,12 @@ $(function(){
 	$(".btn-primary").click(function(e){
 		operForm.attr("method","post");
 		operForm.attr("action", "/manager/managerapply");
+		operForm.submit();
+	})
+	
+	$(".btn-dark").click(function(e){
+		operForm.attr("method","post");
+		operForm.attr("action", "/manager/managerapplydelete");
 		operForm.submit();
 	})
 	
