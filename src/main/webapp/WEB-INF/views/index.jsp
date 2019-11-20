@@ -453,8 +453,10 @@ $(function(){
 <script>
 //대여하기 버튼 클릭시 실행될 스크립트
 $("#rentalBtn").click(function(e){
+	var session="${vo1.userid}";
 	e.preventDefault();
 	console.log("도서 대여~~");
+	if(session!="" && session.length !=0){
 	var bookno=$("#bookno").val();
 	var bookname=$("#bookname").val();
 	$.ajax({
@@ -471,8 +473,14 @@ $("#rentalBtn").click(function(e){
 			}
 		}
 	})
+	
 	modal.modal("hide");
 	location.href="/";
+	}
+	else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
 })
 
 //반납하기 버튼 클릭시 실행될 스크립트
