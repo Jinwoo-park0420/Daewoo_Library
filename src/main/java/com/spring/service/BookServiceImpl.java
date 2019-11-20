@@ -82,6 +82,18 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return mapper.bookRental(bookno);
 	}
+	
+	@Override
+	public int rentalUpdate(int bookno) {
+		// TODO Auto-generated method stub
+		return mapper.rentalUpdate(bookno);
+	}
+	
+	@Override
+	public int returnUpdate(int bookno) {
+		// TODO Auto-generated method stub
+		return mapper.returnUpdate(bookno);
+	}
 
 	@Override
 	public int NewCnt(Criteria cri) {

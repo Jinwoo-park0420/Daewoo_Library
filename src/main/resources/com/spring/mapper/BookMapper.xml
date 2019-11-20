@@ -89,6 +89,33 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) 
 
 
 
+<update id="rentalUpdate">
+	update bookList SET status=1 WHERE bookno=#{bookno}
+</update>
+<update id="returnUpdate">
+	update bookList SET status=0 WHERE bookno=#{bookno}
+</update>
+
+<!-- <update id="rentalUpdate">
+  update bookList
+  <trim prefix="SET" prefixOverrides="OR "> 
+
+    <if test="status == 0">
+         state = 1
+    </if> 
+    <if test="status == 1">
+        status = 0
+    </if>
+    
+  </trim>
+  WHERE bookno=${bookno}
+</update> -->
+
+
+
+
+
+
 <!-- 페이지 나누기를 위한 전체 게시물 수 -->
 <select id="getTotalCount" resultType="int">
 	select count(*) from bookList
