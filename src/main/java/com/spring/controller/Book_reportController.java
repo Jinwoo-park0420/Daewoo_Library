@@ -94,11 +94,12 @@ public class Book_reportController{
 		
 		if(result) {
 			log.info("수정성공");
-			rttr.addFlashAttribute("result","success");
+			rttr.addFlashAttribute("message",report.getWriter()+"님이 수정에 성공하였습니다.");
 			return "redirect:/book_report/book_reportmain";
 		}
 		log.info("수정실패");
-		return "book_report/book_reportmodify";
+		rttr.addFlashAttribute("message","수정에 실패하였습니다. \n 비밀번호를 확인해주세요");
+		return "redirect:/book_report/book_reportmain";
 	
 	}
 	@GetMapping("book_reportdelete")

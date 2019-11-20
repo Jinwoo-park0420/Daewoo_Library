@@ -8,11 +8,16 @@ writer nvarchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,
 readcnt number(10),--조회수
-replycnt number(10) default 0 --댓글수
+replycnt number(10) default 0, --댓글수
+constraint fk_library_user foreign key(writer)
+references Library_member(userid)
+on delete cascade
 );
 
-<!--댓글수에 대한 정보를 담을 칼럼추가하 -->
-alter table library_board add(replycnt number default 0);
+<!-- 트리거 만드는중 -->
+create or replace trigger 
+
+
 
 <!--spring_board 추가된 컬럼에 기존 값 업데이트하기  -->
 update library_board set replycnt=(
@@ -25,13 +30,14 @@ select * from library_board;
 
 create table board_reply(
 bno number(10) not null,
-cno number(10) constraint pk_library primary key,
+rno number(10) constraint pk_library primary key,
 reply nvarchar2(2000) not null,
 replyer varchar2(50) not null,
 regdate date default sysdate,
 updatedate date default sysdate,
 constraint fk_reply_library foreign key(bno)
 references library_board(bno)
+on delete cascade
 );
 
 alter table board_reply
@@ -39,7 +45,7 @@ add constraint board_reply_bno foreign key(bno)
 references library_board(bno)
 on delete cascade;
 
-create sequence seq_libcno;
+create sequence seq_librno;
 
 select * from board_reply;
 
@@ -47,7 +53,7 @@ select * from board_reply;
 drop table board_reply cascade constraints;
 drop table library_board cascade constraints;
 drop sequence seq_libbno;
-drop sequence seq_libcno;
+drop sequence seq_librno;
 alter table library_board drop constraint board_reply_bno;
 
 drop constraint board_reply_bno

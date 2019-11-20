@@ -76,7 +76,7 @@ textarea{resize:none;}
 	<tbody>
 			<tr>
                 <th>제목: </th>
-                <td><input type="text"  name="title" class="form-control" /></td>
+                <td><input type="text"  name="title" class="form-control" required="required"/></td>
             </tr>
             <tr>
             	<th>작성자:</th>
@@ -84,12 +84,12 @@ textarea{resize:none;}
             </tr>
             <tr>
                 <th>내용: </th>
-                <td><textarea cols="20" rows="25" name="content" class="form-control"></textarea></td>
+                <td><textarea cols="20" rows="25" name="content" class="form-control" required="required"></textarea></td>
             </tr>
             
             <tr>
             	<th>비밀번호:</th>
-                <td><input type="password"  name="password" class="form-control" /></td>
+                <td><input type="password"  name="password" class="form-control" required="required"/></td>
             </tr>
             <tr>        
          <th>파일첨부</th>   		
@@ -97,7 +97,6 @@ textarea{resize:none;}
 		<input type="file" name="uploadFile" id="uploadFile" multiple="multiple" readonly="readonly"/>
 		<div class="uploadResult">
 		<ul>
-		
 		</ul>
 	</div>
 	<div class='bigPictureWrapper'>
@@ -131,6 +130,14 @@ textarea{resize:none;}
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+$(function(){
+	var message='${message}';
+	if(message!="" && message.length !=0){
+		alert(message);	
+	}	
+})
+
+
  $(function() {
 	var operForm = $("#operForm");
 	

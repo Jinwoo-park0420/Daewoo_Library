@@ -107,7 +107,7 @@
 	            </tr>
 	            <tr>
 	              <th>가입날짜</th>
-	              <td><input type="number" class="form-control"  name="joindate"  value="${ManagerRead.joindate}" readonly="readonly"/></td>
+	              <td><input type="text" class="form-control"  name="joindate"  value="${ManagerRead.joindate}" readonly="readonly"/></td>
 	            </tr>
 	            <tr>
 	              <th>대여상태</th>
@@ -191,11 +191,22 @@ $(function(){
 		operForm.submit();
 	})
 	
-	$(".btn-primary").click(function(){
+	$(".btn-primary").click(function(e){
+		var lease_status=  ${ManagerRead.lease_status};
+		if(lease_status==0){
 		console.log(operForm);
 		operForm.attr("method","post");
 		operForm.attr("action", "/manager/managerdelete");
 		operForm.submit();
+		}
+		else
+		{
+			alert("현재 대여중인 도서가 있으므로 불가능합니다.");	
+			operForm.find("input[name='userid']").remove();
+			operForm.attr("action", "/manager/managerList");
+			operForm.submit();
+		}
+	
 	})
 	
 

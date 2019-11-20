@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -103,39 +104,44 @@ public class BookController {
 		return new ResponseEntity<>(vo, HttpStatus.OK);		
 	}
 	
-	@PostMapping("bookDetail")
-	public void bookDetail(int bookno, Model model) {
-		log.info("도서 대여신청... "+bookno);
-		BookVO vo=service.bookDetail(bookno);
-		model.addAttribute("vo", vo);
-	}
+//	@PostMapping("bookDetail")
+//	public void bookDetail(int bookno, Model model) {
+//		log.info("도서 대여신청... "+bookno);
+//		BookVO vo=service.bookDetail(bookno);
+//		model.addAttribute("vo", vo);
+//	}
 	
 	@GetMapping("bookRental")
-	public void bookRentalGet(int bookno, Model model) {
-		log.info("도서 대여신청(get)... "+bookno);
-		BookVO vo=service.bookRental(bookno);
-		model.addAttribute("vo", vo);
+	@ResponseBody
+	public String rentalUpdate(int bookno, Model model) {
+		log.info("도서 대여신청(get)... "+bookno+" 번 도서");
+		int status=service.rentalUpdate(bookno);
+		log.info("도서 대여신청(get), 도서상태 => "+status);
+		if(status==0) {
+			return "true";
+		}else {
+			return "false";
+		}
 	}
 	
-	@PostMapping("bookRental")
-	public String bookRentalPost(int bookno, Model model) {
-		log.info("도서 대여신청(post)... "+bookno);
-		BookVO vo=service.bookRental(bookno);
-		model.addAttribute("vo", vo);
-		return "/book/bookRental";
+	@PostMapping("bookDetail")
+	@ResponseBody
+	public String returnUpdate(int bookno, Model model) {
+		log.info("도서 반납신청(post)... "+bookno+" 번 도서");
+		int status=service.returnUpdate(bookno);
+		log.info("도서 반납신청(post), 도서상태 => "+status);
+		if(status==0) {
+			return "true";
+		}else {
+			return "false";
+		}
 	}
-
-
+	
 	@GetMapping("bookapply")
 	public String bookapplyGet(SessionStatus session, RedirectAttributes rttr) {
 		log.info("도서 신청페이지 요청");
-		if (!session.isComplete()) {
-			return "book/bookapply";
-			
-		} else {
-			rttr.addFlashAttribute("error", "로그인을 실행 후 이용바랍니다.");
-			return "redirect:/member/login";
-		}
+	
+		return "book/bookapply";
 	}
 
 	@PostMapping("apply")

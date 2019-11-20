@@ -23,6 +23,7 @@
   <!-- Custom styles for this template -->
   <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -30,7 +31,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-    		<a class="navbar-brand" href="/member/index">대우 도서관</a>
+    		<a class="navbar-brand" href="/manager/managermain">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -40,7 +41,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 				</ul>
@@ -48,9 +49,8 @@
 				
 				<c:if test="${!empty vo1 }">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+					<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 					<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
 				</ul>
 				</c:if>
 			</div>
@@ -63,64 +63,58 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 align="center">Update User INFO</h1>
+            <h1 align="center">My page</h1>
           </div>
         </div>
       </div>
     </div>
   </header>
-	<!-- Post Content -->
+ <!--    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Post Content -->
   <hr>
   
-  
-<div class="rows">
+<div class="row">
 	<div class="container">
-	   <div class="col-lg-12">
-	      <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#fe983b;">회원 정보 수정</h3>
-	      <div class="col-xs-3 col-sm-3"></div>
-	       <form method="post" action="/member/update" id="memberUpdate"  >
+		<div class="col-lg-12">
+			 <h3 class="text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background-color:#8099af; ">회원 정보</h3>
+			 <div class="col-xs-3 col-sm-3"></div>
+	       <form action="#" name="form_mypage" id="operForm"   >
 	         <table class="table table-striped" >
 	            <tr>
-	              <th>user ID</th>
-	              <td><input type="text" value="${modelVO.userid}" class="form-control" name="userid" readonly="readonly"/></td>
+	              <th>책이름</th>
+	              <td><input type="text" class="form-control" name="bookname"  required="required" value="${apply.bookname }"/></td>
 	            </tr>
 	            <tr>
-	              <th>이름</th>
-	              <td><input type="text" class="form-control" value="${modelVO.name}" name="name"  id="name" />
-	              <small class="text-danger" id="name"></small></td>
-	 
-	            <tr>
-	              <th>E-mail</th>
-	              <td><input type="email" class="form-control" value="${modelVO.email}" name="email" id="email"/>
-	              <small class="text-danger" id="email"></small></td>
-	            </tr>
-	 
-	            <tr>
-	              <th>전화번호</th>
-	              <td><input type="tel" class="form-control" value="${modelVO.phone_number}" name="phone_number" id="phone_number" />
-	              <small class="text-danger" id="phone_number"></small></td>
+	              <th>저자</th>
+	              <td><input type="text" class="form-control" name="writer" required="required" value="${apply.writer}"/></td>
 	            </tr>
 	            <tr>
-	              <th>주소</th>
-	              <td><input type="text" class="form-control" name="address" value="${modelVO.address}" readonly="readonly"/></td>
+	              <th>출판사</th>
+	              <td><input type="text" class="form-control" name="publisher" required="required" value="${apply.publisher }"/></td>
 	            </tr>
 	            <tr>
-	              <th>생일</th>
-	              <td><input type="number" class="form-control"  name="birthYear"  value="${modelVO.birthYear}"  readonly="readonly"/></td>
+	              <th>장르</th>
+	              <td><input type="text" class="form-control"  name="genre"  required="required" value="${apply.genre}"/></td>
+	            </tr>
+	            <tr>
+	              <th>ISBN</th>
+	              <td><input type="text" class="form-control"  name="isbn"  required="required" value="${apply.isbn}"/></td>
 	            </tr>
 	            <tr class="text-center">
 	              <td colspan="2">
-	                <button type="submit" class="btn btn-primary " style="width:260px; height:50px;" id="">Submit</button>
-	             	<button type="reset" class="btn btn-primary" id="">Reset</button>
-	              </td>
+			<button type="button" class="btn btn-info"  style="width:260px; height:50px;" id="">도서목록</button>
+			<button type="button" class="btn btn-primary"style="width:260px; height:50px;" id="">책추가 확인</button>
+  			 
+  			     </td>
 	            </tr>
 	         </table>
-	     </form>
-	   </div>
+	         </form>
+			<div class="myinfo-btn">
+			</div>
+		</div>
 	</div>
 </div>
-  
-  
+
 	<hr>
   <!-- Footer -->
   <footer>
@@ -165,13 +159,31 @@
 
   <!-- Custom scripts for this template -->
   <script src="/resources/js/clean-blog.min.js"></script>
-   
-  <!-- validation 라이브러리 삽입 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
-  <!-- validation 사용자 작성 코드 삽입-->
-  <script src="/resources/js/update.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
+  <script>
 
+var operForm = $("#operForm");
+
+$(function(){
+	$(".btn-info").click(function(){
+		console.log(operForm);
+		/* bno값을 삭제하고 폼 보내기!! */
+		operForm.find("input[name='isbn']").remove();
+		operForm.attr("action", "/manager/managerapplyList");
+		operForm.submit();
+	})
+	
+	$(".btn-primary").click(function(e){
+		operForm.attr("method","post");
+		operForm.attr("action", "/manager/managerapply");
+		operForm.submit();
+	})
+	
+
+})
+</script>
+  
 </body>
 
 </html>

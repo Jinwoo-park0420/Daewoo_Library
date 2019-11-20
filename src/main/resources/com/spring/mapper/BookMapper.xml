@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.BookMapper">
 <insert id="ApplyBook">
-insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) values(#{bookname},#{writer},#{publisher},#{publish_year},#{price},#{ISBN},#{userid})
+insert into ApplyBook(bookname,writer,publisher,publish_year,price,isbn,genre,userid) values(#{bookname},#{writer},#{publisher},#{publish_year},#{price},#{isbn},#{genre},#{userid})
 </insert>
 
 <select id="getList" resultType="com.spring.domain.BookVO">
@@ -86,6 +86,33 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,ISBN,userid) 
 <select id="bookRental" resultType="com.spring.domain.BookVO">
 	select * from bookList where bookno=#{bookno}
 </select>
+
+
+
+<update id="rentalUpdate">
+	update bookList SET status=1 WHERE bookno=#{bookno}
+</update>
+<update id="returnUpdate">
+	update bookList SET status=0 WHERE bookno=#{bookno}
+</update>
+
+<!-- <update id="rentalUpdate">
+  update bookList
+  <trim prefix="SET" prefixOverrides="OR "> 
+
+    <if test="status == 0">
+         state = 1
+    </if> 
+    <if test="status == 1">
+        status = 0
+    </if>
+    
+  </trim>
+  WHERE bookno=${bookno}
+</update> -->
+
+
+
 
 
 

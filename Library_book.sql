@@ -4,7 +4,7 @@ create table bookList(
 	genre nvarchar2(20) not null,
 	writer nvarchar2(50) not null,
 	publisher nvarchar2(20) not null,
-	status nvarchar2(10) not null,
+	status nvarchar2(10) not null ,
 	isbn number(20) not null
 );
 

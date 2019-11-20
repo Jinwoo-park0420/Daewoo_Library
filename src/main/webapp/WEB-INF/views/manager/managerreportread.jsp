@@ -35,7 +35,7 @@ textarea{resize:none;}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/manager/managermain">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -45,7 +45,7 @@ textarea{resize:none;}
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					</ul>
@@ -53,11 +53,9 @@ textarea{resize:none;}
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/mypage">My page</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -99,7 +97,6 @@ textarea{resize:none;}
             </tr>
             
             <tr> 
-                   
          <th>파일첨부</th>   		
          <td>
 		<div class="uploadResult">
@@ -113,12 +110,9 @@ textarea{resize:none;}
 	</div>
 	</td>	
 	</tr>
-            
-            
                         <tr>
                 <td colspan="2">
-                    <button data-oper='modify' class="btn btn-light pull-right">수정하기</button>
-                    <button data-oper='delete' class="btn btn-light pull-right ">삭제하기</button>
+                    <button data-oper='confirm' class="btn btn-light pull-right">제출확인</button>
                     <button data-oper='list' class="btn btn-light pull-left ">목록으로</button>
                 
 					<input type='hidden' id='bno' name='bno' value='<c:out value="${report_select.bno}"/>'>					
@@ -135,16 +129,12 @@ textarea{resize:none;}
  $(function() {
 	var operForm = $("#operForm");
 	
-	$("button[data-oper='modify']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportmodify").submit();
-	})
-	$("button[data-oper='delete']").on("click", function() {
-	operForm.attr("action", "/book_report/book_reportdelete").submit();
-	})
-	
+	$("button[data-oper='confirm']").on("click", function() {
+	operForm.attr("action", "/manager/managerconfirm").submit();
+	})	
 	$("button[data-oper='list']").on("click", function() {
 		operForm.find("#bno").remove();
-		operForm.attr("action", "/book_report/book_reportmain")
+		operForm.attr("action", "/manager/managerreport")
 			operForm.submit();
 		})
 
@@ -197,7 +187,13 @@ $(".uploadResult").on("click","li",function(){
 		showImage(path.replace(new RegExp(/\\/g),"/"));
 	}
 	else{
-		self.location="/download?fileName="+path;
+		var apply =${report_select.apply};
+		self.location="/download?fileName="+path+"&apply="+apply;
+		
+		
+		console.log("파일다운로드");
+		
+		
 	}
 	});
 

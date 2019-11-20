@@ -10,4 +10,23 @@ select * from Library_member where userid=#{userid}
 <delete id="ManagerDelete">
 delete from Library_member where userid=#{userid}
 </delete>
+<select id="ManagerApplyList" resultType="com.spring.domain.ApplyBookVO">
+select bookname, writer, publisher, substr(publish_year, 1, 4) as publish_year_yy,
+substr(publish_year,5) as publish_year_mm,  price, isbn ,genre,userid,applystatus
+ from applybook
+</select>
+<select id="apply" resultType="com.spring.domain.ApplyBookVO">
+select * from applybook where isbn=#{isbn}
+</select>
+<insert id="book_insert">
+insert into booklist(bookno,bookname,genre,writer,publisher,status,isbn) values(seq_bookno.nextVal,#{bookname},#{genre},#{writer},#{publisher},0,#{isbn})
+</insert>
+<update id="statusChange">
+update applybook set applystatus=1 where isbn=#{isbn}
+</update>
+
+<update id="applyChange">
+update book_report set apply=1 where bno=#{bno}
+</update>
+
 </mapper>
