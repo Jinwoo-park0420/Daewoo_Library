@@ -19,12 +19,23 @@
   <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  
+ 
+  <!-- Bootstrap core JavaScript -->
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="/resources/js/clean-blog.min.js"></script>
 
   <!-- Custom styles for this template -->
   <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
-
+ <style>
+  	label.error{
+  		top:0;
+  		opacity:1;
+  	}
+  </style>
 </head>
-
 <body>
 
   <!-- Navigation -->
@@ -77,22 +88,22 @@
         <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
         <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
         <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-        <form name="sentMessage" id="contactForm" action="/book/apply" method="post" novalidate>
+        <form name="sentMessage" id="applyForm" action="/book/apply" method="post" role="form">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>책 이름</label>
-              <input type="text" class="form-control" placeholder="책 이름" id="bookname" name="bookname" required data-validation-required-message="책이름을 입력 바랍니다." >
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="책 이름" id="bookname" name="bookname"  >
+              <small class="text-danger" id="bookname"></small>
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>글쓴이</label>
-              <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" required data-validation-required-message="글쓴이를 입력 바랍니다." >
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="글쓴이" id="writer" name="writer" >
+              <small class="text-danger" id="writer"></small>
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>출판사</label>
-              <input type="text" class="form-control" placeholder="출판사" id="publisher" name="publisher" required data-validation-required-message="출판사를 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="출판사" id="publisher" name="publisher" >
+              <small class="text-danger" id="publisher" ></small>
             </div>
             <div class="form-group floating-label-form-group controls">
             <tr>
@@ -123,18 +134,18 @@
           </div>
             <div class="form-group floating-label-form-group controls">
               <label>가격</label>
-              <input type="text" class="form-control" placeholder="가격" id="price" name="price" required data-validation-required-message="가격을 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="가격" id="price" name="price">
+              <small class="text-danger" id="price"></small>
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>장르</label>
-              <input type="text" class="form-control" placeholder="장르" id="genre" name="genre" required data-validation-required-message="ISBN을 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="장르" id="genre" name="genre" >
+              <small class="text-danger"  id="genre"></small>
             </div>
             <div class="form-group floating-label-form-group controls">
               <label>ISBN</label>
-              <input type="text" class="form-control" placeholder="ISBN" id="isbn" name="isbn" required data-validation-required-message="ISBN을 입력 바랍니다.">
-              <p class="help-block text-danger"></p>
+              <input type="text" class="form-control" placeholder="ISBN" id="isbn" name="isbn" >
+              <small class="text-danger"  id="isbn"></small>
             	<input type="hidden" value="${vo1.userid }" name="userid"  />
             </div>
             
@@ -189,13 +200,11 @@
       </div>
     </div>
   </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="/resources/js/clean-blog.min.js"></script>
+   <!-- validation 라이브러리 삽입 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+  <!-- validation 사용자 작성 코드 삽입-->
+  <script src="/resources/js/apply.js"></script>
+ 
 
 </body>
 

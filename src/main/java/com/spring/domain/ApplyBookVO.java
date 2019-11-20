@@ -13,7 +13,7 @@ private String publish_year_yy;
 private String publish_year_mm;
 private String genre;
 private int price;
-private int isbn;
+private long isbn;
 private String userid;
 private int applystatus;
 }
