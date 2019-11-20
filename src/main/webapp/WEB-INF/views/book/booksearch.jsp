@@ -340,7 +340,8 @@ $(".btn-outline-light").click(function(e){
 				var publisher = result.publisher;
 				var status = result.status;
 				var isbn = result.isbn;
-					
+				var userid = result.userid;
+				
 				$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
 				$("#bookno").val(bookno);	
 				$("#bookname").val(bookname);
@@ -348,6 +349,7 @@ $(".btn-outline-light").click(function(e){
 				$("#genre").val(genre);
 				$("#publisher").val(publisher);
 				$("#status").val(status);
+				$("#userid").val(userid);
 				var colorChange=$("#status");
 				if(status==0){
 					$("#status").val("대여 가능");
@@ -371,60 +373,74 @@ $(".btn-outline-light").click(function(e){
 		})
 
 		
-	//대여하기 버튼 클릭시 실행될 스크립트
-	$("#rentalBtn").click(function(e){
-		e.preventDefault();
-		console.log("도서 대여~~");
-		var bookno=$("#bookno").val();
-		var bookname=$("#bookname").val();
-		$.ajax({
-			url:"/book/bookRental",
-			method:"GET",
-			data:{"bookno":bookno,
-				"bookname":bookname
-			},
-			success:function(data){
-				if(data=="false"){
-					alert(bookname+"\n 도서대여가 완료되었습니다.");
-				}else{
-					alert("도서대여 실패!");
-				}
+//대여하기 버튼 클릭시 실행될 스크립트
+$("#rentalBtn").click(function(e){
+	var session="${vo1.userid}";
+	e.preventDefault();
+	console.log("도서 대여~~");
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	if(session!="" && session.length !=0){
+	$.ajax({
+		url:"/book/bookRental",
+		method:"GET",
+		data:{"bookno":bookno,
+			"bookname":bookname,
+			"userid":session
+		},
+		success:function(data){
+			if(data=="false"){
+				alert(bookname+"\n 도서대여가 완료되었습니다.");
+			}else{
+				alert("도서대여 실패!");
 			}
-		})
-		modal.modal("hide");
-		location.href="/book/booksearch";
+		}
 	})
 	
-	
-	
-	
-	
-	//반납하기 버튼 클릭시 실행될 스크립트
-	$("#returnBtn").click(function(e){
-		e.preventDefault();
-		console.log("도서 반납~~");
-		var bookno=$("#bookno").val();
-		var bookname=$("#bookname").val();
-		$.ajax({
-			url:"/book/bookDetail",
-			method:"POST",
-			data:{"bookno":bookno,
-				"bookname":bookname
-			},
-			success:function(data){
-				if(data=="false"){
-					alert(bookname+"\n 도서반납이 완료되었습니다.");
-					
-				}else{
-					alert("도서반납 실패!");
-				}
-			
+	modal.modal("hide");
+	location.href="/book/booksearch";
+	}
+	else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
+})
+
+//반납하기 버튼 클릭시 실행될 스크립트
+$("#returnBtn").click(function(e){
+	var session="${vo1.userid}";
+	e.preventDefault();
+	console.log("도서 반납~~");
+	if(session!="" && session.length !=0){
+	var bookno=$("#bookno").val();
+	var bookname=$("#bookname").val();
+	$.ajax({
+		url:"/book/bookDetail",
+		method:"POST",
+		data:{"bookno":bookno,
+			"bookname":bookname,
+			"userid":session
+		},
+		success:function(data){
+							
+			if(data=="false"){
+				alert(bookname+"\n 도서반납이 완료되었습니다.");
+				
+			}else{
+				alert(session+"님이 대여한 도서가 아닙니다.");
 			}
 			
-		})
-		modal.modal("hide");
-		location.href="/book/booksearch";
+		
+		}
+		
 	})
+	modal.modal("hide");
+	location.href="/book/booksearch";
+	}else{
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+	}
+})
 	
 	$("#closeBtn").click(function(e){
 		e.preventDefault();

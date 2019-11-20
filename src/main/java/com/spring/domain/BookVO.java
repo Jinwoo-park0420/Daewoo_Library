@@ -13,5 +13,5 @@ public class BookVO {
 	private String publisher; //출판사
 	private int status; //도서상태
 	private long isbn; //isbn
-	private String bookImageURL; //도서 썸네일
+	private String userid; //유저아이디
 }

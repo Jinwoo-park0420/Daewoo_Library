@@ -314,8 +314,12 @@ $(function(){
       		<input type="text" class="form-control" id="status" name="status" readonly />
       	</div>
       	<div class="form-group">
-      		<label for="bookno" style="margin-bottom:1px;"></label>
-      		<input type="hidden" class="form-control" id="bookno" name="bookno"/>
+      		<label for="bookno" style="margin-bottom:1px;">${vo.bookno}</label>
+      		<input type="hidden" class="form-control" id="bookno" name="bookno" value="${vo.bookno}"/>
+      	</div>
+      	<div class="form-group">
+      		<label for="userid" style="margin-bottom:1px;">${vo.userid }</label>
+      		<input type="hidden" class="form-control" id="userid" name="userid" value="${vo.userid }"/>
       	</div>
       	</div>
 		</div>
@@ -456,14 +460,15 @@ $("#rentalBtn").click(function(e){
 	var session="${vo1.userid}";
 	e.preventDefault();
 	console.log("도서 대여~~");
-	if(session!="" && session.length !=0){
 	var bookno=$("#bookno").val();
 	var bookname=$("#bookname").val();
+	if(session!="" && session.length !=0){
 	$.ajax({
 		url:"/book/bookRental",
 		method:"GET",
 		data:{"bookno":bookno,
-			"bookname":bookname
+			"bookname":bookname,
+			"userid":session
 		},
 		success:function(data){
 			if(data=="false"){
@@ -495,15 +500,18 @@ $("#returnBtn").click(function(e){
 		url:"/book/bookDetail",
 		method:"POST",
 		data:{"bookno":bookno,
-			"bookname":bookname
+			"bookname":bookname,
+			"userid":session
 		},
 		success:function(data){
+							
 			if(data=="false"){
 				alert(bookname+"\n 도서반납이 완료되었습니다.");
 				
 			}else{
-				alert("도서반납 실패!");
+				alert(session+"님이 대여한 도서가 아닙니다.");
 			}
+			
 		
 		}
 		
@@ -546,6 +554,7 @@ $(".move").click(function(e){
 			var publisher = result.publisher;
 			var status = result.status;
 			var isbn = result.isbn;
+			var userid = result.userid;
 				
 			$("#exampleModalCenterTitle").val(exampleModalCenterTitle);
 			$("#bookno").val(bookno);	
@@ -554,6 +563,7 @@ $(".move").click(function(e){
 			$("#genre").val(genre);
 			$("#publisher").val(publisher);
 			$("#status").val(status);
+			$("#userid").val(userid);
 			var colorChange=$("#status");
 			if(status==0){
 				$("#status").val("대여 가능");

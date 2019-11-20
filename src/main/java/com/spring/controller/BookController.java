@@ -106,9 +106,9 @@ public class BookController {
 
 	@GetMapping("bookRental")
 	@ResponseBody
-	public String rentalUpdate(int bookno, Model model) {
-		log.info("도서 대여신청(get)... "+bookno+" 번 도서");
-		int status=service.rentalUpdate(bookno);
+	public String rentalUpdate(BookVO vo, Model model) {
+		log.info("도서 대여신청(get)... "+vo);
+		int status=service.rentalUpdate(vo);
 		log.info("도서 대여신청(get), 도서상태 => "+status);
 		if(status==0) {
 			return "true";
@@ -119,9 +119,9 @@ public class BookController {
 	
 	@PostMapping("bookDetail")
 	@ResponseBody
-	public String returnUpdate(int bookno, Model model) {
-		log.info("도서 반납신청(post)... "+bookno+" 번 도서");
-		int status=service.returnUpdate(bookno);
+	public String returnUpdate(BookVO vo, Model model) {
+		log.info("도서 반납신청(post)... "+vo);
+		int status=service.returnUpdate(vo);
 		log.info("도서 반납신청(post), 도서상태 => "+status);
 		if(status==0) {
 			return "true";

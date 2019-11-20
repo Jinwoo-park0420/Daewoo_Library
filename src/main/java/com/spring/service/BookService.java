@@ -44,7 +44,7 @@ public interface BookService {
 	public BookVO bookRental(int bookno);
 	
 	//대여
-	public int rentalUpdate(int bookno);
+	public int rentalUpdate(BookVO vo);
 	//반납
-	public int returnUpdate(int bookno);
+	public int returnUpdate(BookVO vo);
 }

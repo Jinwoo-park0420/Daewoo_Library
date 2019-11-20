@@ -135,11 +135,15 @@
       	</div>
       	<div class="form-group">
       		<label for="status" style="margin-bottom:1px;"></label>
-      		<input type="hidden" class="form-control" id="status" name="status" value="${vo.status}" readonly/>
+      		<input type="hidden" class="form-control" id="status" name="status" value="${vo.status}" />
       	</div>
       	<div class="form-group">
       		<label for="bookno" style="margin-bottom:1px;"></label>
-      		<input type="hidden" class="form-control" id="bookno" name="bookno" value="${vo.bookno }" readonly />
+      		<input type="hidden" class="form-control" id="bookno" name="bookno" value="${vo.bookno }" />
+      	</div>
+      	<div class="form-group">
+      		<label for="session" style="margin-bottom:1px;"></label>
+      		<input type="hidden" class="form-control" id="session" name="session" value="${vo1.userid }" />
       	</div>
       	</div>
 		</div>
