@@ -73,4 +73,10 @@ public class ManagerServiceImpl implements ManagerService {
 		return mapper.applyChange(report);
 	}
 
+	@Override
+	public int statusChange2(ApplyBookVO apply) {
+		// TODO Auto-generated method stub
+		return mapper.statusChange2(apply);
+	}
+
 }

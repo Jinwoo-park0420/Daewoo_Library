@@ -31,6 +31,7 @@ public class ManagerController {
 	@Autowired
 	private Book_reportService reportservice;
 	
+	
 	@Autowired
 	private ManagerService service;
 	
@@ -88,6 +89,17 @@ public class ManagerController {
 			}
 				
 			return "";
+	}
+	@PostMapping("managerapplydelete")
+	public String managerapplydelete(Model model,ApplyBookVO apply) {
+		log.info("책 거절");
+		int result=	service.statusChange2(apply);
+		if(result >0) {
+			log.info("apply확인"+apply);
+			return "redirect:/manager/managerapplyList";
+		}
+		
+		return "";
 	}
 	@GetMapping("managerinfo")
 	public void managerinfo() {

@@ -1,5 +1,9 @@
 package com.spring.mapper;
 
+import java.util.List;
+
+import com.spring.domain.BoardVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
@@ -25,4 +29,7 @@ public interface MemberMapper {
 	
 	public String changepassword(String userid);
 	
+	public List<Book_reportVO> reportinfo(Book_reportVO report);
+	
+	public List<BoardVO> boardinfo(BoardVO board);
 }

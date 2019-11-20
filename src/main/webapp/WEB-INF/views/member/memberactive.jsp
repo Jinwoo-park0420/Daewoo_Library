@@ -26,7 +26,7 @@
 <!-- Custom styles for this template -->
 <link href="/resources/css/clean-blog.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>활동 조회</title>
 
 <style>
         /* The Modal (background) */
@@ -88,7 +88,7 @@
 			</div>
 		</div>
 	</nav>
-<header class="masthead" style="background-image: url('/resources/img/bookk.jpg')">
+<header class="masthead" style="background-image: url('/resources/img/lendinfo.jpg')">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -107,7 +107,7 @@
 					
 		<!-- Main Content -->
 	<div>
-	<h3 align="center">건의사항</h3>
+	<h3 align="center">내 정보</h3>
 	</div>
 	<div class="container">
 		<table class="table table-striped table-bordered table-hover">
@@ -132,21 +132,31 @@
 			<tbody>
 				<tr>
 					<td><%=start%></td>				
-					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]<c:if test="${vo.replycnt >= 10}"><img src="<%=request.getContextPath()%>/resources/img/hit.jpg" /></c:if></td>
-					<!--  <td>${vo.writer}</td>-->
-					<td><c:choose><c:when test="${vo1.userid == vo.writer}"><strong>${vo.writer}</strong></c:when><c:otherwise>${vo.writer}</c:otherwise></c:choose></td>
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]</td>
+					<td>${vo.writer}</td>
 					<td><fmt:formatDate value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${vo.readcnt}</td>
 				</tr>
 				<%
 					start=start+1;
 				%>
-				</c:forEach>	
 			</tbody>
+			</c:forEach>	
+			
+			<%-- <%-- <c:forEach var="reportlist" items="${reportlist}">
+			<tbody>
+				<tr>
+							
+					<td>${reportlist.title}</td>
+					<td>${reportlist.writer}</td>
+					<td><fmt:formatDate value="${reportlist.updatedate}" pattern="yyyy-MM-dd HH:mm"/></td>
+				</tr>
+				
+			</tbody>
+			</c:forEach> --%> --%>
+			
 		</table>
-		<div><p>총 게시글 수: ${pageVO.total}</p></div>
 		<div>
-			<a class="btn btn-dark pull-right" href="/board/boardinsert">글쓰기</a>
 		</div>
 			<input type="hidden" value="${pageVO.prev}" />
 			<input type="hidden" value="${pageVO.next}" />
@@ -168,18 +178,6 @@
 					</ul>
 				</div>
 				<div>
-				<form action="" id="searchForm" method="get">
-				<select name="type" id="">
-				<option value="">---</option>
-   				<option value="T" <c:out value="${pageVO.cri.type eq 'T'?'selected':''}"/>>제목</option>
-                <option value="C" <c:out value="${pageVO.cri.type eq 'C'?'selected':''}"/>>내용</option>
-                <option value="W" <c:out value="${pageVO.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-                </select>
-				<input type="text" name="keyword" value="${pageVO.cri.keyword}"/>
-                <input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}"/>
-                <input type="hidden" name="amount" value="${pageVO.cri.amount}"/>
-                <button class="btn btn-default">검색</button>
-			</form><!-- 검색종료 -->
 		</div>				
 	</div>
 			

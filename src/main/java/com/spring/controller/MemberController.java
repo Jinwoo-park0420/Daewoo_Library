@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -19,11 +20,18 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.BoardVO;
+import com.spring.domain.Book_reportVO;
 import com.spring.domain.ChangeVO;
+import com.spring.domain.Criteria;
 import com.spring.domain.EmailVO;
 import com.spring.domain.LoginVO;
 import com.spring.domain.MemberUpdateVO;
 import com.spring.domain.MemberVO;
+import com.spring.domain.PageVO;
+import com.spring.service.BoardService;
+import com.spring.service.BookService;
+import com.spring.service.Book_reportService;
 import com.spring.service.EmailSender;
 import com.spring.service.MemberService;
 
@@ -37,6 +45,15 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private BoardService boardservice;
+	
+	@Autowired
+	private Book_reportService reportservice;
+	
+	@Autowired
+	private BookService bookservice;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -228,6 +245,41 @@ public class MemberController {
             return mav;
         }
 	}
+	
+	@GetMapping("/lendlist")
+	public String lendlist(Model model,BoardVO boardvo,Criteria cri,MemberVO vo) {
+		
+		
+		log.info("내 활동 불러오기");
+			
+		 List<BoardVO> list = boardservice.getList(cri);
+		 List<Book_reportVO> reportlist=reportservice.book_reportList(cri);
+		 System.out.println("이찬해씨꺼"+list);
+		 System.out.println("박진우씨꺼"+reportlist);
+		 
+		 if(!list.isEmpty()) {
+			 log.info("여기까진 돔1");
+				model.addAttribute("list",list);
+				model.addAttribute("pageVO",new PageVO(cri,boardservice.totalCnt(cri)));
+			}
+		
+		  if(!reportservice.book_reportList(cri).isEmpty()) { log.info("여기까진 돔2");
+		  model.addAttribute("reportlist",reportlist); }
+		 
+		 
+			//model.addAttribute("booklist",bookservice.getList(cri));
+			
+			
+//			return "redirect:/member/memberactive?type='W'&keyword="+vo.getUserid();
+			return "/member/memberactive?type='w'keyword="+vo.getUserid();
+	}
 
-
+	@GetMapping("mypageinfo")
+	public void mypageinfo(Model model,Book_reportVO report,BoardVO board) {
+		log.info("mypageinfo요청"+report);
+		List<Book_reportVO> reportlist=service.reportinfo(report);
+		List<BoardVO> boardlist =service.boardinfo(board);
+		model.addAttribute("boardlist",boardlist);
+		model.addAttribute("reportlist",reportlist);
+	}
 }

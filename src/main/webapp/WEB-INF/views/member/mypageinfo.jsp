@@ -27,12 +27,13 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 </head>
+
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand" href="/member/index">대우 도서관</a>
+			<a class="navbar-brand" href="/manager/managermain">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -42,7 +43,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<c:if test="${empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 					</ul>
@@ -50,11 +51,9 @@
 
 				<c:if test="${!empty vo1 }">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/member/index">처음으로</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/managermain">처음으로</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/member/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/member/mypage">My page</a></li>
 					</ul>
 				</c:if>
 			</div>
@@ -76,40 +75,55 @@
 </header>				
 		<!-- Main Content -->
 	<div class="container">
-	<h3 align="center">독후감 대회</h3>
-	<button data-oper='download' style="float: right;" class="btn btn-primary"> 독후감 양식 다운로드</button>
+	<h3 align="center">독후감 목록</h3>
 
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>번 호</th>
-					<th>제 목</th>
-					<th>작 성 자</th>
-					<th>작 성 일</th>
-					<th>신청 여부</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>신청여부</th>							
 				</tr>
 			</thead>
-			<c:forEach var="reportlist" items="${reportlist}">
+			<c:forEach var="vo" items="${reportlist}">
 			<tbody>
 				<tr>
-					<td>${reportlist.bno}</td>
-					<td><a href="/book_report/book_reportread?bno=<c:out value='${reportlist.bno}'/>" class="move">${reportlist.title}</a></td>
-					<td>${reportlist.writer}</td>
-					<td>${reportlist.regdate}</td>
-					<c:if test="${reportlist.apply ==0 }">
-					<td>확인대기</td>
-					</c:if>
-					<c:if test="${reportlist.apply!=0 }">
-					<td>확인완료</td>
-					</c:if>
-	
+					<td>${vo.bno}</td>
+					<td><a href="/book_report/book_reportread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
+					<td>${vo.writer}</td>
+					<td>${vo.regdate }</td>
+					<td>${vo.apply}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
-			<a class="btn btn-dark pull-right" href="/book_report/book_reportinsert">글쓰기</a>
-				 
-			</div>
+	<h3 align="center">게시판 목록</h3>
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>							
+				</tr>
+			</thead>
+			<c:forEach var="vo" items="${boardlist}">
+			<tbody>
+				<tr>
+					<td>${vo.bno}</td>
+					<td><a href="/board/boardread?bno=<c:out value='${vo.bno}'/>" class="move">${vo.title}</a>[${vo.replycnt}]</td>
+					<td>${vo.writer}</td>
+					<td>${vo.regdate }</td>
+					<td>${vo.readcnt}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		
 <footer>
 		<div class="container">
 			<div class="row">
@@ -148,34 +162,21 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="/resources/js/clean-blog.min.js"></script>
+
+
+
 <script>
 $(function(){
-	var message='${message}';
+	var message='${ManagerDelete}';
 	if(message!="" && message.length !=0){
-		alert(message);	
-	}	
-})
-
-
-
-
-$(function(){
-	$("button[data-oper='download']").on("click", function(e) {
-		e.preventDefault();
-		alert="파일다운로드";
-		 var filePath = "D:/upload/book_report/eula.1031.txt";
-		    var fileName = "eula.1031.txt";
-		                 
-		    location.href = "/AjaxUploadController/download?filePath="+filePath+"&fileName="+fileName;
-			
-	})
+		alert(message);
+		
+	}
 	
 	
 })
-
 
 </script>
-
 
 </body>
 </html>
