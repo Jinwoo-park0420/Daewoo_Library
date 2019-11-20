@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,9 +42,9 @@ public class BookController {
 	public void booksearch(Model model, Criteria cri) {
 		log.info("전체 목록 페이지 요청");
 		cri.setAmount(5);
-		List<BookVO> list=service.getList(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
+		List<BookVO> bList=service.getList(cri);
+		if(!bList.isEmpty()) {
+			model.addAttribute("bList", bList);
 			PageVO page=new PageVO(cri, service.totalCnt(cri));
 			log.info("pageVO controller "+page);
 			model.addAttribute("pageVO", page);
@@ -55,9 +56,9 @@ public class BookController {
 	public void newbook(Model model, Criteria cri) {
 		log.info("신간 도서 페이지 요청 "+cri);
 		cri.setAmount(5);
-		List<BookVO> list=service.newbook(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
+		List<BookVO> bList=service.newbook(cri);
+		if(!bList.isEmpty()) {
+			model.addAttribute("bList", bList);
 			model.addAttribute("pageVO", new PageVO(cri, service.NewCnt(cri)));
 			}
 	}
@@ -66,9 +67,9 @@ public class BookController {
 	public void recommandbook(Model model, Criteria cri) {
 		log.info("추천 도서 페이지 요청");
 		cri.setAmount(5);
-		List<BookVO> list=service.recommandbook(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
+		List<BookVO> bList=service.recommandbook(cri);
+		if(!bList.isEmpty()) {
+			model.addAttribute("bList", bList);
 			model.addAttribute("pageVO", new PageVO(cri, service.RecCnt(cri)));
 			}
 	}
@@ -77,9 +78,9 @@ public class BookController {
 	public void popularbook(Model model, Criteria cri) {
 		log.info("인기 도서 페이지 요청");
 		cri.setAmount(5);
-		List<BookVO> list=service.popularbook(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
+		List<BookVO> bList=service.popularbook(cri);
+		if(!bList.isEmpty()) {
+			model.addAttribute("bList", bList);
 			model.addAttribute("pageVO", new PageVO(cri, service.PopCnt(cri)));
 			}
 	}
@@ -88,9 +89,9 @@ public class BookController {
 	public void loanbook(Model model, Criteria cri) {
 		log.info("대출 급상승 도서 페이지 요청");
 		cri.setAmount(5);
-		List<BookVO> list=service.loanbook(cri);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
+		List<BookVO> bList=service.loanbook(cri);
+		if(!bList.isEmpty()) {
+			model.addAttribute("bList", bList);
 			model.addAttribute("pageVO", new PageVO(cri, service.LoanCnt(cri)));
 			}
 	}
@@ -102,30 +103,33 @@ public class BookController {
 
 		return new ResponseEntity<>(vo, HttpStatus.OK);		
 	}
+
+	@GetMapping("bookRental")
+	@ResponseBody
+	public String rentalUpdate(int bookno, Model model) {
+		log.info("도서 대여신청(get)... "+bookno+" 번 도서");
+		int status=service.rentalUpdate(bookno);
+		log.info("도서 대여신청(get), 도서상태 => "+status);
+		if(status==0) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	
 	@PostMapping("bookDetail")
-	public void bookDetail(int bookno, Model model) {
-		log.info("도서 대여신청... "+bookno);
-		BookVO vo=service.bookDetail(bookno);
-		model.addAttribute("vo", vo);
+	@ResponseBody
+	public String returnUpdate(int bookno, Model model) {
+		log.info("도서 반납신청(post)... "+bookno+" 번 도서");
+		int status=service.returnUpdate(bookno);
+		log.info("도서 반납신청(post), 도서상태 => "+status);
+		if(status==0) {
+			return "true";
+		}else {
+			return "false";
+		}
 	}
 	
-	@GetMapping("bookRental")
-	public void bookRentalGet(int bookno, Model model) {
-		log.info("도서 대여신청(get)... "+bookno);
-		BookVO vo=service.bookRental(bookno);
-		model.addAttribute("vo", vo);
-	}
-	
-	@PostMapping("bookRental")
-	public String bookRentalPost(int bookno, Model model) {
-		log.info("도서 대여신청(post)... "+bookno);
-		BookVO vo=service.bookRental(bookno);
-		model.addAttribute("vo", vo);
-		return "/book/bookRental";
-	}
-
-
 	@GetMapping("bookapply")
 	public String bookapplyGet(SessionStatus session, RedirectAttributes rttr) {
 		log.info("도서 신청페이지 요청");
