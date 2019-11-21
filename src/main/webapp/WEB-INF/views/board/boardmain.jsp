@@ -123,6 +123,7 @@
 			<c:set var="page" value="${pageVO.cri.pageNum}"/>
 			<%  
 				Integer page1=(Integer)pageContext.getAttribute("page");
+				Integer page2=(Integer)pageContext.getAttribute("page");
 			
 							
 			    int start=(page1-1)*10+1;

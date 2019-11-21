@@ -8,6 +8,7 @@ import com.spring.domain.ApplyBookVO;
 import com.spring.domain.BoardVO;
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.MemberVO;
 
 public interface BookService {
 
@@ -48,5 +49,6 @@ public interface BookService {
 	//반납
 	public int returnUpdate(BookVO vo);
 	
-	public int returnstatusUpdate();
+	public int uupdate(String userid);
+	
 }

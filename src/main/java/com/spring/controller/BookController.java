@@ -106,19 +106,20 @@ public class BookController {
 
 	@GetMapping("bookRental")
 	@ResponseBody
-	public String rentalUpdate(BookVO vo, Model model) {
+	public String rentalUpdate(BookVO vo,Model model) {
 		log.info("도서 대여신청(get)... "+vo);
 		int status=service.rentalUpdate(vo);
 		log.info("도서 대여신청(get), 도서상태 => "+status);
+		System.out.println("sdfsdf"+status);
+		log.info("빌림");
 		if(status==0) {
 			return "true";
-		}else {
-			/*
-			 * int result=service.returnstatusUpdate();//멤버에서의 상태변경
-			 * System.out.println("값"+result);
-			 */
-			return "false";
-			
+		}
+		else {
+			int result=service.uupdate(vo.getUserid());
+			model.addAttribute("status",result);
+		  log.info(vo.getUserid());     	  
+		  return "false";			
 		}
 	}
 	
@@ -127,15 +128,14 @@ public class BookController {
 	public String returnUpdate(BookVO vo, Model model) {
 		log.info("도서 반납신청(post)... "+vo);
 		int status=service.returnUpdate(vo);
+		model.addAttribute("bookrent",status);
 		log.info("도서 반납신청(post), 도서상태 => "+status);
-		if(status==0) {
+		if(status==0) {			
 			return "true";
 		}else {
-			
-			/*
-			 * int result=service.returnstatusUpdate();//멤버에서의 상태변경
-			 * System.out.println("값"+result);
-			 */
+			int result=service.uupdate(vo.getUserid());
+			model.addAttribute("status",result);
+			log.info(vo.getUserid());
 			return "false";
 		}
 	}

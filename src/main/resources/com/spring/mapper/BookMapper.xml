@@ -95,6 +95,12 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,isbn,genre,us
 <update id="returnUpdate">
 	update bookList SET status=0, userid=NULL WHERE bookno=#{bookno} and userid=#{userid}
 </update>
+<update id="uupdate">
+update library_member a set a.lease_status=
+(select b.status from booklist b where b.userid=#{userid,jdbcType=VARCHAR})
+where a.userid=#{userid,jdbcType=VARCHAR}
+</update>
+
 
 <!-- <update id="rentalUpdate">
   update bookList
@@ -173,8 +179,12 @@ insert into ApplyBook(bookname,writer,publisher,publish_year,price,isbn,genre,us
 	</if>	
 </sql>
 
-  <update id="returnstatusUpdate">
-update library_member SET lease_status  =(select status from booklist where booklist.userid=library_member.userid);
-    </update> 
+<update id="returnstatusUpdate">
+update library_member a
+set(a.lease_status)=(select x.status from booklist x where x.userid=a.userid)
+where exists(
+select 'x' from booklist b where b.userid=#{userid}
+);
+</update> 
 
 </mapper>

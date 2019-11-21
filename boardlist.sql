@@ -17,7 +17,8 @@ on delete cascade
 <!-- 트리거 만드는중 -->
 create or replace trigger 
 
-
+insert into library_board(bno,title,content,password,writer,regdate,readcnt)
+values(seq_libbno.nextval,'스프링','123123','123','wlsdn123',sysdate,0)
 
 <!--spring_board 추가된 컬럼에 기존 값 업데이트하기  -->
 update library_board set replycnt=(
