@@ -143,7 +143,7 @@
       	</div>
       	<div class="form-group">
       		<label for="session" style="margin-bottom:1px;"></label>
-      		<input type="hidden" class="form-control" id="session" name="session" value="${vo1.userid }" />
+      		<input type="hidden" class="form-control" id="session" name="userid" value="${vo1.userid }" />
       	</div>
       	</div>
 		</div>

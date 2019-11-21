@@ -8,10 +8,11 @@ address nvarchar2(100) not null,
 phone_number nvarchar2(20) not null,
 grade number(5) default 0 not null, 
 joindate date default sysdate,    
-lease_status number(8) default 0  ,
+lease_status number(8),
 birthYear nvarchar2(50) not null
 );
 
+drop table library_member cascade constraint
 
 -- =============================================희망도서신청
 
@@ -30,7 +31,7 @@ REFERENCES library_member(userid)
 on delete cascade
 );
 
-
+drop table applybook cascade constraint;
 
 -- =========================================독후감 
 create table book_report(
@@ -47,20 +48,23 @@ on delete cascade
 );
 create sequence seq_reportbno;
 
+drop sequence seq_reportbno;
 
+
+drop table book_report cascade constraint;
 -- ========================================파일첨부
 create table book_attach(
-	uuid varchar2(100) constraint pk_attach primary key,
+	uuid varchar2(100) constraint pk_attachs primary key,
 	uploadPath varchar2(100) not null,
 	fileName varchar2(100) not null,
 	fileType char(1) default 'I',
 	bno number(10,0),
-	constraint fk_book_attach
+	constraint fk_book_attachs
 	foreign key(bno) references book_report(bno)
 on delete cascade
 );
 
-
+drop table book_attach cascade constraint;
 -- =====================================게시판
 create table library_board(
 bno number(10) constraint pk_library_board  primary key,
@@ -77,7 +81,9 @@ constraint fk_LIBRARY_USER foreign key(writer) REFERENCES  library_member(userid
 on delete cascade
 );
 create sequence seq_libbno; --시퀀스 생성
+drop sequence seq_libbno;
 
+drop table library_board cascade constraint;
 -- ========================================댓글
 create table board_reply(
 bno number(10) not null,
@@ -92,6 +98,9 @@ on delete cascade
 );
 
 create sequence seq_librno; --시퀀스생성
+drop sequence seq_librno;
+
+drop table board_reply cascade constraint;
 -- ==============================================도서
 
 create table bookList(
@@ -113,6 +122,11 @@ create sequence seq_bookno
 start with 1
 minvalue 0
 maxvalue 100;
+
+drop sequence seq_bookno;
+
+drop table booklist cascade constraint;
+
 
 insert into BOOKLIST(bookno, bookname, genre, writer, publisher, status, isbn) 
 values(seq_bookno.nextVal,'82년생 김지영 :조남주 장편소설','한국문학','조남주','민음사',0,'9788937473135');
@@ -230,5 +244,44 @@ update library_member SET lease_status  =(select status from booklist where book
 
 
 select * from library_member;
+
 insert into LIBRARY_MEMBER(name,userid,password,email,address,phone_number,grade,joindate,lease_status,birthYear)
 values('1','1','1','1','1','1',1,sysdate,1,'1');
+
+select * from LIBRARY_MEMBER;
+
+select * from LIBRARY_MEMBER;
+select * from booklist;
+
+update library_member SET lease_status=
+(select status from booklist where booklist.userid='rotess123');
+
+update library_member set lease_status=0 where userid='rotess123';
+
+update library_member a set a.lease_status=
+(select b.status from booklist b where userid='rotess123')
+where a.userid='rotess123';
+
+select status from booklist;
+select * from booklist;
+select * from library_member;
+
+select status from booklist where userid='rotess123';
+
+update library_member a set a.lease_status=
+(select b.status from booklist b where b.userid='rotess123')
+where a.userid='rotess123';
+
+update library_member a
+set lease_status=(
+select status from booklist b
+where b.userid=a.userid
+);
+
+
+
+update library_member a
+set(a.lease_status)=(select x.status from booklist x where x.userid=a.userid)
+where exists(
+select 'x' from booklist b where b.userid=a.userid
+);

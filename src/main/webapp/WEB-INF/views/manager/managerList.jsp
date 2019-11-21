@@ -97,8 +97,7 @@
 					<td>${vo.email}</td>
 					<td>${vo.phone_number }</td>
 					<td>${vo.joindate}</td>
-					<td>${vo.lease_status}</td>
-	
+					<td>${vo.lease_status}</td>	
 				</tr>
 			</c:forEach>
 			</tbody>

@@ -32,4 +32,6 @@ public interface MemberMapper {
 	public List<Book_reportVO> reportinfo(Book_reportVO report);
 	
 	public List<BoardVO> boardinfo(BoardVO board);
+	
+	public int uupdate();
 }
