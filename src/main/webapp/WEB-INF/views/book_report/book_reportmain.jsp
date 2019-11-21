@@ -163,8 +163,8 @@ $(function(){
 	$("button[data-oper='download']").on("click", function(e) {
 		e.preventDefault();
 		alert="파일다운로드";
-		 var filePath = "D:/upload/book_report/eula.1031.txt";
-		    var fileName = "eula.1031.txt";
+		 var filePath = "D:/upload/book_report/report.hwp";
+		    var fileName = "report.hwp";
 		                 
 		    location.href = "/AjaxUploadController/download?filePath="+filePath+"&fileName="+fileName;
 			
