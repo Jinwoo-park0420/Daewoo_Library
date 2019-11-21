@@ -29,7 +29,7 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container"> 
     		<a class="navbar-brand" href="/member/index">대우 도서관</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
