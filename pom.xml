@@ -18,7 +18,7 @@
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-web</artifactId>
-	    <version>4.2.4.BUILD-SNAPSHOT</version>
+	    <version>5.2.10.BUILD-SNAPSHOT</version>
 	</dependency>
 	<!-- spring security taglibs 라이브러리  -->
 	<dependency>
@@ -36,7 +36,7 @@
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-web</artifactId>
-	    <version>5.1.2.RELEASE</version>
+	    <version>5.2.10.BUILD-SNAPSHOT</version>
 	</dependency>
 		<!-- Mail -->
 		<!-- google맵 사용 -->
